@@ -25,9 +25,11 @@
 ├── note/
 │   ├── CLAUDE.md
 │   └── articles/
-└── research/
-    ├── CLAUDE.md
-    └── reports/
+├── research/
+│   ├── CLAUDE.md
+│   └── reports/
+└── lp/
+    └── (案件ごとのブリーフ・設計書・実装ファイル)
 ```
 
 
@@ -41,6 +43,7 @@
 | SNS部門 | sns | X/Instagram/TikTok等の投稿企画・運用。 |
 | note部門 | note | note記事の執筆・投稿管理。 |
 | リサーチ部門 | research | 市場・トレンド・競合の調査。意思決定用レポート作成。 |
+| LP制作部門 | lp | 受注LP案件のブリーフ・設計書・実装の管理。 |
 
 
 ## 運営ルール
