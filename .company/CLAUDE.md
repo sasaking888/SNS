@@ -22,9 +22,12 @@
 ├── sns/
 │   ├── CLAUDE.md
 │   └── posts/
-└── note/
+├── note/
+│   ├── CLAUDE.md
+│   └── articles/
+└── research/
     ├── CLAUDE.md
-    └── articles/
+    └── reports/
 ```
 
 
@@ -37,6 +40,7 @@
 | YouTube部門 | youtube | 動画企画・台本・投稿管理。 |
 | SNS部門 | sns | X/Instagram/TikTok等の投稿企画・運用。 |
 | note部門 | note | note記事の執筆・投稿管理。 |
+| リサーチ部門 | research | 市場・トレンド・競合の調査。意思決定用レポート作成。 |
 
 
 ## 運営ルール
