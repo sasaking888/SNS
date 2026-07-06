@@ -17,3 +17,4 @@ X（Twitter）・Instagram・TikTokなどSNS全般の投稿企画と運用を担
 
 ## フォルダ構成
 - `posts/` - 投稿の企画・運用・振り返り（1投稿または1キャンペーンにつき1ファイル）
+- `templates/` - 投稿作成に使うプロンプトテンプレート集（例: `sns-post-templates.md`）。投稿を作る前にここを確認して活用する
