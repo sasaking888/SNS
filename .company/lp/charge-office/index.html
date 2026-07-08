@@ -39,6 +39,16 @@
 
   img, svg { max-width: 100%; display: block; }
 
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   a { color: inherit; }
 
   .icon { width: 1em; height: 1em; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
@@ -187,73 +197,14 @@
     bottom: 40px; right: -40px;
   }
   .hero .container { z-index: 1; }
-  .hero h1 {
-    font-size: 32px;
-    margin-bottom: 18px;
-  }
-  .hero h1 mark {
-    background: none;
-    color: var(--orange-deep);
-    text-decoration: underline;
-    text-decoration-color: var(--orange);
-    text-decoration-thickness: 6px;
-    text-underline-offset: 2px;
-    white-space: nowrap;
-  }
   .nowrap { white-space: nowrap; }
-  .hero .lede {
-    font-size: 16px;
-    color: var(--ink-soft);
-    margin: 0 auto 6px;
-    max-width: 480px;
-  }
-
-  .hero-visual {
-    margin: 36px auto 0;
+  .hero-banner-img {
     max-width: 560px;
-    position: relative;
-  }
-  .hero-photo {
-    aspect-ratio: 16 / 10;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
     border-radius: 20px;
-    background:
-      radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.85) 0%, transparent 55%),
-      linear-gradient(150deg, var(--cream) 0%, var(--yellow-deep) 100%);
-    box-shadow: 0 24px 48px -16px rgba(32,27,20,0.3);
-    border: 4px solid var(--white);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    color: rgba(32,27,20,0.45);
   }
-  .hero-photo .icon { width: 40px; height: 40px; stroke-width: 1.4; }
-  .hero-photo .photo-note {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-  }
-  /* 【Canva素材差し替え】.hero-photo を <img src="..." alt="オフィスの一角で専用チェアに座る社員に施術する整体師"> に置き換え。
-     推奨: 横長16:10、明るいオフィス内の施術風景。border-radius/box-shadowは .hero-photo クラスを流用可 */
-  .hero-visual .chip {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--ink);
-    color: var(--white);
-    font-size: 12px;
-    font-weight: 800;
-    padding: 8px 14px;
-    border-radius: 999px;
-    box-shadow: 0 8px 16px -4px rgba(0,0,0,0.3);
-    white-space: nowrap;
-    z-index: 1;
-  }
-  .hero-visual .chip .icon { width: 14px; height: 14px; color: var(--yellow); }
-  .hero-visual .chip--time { top: -14px; right: -8px; }
-  .hero-visual .chip--space { bottom: -12px; left: -8px; }
 
   /* --- ③ フローティング実績カード --- */
   .stats-card {
@@ -796,8 +747,7 @@
     .section { padding: 96px 0; }
     .section-title { font-size: 38px; }
     .hero { padding: 80px 0 160px; }
-    .hero h1 { font-size: 54px; max-width: 760px; margin-left: auto; margin-right: auto; }
-    .hero .lede { font-size: 18px; max-width: 560px; }
+    .hero-banner-img { max-width: 640px; }
     .cta-group { flex-direction: row; justify-content: center; }
     .stats-card { margin-top: -96px; padding: 36px 12px; }
     .stats-card .stat-number { font-size: 34px; }
@@ -834,18 +784,15 @@
 <!-- ② ファーストビュー -->
 <section class="hero">
   <div class="container">
-    <h1>その肩こり、会社の経費で<mark>"ゼロ"</mark>にしませんか。</h1>
-    <p class="lede">整体師がオフィスに出張。<span class="nowrap">1人10分</span>、たった<span class="nowrap">0.5畳</span>で始める新しい福利厚生 ——<br>従業員の不調を、離職とコストの「見えない原因」のままにしない。</p>
-
-    <div class="hero-visual">
-      <!-- 【Canva素材差し替え】下の .hero-photo をimgタグに置き換え(横長16:10、オフィス内の施術風景) -->
-      <div class="hero-photo" role="img" aria-label="オフィスの一角で専用チェアに座る社員に施術する整体師のイメージ(写真差し替え予定)">
-        <svg class="icon"><use href="#i-chair"/></svg>
-        <span class="photo-note">PHOTO</span>
-      </div>
-      <div class="chip chip--time"><svg class="icon"><use href="#i-clock"/></svg>10分〜</div>
-      <div class="chip chip--space"><svg class="icon"><use href="#i-space"/></svg>0.5畳</div>
-    </div>
+    <!-- 【方式変更】ヒーロー全体をCanva等で作った1枚画像に置き換え(見出し・コピー・写真枠を画像側に統合)
+         h1はSEO・スクリーンリーダー用に非表示で残し、画像altにも同内容を記載 -->
+    <h1 class="sr-only">その肩こり、会社の経費で"ゼロ"にしませんか。整体師がオフィスに出張する法人向け出張整体サブスク CHARGE OFFICE</h1>
+    <img
+      class="hero-banner-img"
+      src="images/hero-banner.png"
+      alt="その肩こり、会社の経費で&quot;ゼロ&quot;にしませんか。整体師がオフィスに出張する、法人向け出張整体サブスク。1人10分〜、必要スペースは0.5畳。"
+      width="1500" height="1430">
+    <!-- 【要差し替え】現在はモックのアイコン合成画像。Canvaで実写版を作成後、同ファイル名(images/hero-banner.png)を上書きするか、srcパスを差し替え -->
 
     <div class="cta-group">
       <a href="#contact" class="btn btn--primary">資料請求はこちら(無料)</a>
