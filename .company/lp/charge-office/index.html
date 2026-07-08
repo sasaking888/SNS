@@ -419,6 +419,9 @@
     height: calc(100% - 20px);
     background: repeating-linear-gradient(180deg, var(--orange) 0 6px, transparent 6px 12px);
     opacity: 0.5;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.5s ease;
   }
   .flow-step .step-number {
     flex-shrink: 0;
@@ -433,8 +436,45 @@
     font-weight: 900;
     font-size: 16px;
     z-index: 1;
+    transform: scale(0.4);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
   }
-  .flow-step .step-body { padding-top: 10px; font-weight: 700; color: var(--ink); }
+  .flow-step .step-body {
+    padding-top: 10px;
+    font-weight: 700;
+    color: var(--ink);
+    opacity: 0;
+    transform: translateX(14px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  /* ステップの時間差登場(コンテナにin-viewが付いたら順番に発火) */
+  .flow-steps.in-view .flow-step .step-number { transform: scale(1); opacity: 1; }
+  .flow-steps.in-view .flow-step .step-body { opacity: 1; transform: translateX(0); }
+  .flow-steps.in-view .flow-step:not(:last-child)::after { transform: scaleY(1); }
+  .flow-steps .flow-step:nth-child(1) .step-number,
+  .flow-steps .flow-step:nth-child(1) .step-body { transition-delay: 0.05s; }
+  .flow-steps .flow-step:nth-child(1)::after { transition-delay: 0.35s; }
+  .flow-steps .flow-step:nth-child(2) .step-number,
+  .flow-steps .flow-step:nth-child(2) .step-body { transition-delay: 0.4s; }
+  .flow-steps .flow-step:nth-child(2)::after { transition-delay: 0.7s; }
+  .flow-steps .flow-step:nth-child(3) .step-number,
+  .flow-steps .flow-step:nth-child(3) .step-body { transition-delay: 0.75s; }
+  .flow-steps .flow-step:nth-child(3)::after { transition-delay: 1.05s; }
+  .flow-steps .flow-step:nth-child(4) .step-number,
+  .flow-steps .flow-step:nth-child(4) .step-body { transition-delay: 1.1s; }
+  @media (prefers-reduced-motion: reduce) {
+    .flow-step .step-number,
+    .flow-step .step-body,
+    .flow-step:not(:last-child)::after {
+      transform: none;
+      opacity: 1;
+      transition: none;
+    }
+    .flow-step .step-number { opacity: 1; }
+    .flow-step .step-body { opacity: 1; }
+    .flow-step:not(:last-child)::after { opacity: 0.5; }
+  }
 
   /* --- ⑧ 導入企業の声 --- */
   .voice-cards {
@@ -902,10 +942,10 @@
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">How It Works</span>
-      <h2 class="section-title">導入はかんたん、最短4ステップ</h2>
+      <h2 class="section-title">導入はかんたん、<span class="nowrap">最短4ステップ</span></h2>
     </div>
     <!-- 【要確認】ステップ内容・所要日数はクライアント確認 -->
-    <div class="flow-steps reveal">
+    <div class="flow-steps">
       <div class="flow-step">
         <div class="step-number">1</div>
         <div class="step-body">資料請求・お問い合わせ</div>
@@ -1133,6 +1173,24 @@
     revealEls.forEach(function (el) { io.observe(el); });
   } else {
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  // 導入ステップの時間差アニメーション
+  var flowSteps = document.querySelector('.flow-steps');
+  if (flowSteps) {
+    if ('IntersectionObserver' in window) {
+      var flowIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            flowIo.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      flowIo.observe(flowSteps);
+    } else {
+      flowSteps.classList.add('in-view');
+    }
   }
 </script>
 
