@@ -399,25 +399,97 @@
     cursor: pointer;
   }
 
-  /* 追従CTA(スマホ) */
-  .sticky-cta {
+  /* 追従CTA: LINE公式アカウント風ウィジェット */
+  .line-widget {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--color-white);
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-    padding: 10px 16px;
-    text-align: center;
+    right: 16px;
+    bottom: 16px;
     z-index: 200;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
-  .sticky-cta.visible {
+  .line-widget.visible {
+    opacity: 1;
     transform: translateY(0);
+    pointer-events: auto;
   }
-  .sticky-cta .btn {
-    width: 100%;
+
+  .line-tooltip {
+    position: relative;
+    max-width: 240px;
+    background: var(--color-white);
+    border: 1.5px solid #222;
+    border-radius: 16px;
+    padding: 16px 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+  .line-tooltip::after {
+    content: "";
+    position: absolute;
+    right: 28px;
+    bottom: -9px;
+    width: 16px;
+    height: 16px;
+    background: var(--color-white);
+    border-right: 1.5px solid #222;
+    border-bottom: 1.5px solid #222;
+    transform: rotate(45deg);
+  }
+  .line-tooltip-close {
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #222;
+    color: var(--color-white);
+    border: none;
+    font-size: 13px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .line-tooltip-title {
+    color: var(--color-line-green);
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .line-tooltip-text {
+    font-size: 13px;
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+  .line-widget.tooltip-hidden .line-tooltip {
+    display: none;
+  }
+
+  .line-fab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-line-green);
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 14px 20px;
+    border-radius: 999px;
+    box-shadow: 0 6px 16px rgba(6, 199, 85, 0.4);
+    white-space: nowrap;
+  }
+  .line-fab .line-fab-icon {
+    font-size: 18px;
+    line-height: 1;
   }
 
   footer {
@@ -437,7 +509,6 @@
     .flow-step { flex-direction: column; text-align: center; flex: 1; }
     .voice-cards { flex-direction: row; }
     .voice-card { flex: 1; }
-    .sticky-cta { display: none; } /* PCでは追従CTA非表示、通常CTAで十分 */
   }
 </style>
 </head>
@@ -693,9 +764,15 @@
   &copy; 2026 CHARGE OFFICE
 </footer>
 
-<!-- 追従CTA(スマホ) -->
-<div class="sticky-cta" id="stickyCta">
-  <a href="#contact" class="btn btn--primary">資料請求(無料)</a>
+<!-- 追従CTA: LINE公式アカウント風ウィジェット -->
+<div class="line-widget" id="lineWidget">
+  <div class="line-tooltip" id="lineTooltip">
+    <button class="line-tooltip-close" id="lineTooltipClose" aria-label="閉じる">×</button>
+    <p class="line-tooltip-title">LINEでいつでも相談</p>
+    <p class="line-tooltip-text">友だち追加で、気になることをすぐ質問できます。</p>
+  </div>
+  <!-- 【要設定】LINE公式アカウントURL -->
+  <a href="#" class="line-fab"><span class="line-fab-icon">💬</span>LINEで相談</a>
 </div>
 
 <script>
@@ -715,16 +792,21 @@
     });
   });
 
-  // 追従CTA: ファーストビュー通過後に表示
+  // 追従CTA(LINEウィジェット): ファーストビュー通過後に表示
   var hero = document.querySelector('.hero');
-  var stickyCta = document.getElementById('stickyCta');
+  var lineWidget = document.getElementById('lineWidget');
   window.addEventListener('scroll', function () {
     var heroBottom = hero.offsetTop + hero.offsetHeight;
     if (window.scrollY > heroBottom) {
-      stickyCta.classList.add('visible');
+      lineWidget.classList.add('visible');
     } else {
-      stickyCta.classList.remove('visible');
+      lineWidget.classList.remove('visible');
     }
+  });
+
+  // 吹き出しの閉じるボタン
+  document.getElementById('lineTooltipClose').addEventListener('click', function () {
+    lineWidget.classList.add('tooltip-hidden');
   });
 </script>
 
