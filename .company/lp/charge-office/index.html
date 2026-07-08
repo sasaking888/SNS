@@ -254,31 +254,32 @@
     position: relative;
     margin: -72px auto 0;
     max-width: 720px;
-    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);
+    background: var(--white);
+    border: 2.5px solid var(--orange);
     border-radius: 24px;
     padding: 28px 12px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    box-shadow: 0 24px 48px -16px rgba(184, 57, 15, 0.5);
+    box-shadow: 0 24px 48px -16px rgba(32, 27, 20, 0.25);
     z-index: 2;
   }
   .stats-card .stat {
     text-align: center;
     padding: 8px;
-    border-right: 1px solid rgba(255,255,255,0.22);
+    border-right: 1px solid var(--hairline);
   }
   .stats-card .stat:last-child { border-right: none; }
   .stats-card .stat-number {
     display: block;
     font-size: 26px;
     font-weight: 900;
-    color: var(--yellow);
+    color: var(--orange);
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
   }
   .stats-card .stat-label {
     font-size: 11px;
-    color: rgba(255,255,255,0.85);
+    color: var(--ink-soft);
     margin-top: 4px;
   }
 
@@ -484,15 +485,17 @@
 
   /* --- ⑨ 料金プラン --- */
   .price-box {
-    background: linear-gradient(160deg, var(--orange) 0%, var(--orange-deep) 100%);
+    background: var(--white);
+    border: 2.5px solid var(--orange);
     border-radius: 28px;
     padding: 40px 32px;
     text-align: center;
     max-width: 480px;
     margin: 0 auto;
-    color: var(--white);
+    color: var(--ink);
     position: relative;
     overflow: hidden;
+    box-shadow: 0 24px 48px -20px rgba(32, 27, 20, 0.2);
   }
   .price-box::before {
     content: "";
@@ -500,18 +503,18 @@
     top: -40%; right: -20%;
     width: 220px; height: 220px;
     background: radial-gradient(circle, var(--yellow) 0%, transparent 70%);
-    opacity: 0.35;
+    opacity: 0.3;
   }
-  .price-box .price-unit { font-size: 14px; color: rgba(255,255,255,0.7); position: relative; }
+  .price-box .price-unit { font-size: 14px; color: var(--ink-soft); position: relative; }
   .price-box .price-main {
     font-size: 46px;
-    color: var(--yellow);
+    color: var(--orange);
     font-weight: 900;
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
     position: relative;
   }
-  .price-box .price-tax { font-size: 13px; color: rgba(255,255,255,0.6); position: relative; }
+  .price-box .price-tax { font-size: 13px; color: var(--ink-soft); position: relative; }
   .price-table {
     width: 100%;
     margin-top: 28px;
@@ -521,21 +524,21 @@
   }
   .price-table td {
     padding: 12px 4px;
-    border-bottom: 1px solid rgba(255,255,255,0.14);
+    border-bottom: 1px solid var(--hairline);
     text-align: left;
-    color: rgba(255,255,255,0.85);
+    color: var(--ink-soft);
   }
-  .price-table td:last-child { text-align: right; font-weight: 800; color: var(--white); }
+  .price-table td:last-child { text-align: right; font-weight: 800; color: var(--ink); }
   .price-conversion {
     margin-top: 24px;
-    background: rgba(255,255,255,0.08);
+    background: var(--cream);
     border-radius: 14px;
     padding: 18px;
     font-size: 14px;
     position: relative;
-    color: rgba(255,255,255,0.9);
+    color: var(--ink);
   }
-  .price-conversion strong { color: var(--yellow); }
+  .price-conversion strong { color: var(--orange-deep); }
 
   /* --- ⑩ FAQ --- */
   .faq-list { display: flex; flex-direction: column; gap: 10px; }
