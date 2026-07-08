@@ -209,27 +209,33 @@
   }
 
   .hero-visual {
-    margin: 32px auto 0;
-    width: 240px;
-    height: 240px;
+    margin: 36px auto 0;
+    max-width: 560px;
     position: relative;
+  }
+  .hero-photo {
+    aspect-ratio: 16 / 10;
+    border-radius: 20px;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.85) 0%, transparent 55%),
+      linear-gradient(150deg, var(--cream) 0%, var(--yellow-deep) 100%);
+    box-shadow: 0 24px 48px -16px rgba(32,27,20,0.3);
+    border: 4px solid var(--white);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 10px;
+    color: rgba(32,27,20,0.45);
   }
-  .hero-visual .badge-ring {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: var(--white);
-    box-shadow: 0 20px 40px -12px rgba(32,27,20,0.25);
+  .hero-photo .icon { width: 40px; height: 40px; stroke-width: 1.4; }
+  .hero-photo .photo-note {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
   }
-  .hero-visual .badge-icon {
-    position: relative;
-    width: 108px;
-    height: 108px;
-    color: var(--orange);
-  }
+  /* 【Canva素材差し替え】.hero-photo を <img src="..." alt="オフィスの一角で専用チェアに座る社員に施術する整体師"> に置き換え。
+     推奨: 横長16:10、明るいオフィス内の施術風景。border-radius/box-shadowは .hero-photo クラスを流用可 */
   .hero-visual .chip {
     position: absolute;
     display: flex;
@@ -243,11 +249,11 @@
     border-radius: 999px;
     box-shadow: 0 8px 16px -4px rgba(0,0,0,0.3);
     white-space: nowrap;
+    z-index: 1;
   }
   .hero-visual .chip .icon { width: 14px; height: 14px; color: var(--yellow); }
-  .hero-visual .chip--time { top: -6px; right: -18px; }
-  .hero-visual .chip--space { bottom: 4px; left: -34px; }
-  /* 【Canva素材差し替え】写真素材ができ次第、.hero-visual をimgタグに置き換え可能 */
+  .hero-visual .chip--time { top: -14px; right: -8px; }
+  .hero-visual .chip--space { bottom: -12px; left: -8px; }
 
   /* --- ③ フローティング実績カード --- */
   .stats-card {
@@ -831,13 +837,15 @@
     <h1>その肩こり、会社の経費で<mark>"ゼロ"</mark>にしませんか。</h1>
     <p class="lede">整体師がオフィスに出張。<span class="nowrap">1人10分</span>、たった<span class="nowrap">0.5畳</span>で始める新しい福利厚生 ——<br>従業員の不調を、離職とコストの「見えない原因」のままにしない。</p>
 
-    <div class="hero-visual" aria-hidden="true">
-      <div class="badge-ring"></div>
-      <svg class="badge-icon icon" style="stroke-width:1.4"><use href="#i-chair"/></svg>
+    <div class="hero-visual">
+      <!-- 【Canva素材差し替え】下の .hero-photo をimgタグに置き換え(横長16:10、オフィス内の施術風景) -->
+      <div class="hero-photo" role="img" aria-label="オフィスの一角で専用チェアに座る社員に施術する整体師のイメージ(写真差し替え予定)">
+        <svg class="icon"><use href="#i-chair"/></svg>
+        <span class="photo-note">PHOTO</span>
+      </div>
       <div class="chip chip--time"><svg class="icon"><use href="#i-clock"/></svg>10分〜</div>
       <div class="chip chip--space"><svg class="icon"><use href="#i-space"/></svg>0.5畳</div>
     </div>
-    <!-- 【Canva素材差し替え】上記アイコン構成を、実際の施術風景写真に差し替え可能 -->
 
     <div class="cta-group">
       <a href="#contact" class="btn btn--primary">資料請求はこちら(無料)</a>
