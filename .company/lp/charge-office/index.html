@@ -174,7 +174,7 @@
   .hero {
     position: relative;
     background: linear-gradient(160deg, var(--cream) 0%, var(--yellow) 78%);
-    padding: 56px 0 120px;
+    padding: 0 0 40px;
     text-align: center;
     overflow: hidden;
   }
@@ -201,11 +201,9 @@
   .hero .container { z-index: 1; }
   .nowrap { white-space: nowrap; }
   .hero-banner-img {
-    max-width: 560px;
     width: 100%;
     height: auto;
-    margin: 0 auto;
-    border-radius: 20px;
+    display: block;
   }
 
   /* --- ③ フローティング実績カード --- */
@@ -755,8 +753,7 @@
   @media (min-width: 768px) {
     .section { padding: 96px 0; }
     .section-title { font-size: 38px; }
-    .hero { padding: 80px 0 160px; }
-    .hero-banner-img { max-width: 640px; }
+    .hero { padding: 0 0 56px; }
     .cta-group { flex-direction: row; justify-content: center; }
     .stats-card { margin-top: -96px; padding: 36px 12px; }
     .stats-card .stat-number { font-size: 34px; }
@@ -792,17 +789,17 @@
 
 <!-- ② ファーストビュー -->
 <section class="hero">
-  <div class="container">
-    <!-- 【方式変更】ヒーロー全体をCanva等で作った1枚画像に置き換え(見出し・コピー・写真枠を画像側に統合)
-         h1はSEO・スクリーンリーダー用に非表示で残し、画像altにも同内容を記載 -->
-    <h1 class="sr-only">その肩こり、会社の経費で"ゼロ"にしませんか。整体師がオフィスに出張する法人向け出張整体サブスク CHARGE OFFICE</h1>
-    <img
-      class="hero-banner-img"
-      src="images/hero-banner.png"
-      alt="その肩こり、会社の経費で&quot;ゼロ&quot;にしませんか。整体師がオフィスに出張する、法人向け出張整体サブスク。1人10分〜、必要スペースは0.5畳。"
-      width="1402" height="1122">
-    <!-- 【要差し替え】現在はモックのアイコン合成画像。Canvaで実写版を作成後、同ファイル名(images/hero-banner.png)を上書きするか、srcパスを差し替え -->
+  <!-- 【方式変更】ヒーロー全体をCanva等で作った1枚画像に置き換え(見出し・コピー・写真枠を画像側に統合)
+       .container(余白あり)の外に置き、画面幅いっぱい(フルブリード)で表示。画像そのものがヒーローの主役になる構成
+       h1はSEO・スクリーンリーダー用に非表示で残し、画像altにも同内容を記載 -->
+  <h1 class="sr-only">その肩こり、会社の経費で"ゼロ"にしませんか。整体師がオフィスに出張する法人向け出張整体サブスク CHARGE OFFICE</h1>
+  <img
+    class="hero-banner-img"
+    src="images/hero-banner.png"
+    alt="その肩こり、会社の経費で&quot;ゼロ&quot;にしませんか。整体師がオフィスに出張する、法人向け出張整体サブスク。1人10分〜、必要スペースは0.5畳。"
+    width="1402" height="1122">
 
+  <div class="container">
     <div class="cta-group">
       <a href="#contact" class="btn btn--primary">資料請求はこちら(無料)</a>
       <a href="#" class="btn btn--line btn--small"><svg class="icon"><use href="#i-chat"/></svg><!-- 【要設定】LINE公式アカウントURL -->LINEで気軽に相談</a>
