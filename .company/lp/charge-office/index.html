@@ -241,35 +241,26 @@
   }
 
   /* --- ④ Problem --- */
-  .problem-list {
-    list-style: none;
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
     max-width: 640px;
     margin: 0 auto;
+  }
+  .problem-tile {
     display: flex;
     flex-direction: column;
-    gap: 2px;
-  }
-  .problem-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 16px 4px;
-    border-bottom: 1px solid var(--hairline);
-    font-size: 16px;
-    color: var(--ink);
-  }
-  .problem-list .icon-check-wrap {
-    flex-shrink: 0;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    background: rgba(232, 83, 31, 0.1);
-    color: var(--orange);
-    display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 12px;
+    text-align: center;
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 24px 12px;
   }
-  .problem-list .icon-check-wrap .icon { width: 14px; height: 14px; stroke-width: 2.4; }
+  .problem-tile .icon { width: 30px; height: 30px; color: var(--orange); stroke-width: 1.6; }
+  .problem-tile span { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .problem-tile--wide { grid-column: 1 / -1; }
   .problem-conclusion {
     text-align: center;
     margin-top: 36px;
@@ -279,13 +270,42 @@
   }
 
   /* --- ⑤ Agitation --- */
-  .agitation .container { max-width: 700px; }
-  .agitation p {
-    margin: 0 0 22px;
-    font-size: 15px;
+  .agitation .container { max-width: 720px; }
+  .risk-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
   }
-  .agitation p:last-child { margin-bottom: 0; }
-  .agitation strong { color: var(--ink); }
+  .risk-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    background: var(--white);
+    border-radius: 16px;
+    padding: 24px 20px;
+    width: 100%;
+    max-width: 320px;
+  }
+  .risk-step .icon { width: 34px; height: 34px; color: var(--orange); stroke-width: 1.5; }
+  .risk-step h3 { font-size: 16px; }
+  .risk-step p { font-size: 13px; color: var(--ink-soft); }
+  .risk-arrow {
+    width: 22px; height: 22px;
+    color: var(--orange);
+    transform: rotate(90deg);
+    flex-shrink: 0;
+  }
+  .risk-punchline {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--ink);
+  }
+  .risk-punchline strong { color: var(--orange-deep); }
 
   /* --- ⑥ Solution --- */
   .bridge-bar {
@@ -755,6 +775,10 @@
   @media (min-width: 768px) {
     .section { padding: 96px 0; }
     .section-title { font-size: 38px; }
+    .problem-grid { grid-template-columns: repeat(5, 1fr); max-width: 960px; }
+    .problem-tile--wide { grid-column: auto; }
+    .risk-flow { flex-direction: row; align-items: stretch; }
+    .risk-arrow { transform: rotate(0deg); }
     .hero { padding: 0 0 130px; }
     .cta-group { flex-direction: row; justify-content: center; }
     .stats-card { margin-top: -96px; padding: 36px 12px; }
@@ -780,6 +804,12 @@
     <symbol id="i-chair" viewBox="0 0 24 24"><circle cx="12" cy="6.5" r="3"/><path d="M8 22v-8c0-2.5 1.6-4 4-4s4 1.5 4 4v8"/><path d="M6 9.5v12.5M6 21.5h13"/></symbol>
     <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8c-1.1 0-2.1-.2-3-.6L4 20l1.3-4.4C4.5 14.5 4 13.3 4 12Z"/></symbol>
     <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></symbol>
+    <symbol id="i-exit" viewBox="0 0 24 24"><path d="M9 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4"/><path d="M13 8l4 4-4 4"/><path d="M20 12H9"/></symbol>
+    <symbol id="i-bars-down" viewBox="0 0 24 24"><path d="M4 20V14M10 20V9M16 20V4"/></symbol>
+    <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M10.6 5.1A10.6 10.6 0 0 1 12 5c5 0 9 4 10 7-.5 1.4-1.5 2.9-2.9 4.1M6.3 6.3C4.1 7.8 2.5 9.8 2 12c1 3 5 7 10 7 1.3 0 2.6-.3 3.7-.8"/><path d="M9.5 9.6a3 3 0 0 0 4.2 4.2"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 22 20H2Z"/><path d="M12 9.5v4.5"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-yen" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 7.5 12 13l3.5-5.5M12 13v4M9.5 15h5M9.5 12.5h5"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h16"/><path d="M14 6l6 6-6 6"/></symbol>
   </defs>
 </svg>
 
@@ -834,13 +864,28 @@
       <span class="eyebrow">The Problem</span>
       <h2 class="section-title">こんなお悩み、<span class="nowrap">人事・総務</span>のあなたに集まっていませんか?</h2>
     </div>
-    <ul class="problem-list reveal">
-      <li><span class="icon-check-wrap"><svg class="icon"><use href="#i-check"/></svg></span><span>従業員の<strong>離職が続き、採用コストが膨らんでいる</strong></span></li>
-      <li><span class="icon-check-wrap"><svg class="icon"><use href="#i-check"/></svg></span><span><strong>健康経営優良法人</strong>を取りたいが、何から始めればいいか分からない</span></li>
-      <li><span class="icon-check-wrap"><svg class="icon"><use href="#i-check"/></svg></span><span>福利厚生を充実させたいが、<strong>場所も予算も手間もかけられない</strong></span></li>
-      <li><span class="icon-check-wrap"><svg class="icon"><use href="#i-check"/></svg></span><span>デスクワーク中心で、<strong>肩こり・腰痛の不調を訴える社員が多い</strong></span></li>
-      <li><span class="icon-check-wrap"><svg class="icon"><use href="#i-check"/></svg></span><span>健診結果は悪くないのに、<strong>なんとなく生産性が上がらない</strong></span></li>
-    </ul>
+    <div class="problem-grid reveal">
+      <div class="problem-tile">
+        <svg class="icon"><use href="#i-exit"/></svg>
+        <span>離職・採用コスト増</span>
+      </div>
+      <div class="problem-tile">
+        <svg class="icon"><use href="#i-shield"/></svg>
+        <span>健康経営、何から?</span>
+      </div>
+      <div class="problem-tile">
+        <svg class="icon"><use href="#i-space"/></svg>
+        <span>予算もスペースもない</span>
+      </div>
+      <div class="problem-tile">
+        <svg class="icon"><use href="#i-person"/></svg>
+        <span>肩こり・腰痛の社員多数</span>
+      </div>
+      <div class="problem-tile problem-tile--wide">
+        <svg class="icon"><use href="#i-bars-down"/></svg>
+        <span>なんとなく生産性が上がらない</span>
+      </div>
+    </div>
     <p class="problem-conclusion reveal">そのお悩み、バラバラの問題に見えて、根っこは一つかもしれません。<br>——「従業員の身体の不調」です。</p>
   </div>
 </section>
@@ -852,11 +897,26 @@
       <span class="eyebrow">The Risk</span>
       <h2 class="section-title">「病気じゃないから」と放置される不調が、組織を静かに蝕む</h2>
     </div>
-    <div class="reveal">
-      <p>肩こりや腰痛は病気ではありません。だから病院にも行かず、誰にも報告されず、<strong>会社の数字に表れないまま</strong>生産性を下げ続けます。いわゆる「未病」の状態です。</p>
-      <p>不調を抱えた社員は、集中力が落ち、イライラし、やがて「この会社は自分を大事にしてくれない」と感じ始めます。<strong>離職の理由は、退職届には書かれません。</strong></p>
-      <p>放置すれば、採用コスト・医療保険料・生産性低下という形で、<strong>会社は静かに支払い続ける</strong>ことになります。</p>
+    <div class="risk-flow reveal">
+      <div class="risk-step">
+        <svg class="icon"><use href="#i-eye-off"/></svg>
+        <h3>病気扱いされない</h3>
+        <p>肩こり・腰痛は「未病」。誰も報告しない</p>
+      </div>
+      <svg class="risk-arrow icon"><use href="#i-arrow-right"/></svg>
+      <div class="risk-step">
+        <svg class="icon"><use href="#i-alert"/></svg>
+        <h3>数字に表れないまま進行</h3>
+        <p>集中力低下・離職の火種に</p>
+      </div>
+      <svg class="risk-arrow icon"><use href="#i-arrow-right"/></svg>
+      <div class="risk-step">
+        <svg class="icon"><use href="#i-yen"/></svg>
+        <h3>静かに支払うコスト</h3>
+        <p>採用費・保険料・生産性低下</p>
+      </div>
     </div>
+    <p class="risk-punchline reveal">気づいた時にはもう、<strong>離職と経費の両方</strong>に効いています。</p>
   </div>
 </section>
 
