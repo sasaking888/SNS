@@ -241,26 +241,12 @@
   }
 
   /* --- ④ Problem --- */
-  .problem-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    max-width: 640px;
-    margin: 0 auto;
+  .problem-banner-img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    margin-bottom: 32px;
   }
-  .problem-tile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    text-align: center;
-    background: var(--surface);
-    border-radius: 16px;
-    padding: 24px 12px;
-  }
-  .problem-tile .icon { width: 30px; height: 30px; color: var(--orange); stroke-width: 1.6; }
-  .problem-tile span { font-size: 14px; font-weight: 700; color: var(--ink); }
-  .problem-tile--wide { grid-column: 1 / -1; }
   .problem-conclusion {
     text-align: center;
     margin-top: 36px;
@@ -775,8 +761,6 @@
   @media (min-width: 768px) {
     .section { padding: 96px 0; }
     .section-title { font-size: 38px; }
-    .problem-grid { grid-template-columns: repeat(5, 1fr); max-width: 960px; }
-    .problem-tile--wide { grid-column: auto; }
     .risk-flow { flex-direction: row; align-items: stretch; }
     .risk-arrow { transform: rotate(0deg); }
     .hero { padding: 0 0 130px; }
@@ -860,32 +844,13 @@
 <!-- ④ Problem -->
 <section class="section">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">The Problem</span>
-      <h2 class="section-title">こんなお悩み、<span class="nowrap">人事・総務</span>のあなたに集まっていませんか?</h2>
-    </div>
-    <div class="problem-grid reveal">
-      <div class="problem-tile">
-        <svg class="icon"><use href="#i-exit"/></svg>
-        <span>離職・採用コスト増</span>
-      </div>
-      <div class="problem-tile">
-        <svg class="icon"><use href="#i-shield"/></svg>
-        <span>健康経営、何から?</span>
-      </div>
-      <div class="problem-tile">
-        <svg class="icon"><use href="#i-space"/></svg>
-        <span>予算もスペースもない</span>
-      </div>
-      <div class="problem-tile">
-        <svg class="icon"><use href="#i-person"/></svg>
-        <span>肩こり・腰痛の社員多数</span>
-      </div>
-      <div class="problem-tile problem-tile--wide">
-        <svg class="icon"><use href="#i-bars-down"/></svg>
-        <span>なんとなく生産性が上がらない</span>
-      </div>
-    </div>
+    <h2 class="sr-only">こんなお悩み、人事・総務のあなたに集まっていませんか?</h2>
+    <!-- 【差し替え済】ChatGPTで作成したイラスト画像。見出し+5つのお悩みが1枚に統合済み -->
+    <img
+      class="problem-banner-img reveal"
+      src="images/problem-banner.png"
+      alt="こんなお悩み、人事・総務のあなたに集まっていませんか? 離職・採用コスト増、健康経営何から始めればいいか分からない、予算もスペースもない、肩こり・腰痛の社員が多い、なんとなく生産性が上がらない"
+      width="1536" height="1024">
     <p class="problem-conclusion reveal">そのお悩み、バラバラの問題に見えて、根っこは一つかもしれません。<br>——「従業員の身体の不調」です。</p>
   </div>
 </section>
