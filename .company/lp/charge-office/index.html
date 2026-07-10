@@ -139,11 +139,13 @@
   }
 
   /* --- scroll reveal --- */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  /* 常に表示状態がデフォルト。スクロール検知が働いた時だけ軽く動く(表示自体はJSに依存させない) */
+  .reveal { opacity: 1; transform: none; }
+  .reveal.will-animate { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.will-animate.is-visible { opacity: 1; transform: translateY(0); }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .reveal { opacity: 1; transform: none; transition: none; }
+    .reveal.will-animate { opacity: 1; transform: none; transition: none; }
     .btn:hover { transform: none; }
   }
 
@@ -376,9 +378,6 @@
     height: calc(100% - 20px);
     background: repeating-linear-gradient(180deg, var(--orange) 0 6px, transparent 6px 12px);
     opacity: 0.5;
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 0.5s ease;
   }
   .flow-step .step-number {
     flex-shrink: 0;
@@ -393,17 +392,27 @@
     font-weight: 900;
     font-size: 16px;
     z-index: 1;
-    transform: scale(0.4);
-    opacity: 0;
-    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
   }
   .flow-step .step-body {
     padding-top: 10px;
     font-weight: 700;
     color: var(--ink);
+  }
+  /* 演出はJSが確実に発火した場合だけ付与するクラスで、デフォルトは常に表示状態 */
+  .flow-steps.will-animate .flow-step .step-number {
+    transform: scale(0.4);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  }
+  .flow-steps.will-animate .flow-step .step-body {
     opacity: 0;
     transform: translateX(14px);
     transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .flow-steps.will-animate .flow-step:not(:last-child)::after {
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.5s ease;
   }
   /* ステップの時間差登場(コンテナにin-viewが付いたら順番に発火) */
   .flow-steps.in-view .flow-step .step-number { transform: scale(1); opacity: 1; }
@@ -1114,8 +1123,9 @@
     lineWidget.classList.add('tooltip-hidden');
   });
 
-  // スクロールリビール
+  // スクロールリビール(表示は保証した上での軽い演出のみ。observerが発火しない環境でも必ず見える)
   var revealEls = document.querySelectorAll('.reveal');
+  revealEls.forEach(function (el) { el.classList.add('will-animate'); });
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -1126,13 +1136,16 @@
       });
     }, { threshold: 0.15 });
     revealEls.forEach(function (el) { io.observe(el); });
-  } else {
-    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
+  // フォールバック: スクロール検知が発火しない環境でも一定時間後に必ず表示させる
+  setTimeout(function () {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }, 1200);
 
-  // 導入ステップの時間差アニメーション
+  // 導入ステップの時間差アニメーション(表示は保証した上での演出のみ)
   var flowSteps = document.querySelector('.flow-steps');
   if (flowSteps) {
+    flowSteps.classList.add('will-animate');
     if ('IntersectionObserver' in window) {
       var flowIo = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
@@ -1143,9 +1156,9 @@
         });
       }, { threshold: 0.3 });
       flowIo.observe(flowSteps);
-    } else {
-      flowSteps.classList.add('in-view');
     }
+    // フォールバック: スクロール検知が発火しない環境でも一定時間後に必ず表示させる
+    setTimeout(function () { flowSteps.classList.add('in-view'); }, 1200);
   }
 </script>
 
