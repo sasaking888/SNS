@@ -30,6 +30,12 @@
 │   ├── research/
 │   ├── pages/
 │   └── reports/
+├── jutaku/
+│   ├── CLAUDE.md
+│   ├── sales/
+│   ├── clients/
+│   ├── research/
+│   └── knowledge.md
 ├── study/
 │   ├── CLAUDE.md
 │   ├── index.md
@@ -58,6 +64,7 @@
 | SNS部門 | sns | X/Instagram/TikTok等の投稿企画・運用。 |
 | note部門 | note | note記事の執筆・投稿管理。 |
 | アフィリエイト部門 | affiliate | 案件リサーチ・記事/LP作成・広告運用企画・収支管理。 |
+| 受託部門 | jutaku | 業務依頼(Lステップ構築・広告運用・制作)の営業資料・案件・納品管理。フェーズ1の主力。 |
 | 勉強部屋 | study | 教材の分析・知識の蓄積。作業はしない。全部門が作業前に参照する。 |
 | 思想DB | philosophy | オーナーの判断軸の外部記憶。コンテンツ制作時に全部門が参照する。 |
 
