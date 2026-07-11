@@ -1,0 +1,104 @@
+<title>会社ダッシュボード</title>
+<style>
+:root {
+  --ground: #F4F5F1; --surface: #FFFFFF; --ink: #23291F;
+  --muted: #67705F; --line: #E1E4DB; --accent: #12915C;
+  --chip-active-bg: #FDF3E7; --chip-active-ink: #8A4D12;
+  --chip-done-bg: #E8F4EE; --chip-done-ink: #116A45;
+  --chip-idle-bg: #EDEFE8; --chip-idle-ink: #67705F;
+  --shadow: 0 1px 3px rgba(35, 41, 31, .08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #171A15; --surface: #20241D; --ink: #E7EAE1;
+    --muted: #9BA391; --line: #333829; --accent: #3DB584;
+    --chip-active-bg: #3A2C17; --chip-active-ink: #EBB877;
+    --chip-done-bg: #17352A; --chip-done-ink: #7ED0A9;
+    --chip-idle-bg: #2A2E24; --chip-idle-ink: #9BA391;
+    --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+  }
+}
+:root[data-theme="light"] {
+  --ground: #F4F5F1; --surface: #FFFFFF; --ink: #23291F;
+  --muted: #67705F; --line: #E1E4DB; --accent: #12915C;
+  --chip-active-bg: #FDF3E7; --chip-active-ink: #8A4D12;
+  --chip-done-bg: #E8F4EE; --chip-done-ink: #116A45;
+  --chip-idle-bg: #EDEFE8; --chip-idle-ink: #67705F;
+  --shadow: 0 1px 3px rgba(35, 41, 31, .08);
+}
+:root[data-theme="dark"] {
+  --ground: #171A15; --surface: #20241D; --ink: #E7EAE1;
+  --muted: #9BA391; --line: #333829; --accent: #3DB584;
+  --chip-active-bg: #3A2C17; --chip-active-ink: #EBB877;
+  --chip-done-bg: #17352A; --chip-done-ink: #7ED0A9;
+  --chip-idle-bg: #2A2E24; --chip-idle-ink: #9BA391;
+  --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--ground); color: var(--ink);
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI",
+    "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
+  line-height: 1.6; padding: 24px 16px 48px;
+}
+.wrap { max-width: 1080px; margin: 0 auto; }
+header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; margin-bottom: 20px; }
+h1 { font-size: 1.35rem; margin: 0; letter-spacing: .02em; }
+.gen { color: var(--muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
+.summary {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px; margin-bottom: 22px;
+}
+.tile {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 12px 14px; box-shadow: var(--shadow);
+}
+.tile .num { font-size: 1.6rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.tile .lbl { color: var(--muted); font-size: .75rem; letter-spacing: .06em; }
+.grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+  padding: 16px; box-shadow: var(--shadow);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.card-head { display: flex; align-items: center; gap: 10px; }
+.roundel {
+  width: 40px; height: 40px; border-radius: 50%; flex: none;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 700; font-size: 1rem;
+}
+.dept-name { font-weight: 700; font-size: 1rem; }
+.dept-role { color: var(--muted); font-size: .75rem; }
+.pill {
+  margin-left: auto; flex: none; font-size: .72rem; font-weight: 600;
+  padding: 3px 10px; border-radius: 999px; display: flex; align-items: center; gap: 5px;
+}
+.pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.pill.active { background: var(--chip-active-bg); color: var(--chip-active-ink); }
+.pill.done { background: var(--chip-done-bg); color: var(--chip-done-ink); }
+.pill.idle { background: var(--chip-idle-bg); color: var(--chip-idle-ink); }
+ul.items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+ul.items li {
+  display: flex; align-items: baseline; gap: 8px; font-size: .85rem;
+  border-top: 1px dashed var(--line); padding-top: 6px;
+}
+ul.items li:first-child { border-top: 0; padding-top: 0; }
+.chip {
+  flex: none; font-size: .68rem; font-weight: 600; padding: 1px 8px;
+  border-radius: 999px; background: var(--chip-idle-bg); color: var(--chip-idle-ink);
+}
+.chip.active { background: var(--chip-active-bg); color: var(--chip-active-ink); }
+.chip.done { background: var(--chip-done-bg); color: var(--chip-done-ink); }
+.empty { color: var(--muted); font-size: .82rem; }
+.meta { margin-top: auto; border-top: 1px solid var(--line); padding-top: 8px;
+  color: var(--muted); font-size: .74rem; display: flex; flex-direction: column; gap: 2px; }
+.meta .date { font-variant-numeric: tabular-nums; }
+</style>
+<div class="wrap">
+<header><h1>会社ダッシュボード</h1><span class="gen">生成 2026-07-11 04:45</span></header>
+<div class="summary"><div class="tile"><div class="num">1</div><div class="lbl">作業中の部門</div></div><div class="tile"><div class="num">1</div><div class="lbl">進行中の成果物・TODO</div></div><div class="tile"><div class="num">2</div><div class="lbl">完了・公開済み</div></div><div class="tile"><div class="num">12</div><div class="lbl">勉強部屋の蔵書</div></div></div>
+<div class="grid"><section class="card"><div class="card-head"><div class="roundel" style="background:#12915C">秘</div><div><div class="dept-name">秘書室</div><div class="dept-role">窓口・TODO管理・壁打ち・メモ</div></div><span class="pill idle">待機中</span></div><p class="empty">進行中の成果物はまだありません</p><div class="meta"><div>メモ 3件 / Inbox 0件</div><div>TODO 2026-07-06: 未完了 0 / 完了 0</div><div class="date">最終更新 2026-07-10　学習体制の2層構造を採用: 全社学習=ジーナ、部門専門知識=部門エージェントに委任</div></div></section><section class="card"><div class="card-head"><div class="roundel" style="background:#D0611F">S</div><div><div class="dept-name">SNS部門</div><div class="dept-role">X / Instagram / TikTok の投稿企画・運用</div></div><span class="pill active">作業中</span></div><ul class="items"><li><span class="chip active">下書き</span><span>X投稿: AIへの頼み方を「命令」から「成功条件」に変える</span></li></ul><div class="meta"><div>調査ログ 0件 / knowledge.md あり</div><div class="date">最終更新 2026-07-11　部門ごとの学習基準を設定: 各部門CLAUDE.mdに学習セクション、knowledge.md+research/を新設</div></div></section><section class="card"><div class="card-head"><div class="roundel" style="background:#1F93AD">n</div><div><div class="dept-name">note部門</div><div class="dept-role">note記事の執筆・有料コンテンツ管理</div></div><span class="pill idle">待機中</span></div><p class="empty">進行中の成果物はまだありません</p><div class="meta"><div>調査ログ 0件 / knowledge.md あり</div><div class="date">最終更新 2026-07-11　部門ごとの学習基準を設定: 各部門CLAUDE.mdに学習セクション、knowledge.md+research/を新設</div></div></section><section class="card"><div class="card-head"><div class="roundel" style="background:#CE3D66">Y</div><div><div class="dept-name">YouTube部門</div><div class="dept-role">動画の企画・台本・公開管理</div></div><span class="pill idle">待機中</span></div><p class="empty">進行中の成果物はまだありません</p><div class="meta"><div>調査ログ 0件 / knowledge.md あり</div><div class="date">最終更新 2026-07-11　部門ごとの学習基準を設定: 各部門CLAUDE.mdに学習セクション、knowledge.md+research/を新設</div></div></section><section class="card"><div class="card-head"><div class="roundel" style="background:#8B7B00">ア</div><div><div class="dept-name">アフィリエイト部門</div><div class="dept-role">案件リサーチ・LP制作・収支管理</div></div><span class="pill idle">待機中</span></div><p class="empty">進行中の成果物はまだありません</p><div class="meta"><div>調査ログ 0件 / knowledge.md あり</div><div class="date">最終更新 2026-07-11　部門ごとの学習基準を設定: 各部門CLAUDE.mdに学習セクション、knowledge.md+research/を新設</div></div></section><section class="card"><div class="card-head"><div class="roundel" style="background:#3B74D1">勉</div><div><div class="dept-name">勉強部屋</div><div class="dept-role">教材の分析と知識の蓄積（全社学習）</div></div><span class="pill done">完了</span></div><ul class="items"><li><span class="chip done">作成済</span><span>全社ニュースブリーフ 2026-07-10</span></li><li><span class="chip done">作成済</span><span>全社ニュースブリーフ 2026-07-11</span></li></ul><div class="meta"><div>蔵書 12冊 / ブリーフ 2本</div><div class="date">最終更新 2026-07-11　部門ごとの学習基準を設定: 各部門CLAUDE.mdに学習セクション、knowledge.md+research/を新設</div></div></section><section class="card"><div class="card-head"><div class="roundel" style="background:#A94ACB">思</div><div><div class="dept-name">思想DB</div><div class="dept-role">オーナーの判断軸の外部記憶</div></div><span class="pill idle">待機中</span></div><p class="empty">進行中の成果物はまだありません</p><div class="meta"><div>総論 整備済 / テーマ別DB 0件</div><div class="date">最終更新 2026-07-10　設定ガイド記事を蔵書に追加、プロンプト棚を10本に拡充(悪魔を3段構成に強化)</div></div></section></div>
+</div>
