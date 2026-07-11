@@ -21,6 +21,7 @@
 | 2026-07-11 | MarkdownよりHTML(Claude Code開発者) | `library/2026-07-11-html-over-markdown.md` | 読む体験・比較判断・調整用の成果物はHTMLが強い。記録・知識はMarkdownのまま(Git・スマホ閲覧に強い)。①②採用・③保留 |
 | 2026-07-11 | 田中渓氏のAI活用5つの型 | `library/2026-07-11-tanaka-kei-5methods.md` | 判断の型の移植・音声入力・3行メモが新規。手法3〜5は既存の棚・philosophyと重複(収穫逓減の兆候) |
 | 2026-07-11 | 亀山敬司氏の新規事業の見極め方 | `library/2026-07-11-kameyama-shinki-jigyou.md` | 「誰もいない=需要がない証拠かも」「成功モデルの派生を狙え」「結果の見えやすさが半分」。案件・テーマ選定のレンズ |
+| 2026-07-11 | SuperMovie(AI動画編集の線化) | `library/2026-07-11-supermovie-ai-douga.md` | 動画編集をClaude Codeの8スキル直列ワークフローに。誤字辞書の資産化・非破壊カットが秀逸。動画制作着手時に再検討(保留) |
 
 ## 横断テーマ（教材同士のつながり）
 
