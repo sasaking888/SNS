@@ -1142,6 +1142,8 @@
       lineWidget.classList.remove('visible');
     }
   });
+  // フォールバック: スクロールが発生しない環境でも一定時間後に必ず表示させる
+  setTimeout(function () { lineWidget.classList.add('visible'); }, 2000);
 
   // 吹き出しの閉じるボタン
   document.getElementById('lineTooltipClose').addEventListener('click', function () {
