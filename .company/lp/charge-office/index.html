@@ -426,11 +426,11 @@
     position: relative;
     padding: 52px 24px 56px;
   }
-  /* ステップごとに背景の濃淡を切り替え(カードではなく全面の帯) */
-  .flow-step:nth-child(1) { background: linear-gradient(180deg, #FFFBF2 0%, var(--cream) 100%); }
-  .flow-step:nth-child(2) { background: linear-gradient(180deg, #FFE9C9 0%, #FFDCA8 100%); }
-  .flow-step:nth-child(3) { background: linear-gradient(180deg, #FFFBF2 0%, var(--cream) 100%); }
-  .flow-step:nth-child(4) { background: linear-gradient(180deg, #FFE9C9 0%, #FFDCA8 100%); }
+  /* 白ベースに、ごく淡いクリームを交互に。オレンジは差し色のみに絞る */
+  .flow-step:nth-child(odd) { background: var(--white); }
+  .flow-step:nth-child(even) { background: #FDF9F3; }
+  /* 帯の境目に細いヘアライン */
+  .flow-step + .flow-step { border-top: 1px solid rgba(32,27,20,0.07); }
   .flow-step-inner {
     max-width: 620px;
     margin: 0 auto;
@@ -451,7 +451,6 @@
     color: var(--orange);
     letter-spacing: -0.04em;
   }
-  .flow-step:nth-child(even) .step-number { color: var(--white); }
   .flow-step .step-title {
     padding-top: 6px;
     font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
@@ -470,18 +469,17 @@
   }
   .flow-step .step-desc {
     font-size: 15px;
-    color: var(--ink);
+    color: var(--ink-soft);
     line-height: 2;
   }
-  /* ステップ間の「く」の字矢印(帯の中に重ねる) */
+  /* ステップ間の「く」の字矢印 */
   .flow-chevron {
     display: flex;
     justify-content: center;
     padding-bottom: 22px;
     color: var(--orange);
-    opacity: 0.5;
+    opacity: 0.35;
   }
-  .flow-step:nth-child(even) .flow-chevron { color: var(--white); opacity: 0.85; }
   .flow-chevron svg { width: 34px; height: 15px; }
 
   /* 演出はJSが確実に発火した場合だけ付与するクラスで、デフォルトは常に表示状態 */
@@ -997,7 +995,7 @@
 </section>
 
 <!-- ⑦ Solution: 導入の流れ(全面色帯・巨大セリフ数字) -->
-<section class="section section--cream flow-section">
+<section class="section flow-section">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">How It Works</span>
