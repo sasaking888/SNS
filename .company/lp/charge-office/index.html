@@ -504,52 +504,114 @@
     }
   }
 
-  /* --- ⑧ 導入企業の声 --- */
+  /* --- ⑧ 導入企業の声(アコーディオン) --- */
   .voice-cards {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 20px;
+    max-width: 720px;
+    margin: 0 auto;
   }
-  .voice-card {
-    background: var(--white);
-    border: 1px solid var(--hairline);
-    padding: 26px 24px;
-    border-radius: 18px;
-    box-shadow: 0 12px 28px -18px rgba(32,27,20,0.3);
-    position: relative;
-  }
-  .voice-card .quote-mark {
-    font-size: 40px;
-    color: var(--yellow-deep);
-    line-height: 1;
-    font-family: Georgia, serif;
-    margin-bottom: 4px;
-    display: block;
-  }
-  .voice-card .voice-meta {
-    font-size: 12px;
-    color: var(--ink-soft);
-    margin-top: 14px;
+  .voice-item { position: relative; }
+  /* 閉じている時のヘッダー(グラデーションのバー) */
+  .voice-head {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 16px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+    padding: 18px 56px 18px 18px;
+    border-radius: 6px;
+    background: linear-gradient(100deg, var(--orange) 0%, #F0885A 100%);
+    color: var(--white);
+    position: relative;
+    transition: filter 0.2s ease;
   }
-  .voice-card .voice-avatar {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: var(--cream);
-    color: var(--orange);
+  .voice-item:nth-child(even) .voice-head {
+    background: linear-gradient(100deg, #F0885A 0%, var(--yellow-deep) 100%);
+  }
+  .voice-head:hover { filter: brightness(1.04); }
+  /* 左のアーチ型ポートレート */
+  .voice-portrait {
+    flex-shrink: 0;
+    width: 84px;
+    height: 104px;
+    border-radius: 42px 42px 8px 8px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.85);
     display: flex;
     align-items: center;
     justify-content: center;
+    color: rgba(32,27,20,0.3);
+  }
+  .voice-portrait img { width: 100%; height: 100%; object-fit: cover; }
+  .voice-portrait .icon { width: 34px; height: 34px; }
+  .voice-headline {
+    flex: 1;
+    min-width: 0;
+  }
+  .voice-headline .voice-title {
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .voice-headline .voice-meta {
+    display: block;
+    font-size: 13px;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.5;
+  }
+  /* +/− のトグル記号 */
+  .voice-toggle {
+    position: absolute;
+    right: 18px;
+    bottom: 20px;
+    width: 30px;
+    height: 30px;
     flex-shrink: 0;
   }
-  .voice-card .voice-avatar .icon { width: 14px; height: 14px; }
-  .voice-card .voice-text {
+  .voice-toggle::before,
+  .voice-toggle::after {
+    content: "";
+    position: absolute;
+    background: var(--white);
+    border-radius: 2px;
+    transition: transform 0.28s ease, opacity 0.28s ease;
+  }
+  .voice-toggle::before {
+    left: 0; top: 50%;
+    width: 100%; height: 2px;
+    transform: translateY(-50%);
+  }
+  .voice-toggle::after {
+    top: 0; left: 50%;
+    width: 2px; height: 100%;
+    transform: translateX(-50%);
+  }
+  .voice-item.open .voice-toggle::after {
+    transform: translateX(-50%) rotate(90deg);
+    opacity: 0;
+  }
+  /* 開いた時の白いパネル */
+  .voice-body {
+    max-height: 0;
+    overflow: hidden;
+    background: var(--white);
+    transition: max-height 0.3s ease;
+    border-radius: 0 0 6px 6px;
+  }
+  .voice-body-inner {
+    padding: 0 22px;
     font-size: 15px;
     color: var(--ink);
+    line-height: 2;
   }
+  .voice-item.open .voice-body-inner { padding: 24px 22px 26px; }
 
   /* --- ⑨ 料金プラン --- */
   .price-box {
@@ -836,8 +898,12 @@
     .flow-step .step-title { font-size: 30px; padding-top: 12px; }
     .flow-step .step-desc { font-size: 16px; }
     .flow-step-head { gap: 22px; margin-bottom: 28px; }
-    .voice-cards { flex-direction: row; }
-    .voice-card { flex: 1; }
+    .voice-head { padding: 22px 64px 22px 22px; gap: 20px; }
+    .voice-portrait { width: 100px; height: 124px; border-radius: 50px 50px 8px 8px; }
+    .voice-headline .voice-title { font-size: 20px; }
+    .voice-headline .voice-meta { font-size: 14px; }
+    .voice-body-inner { font-size: 16px; }
+    .voice-item.open .voice-body-inner { padding: 28px 26px 30px; }
   }
 </style>
 </head>
@@ -1062,30 +1128,54 @@
       <span class="eyebrow">Voices</span>
       <h2 class="section-title">導入企業の人事担当者さまの声</h2>
     </div>
-    <!-- 【要差し替え】以下は実データ入手までのダミー構成。公開前に必ず実際の声へ差し替えること -->
+    <!-- 【要差し替え】以下は実データ入手までのダミー構成。公開前に必ず実際の声へ差し替えること
+         【要差し替え】.voice-portrait 内のアイコンを <img src="images/voice-01.png" alt="..."> に置き換えると人物写真になります -->
     <div class="voice-cards reveal">
-      <div class="voice-card">
-        <span class="quote-mark">"</span>
-        <div class="voice-text">会議室の隅で始められたのが決め手。施術日は社内が明るくなります。</div>
-        <div class="voice-meta">
-          <span class="voice-avatar"><svg class="icon"><use href="#i-person"/></svg></span>
-          IT企業・従業員50名・人事ご担当
+      <div class="voice-item">
+        <button class="voice-head" aria-expanded="false">
+          <span class="voice-portrait"><svg class="icon"><use href="#i-person"/></svg></span>
+          <span class="voice-headline">
+            <span class="voice-title">会議室の隅で始められたのが決め手でした</span>
+            <span class="voice-meta">IT企業／従業員50名／人事ご担当</span>
+          </span>
+          <span class="voice-toggle" aria-hidden="true"></span>
+        </button>
+        <div class="voice-body">
+          <div class="voice-body-inner">
+            福利厚生を充実させたくても、スペースも予算も取れずずっと後回しにしていました。CHARGE OFFICEは会議室の隅で始められたのが決め手です。施術のある日は社内が明るくなり、「次はいつ?」と社員から聞かれるようになりました。導入前に心配していた業務への影響もほとんどありません。
+          </div>
         </div>
       </div>
-      <div class="voice-card">
-        <span class="quote-mark">"</span>
-        <div class="voice-text">健康経営優良法人の申請で、具体的な施策として説明できました。</div>
-        <div class="voice-meta">
-          <span class="voice-avatar"><svg class="icon"><use href="#i-person"/></svg></span>
-          士業事務所・従業員30名・総務ご担当
+
+      <div class="voice-item">
+        <button class="voice-head" aria-expanded="false">
+          <span class="voice-portrait"><svg class="icon"><use href="#i-person"/></svg></span>
+          <span class="voice-headline">
+            <span class="voice-title">健康経営の施策として説明できました</span>
+            <span class="voice-meta">士業事務所／従業員30名／総務ご担当</span>
+          </span>
+          <span class="voice-toggle" aria-hidden="true"></span>
+        </button>
+        <div class="voice-body">
+          <div class="voice-body-inner">
+            健康経営優良法人を目指していましたが、具体的に何をすればいいか分からず困っていました。CHARGE OFFICEは「従業員の健康保持・増進の取り組み」として明確に説明でき、申請時にも実績として提出できました。担当の方が資料づくりまで相談に乗ってくださったのも助かりました。
+          </div>
         </div>
       </div>
-      <div class="voice-card">
-        <span class="quote-mark">"</span>
-        <div class="voice-text">福利厚生満足度調査で、導入後もっとも評価された施策になりました。</div>
-        <div class="voice-meta">
-          <span class="voice-avatar"><svg class="icon"><use href="#i-person"/></svg></span>
-          メーカー・従業員120名・経営層
+
+      <div class="voice-item">
+        <button class="voice-head" aria-expanded="false">
+          <span class="voice-portrait"><svg class="icon"><use href="#i-person"/></svg></span>
+          <span class="voice-headline">
+            <span class="voice-title">福利厚生調査で、もっとも評価された施策に</span>
+            <span class="voice-meta">メーカー／従業員120名／経営層</span>
+          </span>
+          <span class="voice-toggle" aria-hidden="true"></span>
+        </button>
+        <div class="voice-body">
+          <div class="voice-body-inner">
+            年に一度の福利厚生満足度調査で、導入したその年にもっとも評価の高い施策になりました。デスクワーク中心の部署からの反響が特に大きく、「肩が軽くなって午後の集中力が違う」という声が多く届いています。コストに対する効果としても納得感があります。
+          </div>
         </div>
       </div>
     </div>
@@ -1227,6 +1317,24 @@
       } else {
         item.classList.add('open');
         answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // お客様の声アコーディオン
+  document.querySelectorAll('.voice-item').forEach(function (item) {
+    var head = item.querySelector('.voice-head');
+    var body = item.querySelector('.voice-body');
+    head.addEventListener('click', function () {
+      var isOpen = item.classList.contains('open');
+      if (isOpen) {
+        item.classList.remove('open');
+        head.setAttribute('aria-expanded', 'false');
+        body.style.maxHeight = null;
+      } else {
+        item.classList.add('open');
+        head.setAttribute('aria-expanded', 'true');
+        body.style.maxHeight = body.scrollHeight + 'px';
       }
     });
   });
