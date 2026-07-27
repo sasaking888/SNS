@@ -419,86 +419,87 @@
   }
   .benefit-grid .benefit-item .icon { width: 15px; height: 15px; color: var(--orange); flex-shrink: 0; }
 
-  /* --- ⑦ 導入の流れ(縦タイムライン軸) --- */
-  .flow-steps {
-    position: relative;
-    max-width: 680px;
-    margin: 0 auto;
-    padding-left: 30px;
-  }
-  /* 左端を貫く縦の軸 */
-  .flow-steps::before {
-    content: "";
-    position: absolute;
-    left: 5px;
-    top: 12px;
-    bottom: 12px;
-    width: 1px;
-    background: linear-gradient(180deg, var(--orange) 0%, rgba(232,83,31,0.25) 100%);
-  }
+  /* --- ⑦ 導入の流れ(全面色帯・巨大セリフ数字) --- */
+  .flow-section { padding-bottom: 0; }
+  .flow-steps { width: 100%; }
   .flow-step {
     position: relative;
-    padding: 0 0 52px;
+    padding: 52px 24px 56px;
   }
-  .flow-step:last-child { padding-bottom: 0; }
-  /* 軸上のマーカー */
-  .flow-step::before {
-    content: "";
-    position: absolute;
-    left: -30px;
-    top: 9px;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background: var(--white);
-    border: 2px solid var(--orange);
-    box-shadow: 0 0 0 5px var(--cream);
+  /* ステップごとに背景の濃淡を切り替え(カードではなく全面の帯) */
+  .flow-step:nth-child(1) { background: linear-gradient(180deg, #FFFBF2 0%, var(--cream) 100%); }
+  .flow-step:nth-child(2) { background: linear-gradient(180deg, #FFE9C9 0%, #FFDCA8 100%); }
+  .flow-step:nth-child(3) { background: linear-gradient(180deg, #FFFBF2 0%, var(--cream) 100%); }
+  .flow-step:nth-child(4) { background: linear-gradient(180deg, #FFE9C9 0%, #FFDCA8 100%); }
+  .flow-step-inner {
+    max-width: 620px;
+    margin: 0 auto;
   }
-
+  /* 巨大セリフ数字 + 見出しの横並び */
+  .flow-step-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
   .flow-step .step-number {
-    display: block;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.18em;
+    flex-shrink: 0;
+    font-family: "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+    font-size: 92px;
+    font-weight: 400;
+    line-height: 0.78;
     color: var(--orange);
-    margin-bottom: 8px;
+    letter-spacing: -0.04em;
   }
+  .flow-step:nth-child(even) .step-number { color: var(--white); }
   .flow-step .step-title {
-    font-size: 20px;
-    font-weight: 800;
+    padding-top: 6px;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 23px;
+    font-weight: 600;
     color: var(--ink);
-    line-height: 1.5;
-    margin-bottom: 10px;
-  }
-  .flow-step .step-desc {
-    font-size: 14px;
-    color: var(--ink-soft);
-    line-height: 1.9;
+    line-height: 1.55;
+    letter-spacing: 0.01em;
   }
   .flow-step .step-photo {
     width: 100%;
     height: auto;
-    border-radius: 12px;
-    margin-top: 18px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px -12px rgba(32,27,20,0.35);
   }
+  .flow-step .step-desc {
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 2;
+  }
+  /* ステップ間の「く」の字矢印(帯の中に重ねる) */
+  .flow-chevron {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 22px;
+    color: var(--orange);
+    opacity: 0.5;
+  }
+  .flow-step:nth-child(even) .flow-chevron { color: var(--white); opacity: 0.85; }
+  .flow-chevron svg { width: 34px; height: 15px; }
 
   /* 演出はJSが確実に発火した場合だけ付与するクラスで、デフォルトは常に表示状態 */
-  .flow-steps.will-animate .flow-step {
+  .flow-steps.will-animate .flow-step-inner {
     opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
-  .flow-steps.in-view .flow-step {
+  .flow-steps.in-view .flow-step-inner {
     opacity: 1;
     transform: translateY(0);
   }
-  .flow-steps .flow-step:nth-of-type(1) { transition-delay: 0.05s; }
-  .flow-steps .flow-step:nth-of-type(2) { transition-delay: 0.2s; }
-  .flow-steps .flow-step:nth-of-type(3) { transition-delay: 0.35s; }
-  .flow-steps .flow-step:nth-of-type(4) { transition-delay: 0.5s; }
+  .flow-steps .flow-step:nth-of-type(1) .flow-step-inner { transition-delay: 0.05s; }
+  .flow-steps .flow-step:nth-of-type(2) .flow-step-inner { transition-delay: 0.2s; }
+  .flow-steps .flow-step:nth-of-type(3) .flow-step-inner { transition-delay: 0.35s; }
+  .flow-steps .flow-step:nth-of-type(4) .flow-step-inner { transition-delay: 0.5s; }
   @media (prefers-reduced-motion: reduce) {
-    .flow-steps.will-animate .flow-step {
+    .flow-steps.will-animate .flow-step-inner {
       opacity: 1;
       transform: none;
       transition: none;
@@ -832,12 +833,11 @@
     .stats-card .stat-label { font-size: 13px; }
     .feature-cards { grid-template-columns: repeat(3, 1fr); }
     .benefit-grid { grid-template-columns: repeat(3, 1fr); }
-    .flow-steps { max-width: 720px; padding-left: 40px; }
-    .flow-step { padding-bottom: 64px; }
-    .flow-step::before { left: -40px; }
-    .flow-step .step-title { font-size: 24px; }
-    .flow-step .step-desc { font-size: 15px; }
-    .flow-step .step-photo { max-width: 460px; }
+    .flow-step { padding: 72px 24px 76px; }
+    .flow-step .step-number { font-size: 128px; }
+    .flow-step .step-title { font-size: 30px; padding-top: 12px; }
+    .flow-step .step-desc { font-size: 16px; }
+    .flow-step-head { gap: 22px; margin-bottom: 28px; }
     .voice-cards { flex-direction: row; }
     .voice-card { flex: 1; }
   }
@@ -996,43 +996,62 @@
   </div>
 </section>
 
-<!-- ⑦ Solution: 導入の流れ -->
-<section class="section section--cream">
+<!-- ⑦ Solution: 導入の流れ(全面色帯・巨大セリフ数字) -->
+<section class="section section--cream flow-section">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">How It Works</span>
       <h2 class="section-title">導入はかんたん、<span class="nowrap">最短4ステップ</span></h2>
     </div>
-    <!-- 【要確認】ステップ内容・所要日数はクライアント確認 -->
-    <div class="flow-steps">
-      <div class="flow-step">
-        <span class="step-number">STEP 01</span>
-        <h3 class="step-title">まずは資料請求・お問い合わせから</h3>
+  </div>
+  <!-- 【要確認】ステップ内容・所要日数はクライアント確認 -->
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="flow-step-inner">
+        <div class="flow-step-head">
+          <span class="step-number">1</span>
+          <h3 class="step-title">まずは資料請求・<br>お問い合わせから</h3>
+        </div>
         <p class="step-desc">フォームまたはLINEから、30秒ほどで完了します。しつこい営業は一切ありません。</p>
       </div>
+      <div class="flow-chevron"><svg viewBox="0 0 34 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l15 11L32 2"/></svg></div>
+    </div>
 
-      <div class="flow-step">
-        <span class="step-number">STEP 02</span>
-        <h3 class="step-title">ご状況をヒアリング、最適なプランをご提案</h3>
+    <div class="flow-step">
+      <div class="flow-step-inner">
+        <div class="flow-step-head">
+          <span class="step-number">2</span>
+          <h3 class="step-title">ご状況をヒアリングし<br>最適なプランをご提案</h3>
+        </div>
         <p class="step-desc">従業員数・実施頻度・設置スペースをうかがい、貴社に合った回数と時間をご提案します。オンライン相談も可能です。</p>
       </div>
+      <div class="flow-chevron"><svg viewBox="0 0 34 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l15 11L32 2"/></svg></div>
+    </div>
 
-      <div class="flow-step">
-        <span class="step-number">STEP 03</span>
-        <h3 class="step-title">ご契約・専用チェアのご準備</h3>
+    <div class="flow-step">
+      <div class="flow-step-inner">
+        <div class="flow-step-head">
+          <span class="step-number">3</span>
+          <h3 class="step-title">ご契約・<br>専用チェアのご準備</h3>
+        </div>
         <p class="step-desc">契約手続きとあわせて、施術に使う折りたたみチェアをご用意。0.5畳のスペースがあれば準備は完了です。</p>
       </div>
+      <div class="flow-chevron"><svg viewBox="0 0 34 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l15 11L32 2"/></svg></div>
+    </div>
 
-      <div class="flow-step">
-        <span class="step-number">STEP 04</span>
-        <h3 class="step-title">施術スタート、整体師がオフィスへ</h3>
-        <p class="step-desc">研修に合格したスタッフが訪問。1人10分から、業務の合間に受けられます。あとは続けるだけ。</p>
+    <div class="flow-step">
+      <div class="flow-step-inner">
+        <div class="flow-step-head">
+          <span class="step-number">4</span>
+          <h3 class="step-title">施術スタート<br>整体師がオフィスへ</h3>
+        </div>
         <img
           class="step-photo"
           src="images/step4-treatment.png"
           alt="オフィスの一角で専用チェアに座る社員に施術する、CHARGEのスタッフ"
           width="1537" height="1023"
           loading="lazy">
+        <p class="step-desc">研修に合格したスタッフが訪問。1人10分から、業務の合間に受けられます。あとは続けるだけ。</p>
       </div>
     </div>
   </div>
