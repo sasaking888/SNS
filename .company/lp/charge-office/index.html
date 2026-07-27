@@ -419,93 +419,85 @@
   }
   .benefit-grid .benefit-item .icon { width: 15px; height: 15px; color: var(--orange); flex-shrink: 0; }
 
-  /* --- ⑦ 導入の流れ --- */
+  /* --- ⑦ 導入の流れ(交互背景・大きな数字) --- */
   .flow-steps {
     display: flex;
     flex-direction: column;
-    gap: 0;
-    max-width: 680px;
+    max-width: 720px;
     margin: 0 auto;
-    counter-reset: step;
   }
   .flow-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 20px 4px;
     position: relative;
+    padding: 36px 28px 40px;
+    border-radius: 20px;
   }
-  .flow-step:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    left: 23px;
-    top: 56px;
-    width: 2px;
-    height: calc(100% - 20px);
-    background: repeating-linear-gradient(180deg, var(--orange) 0 6px, transparent 6px 12px);
-    opacity: 0.5;
+  /* 交互に背景色を変えて区切りを明確に */
+  .flow-step:nth-child(odd) { background: var(--white); }
+  .flow-step:nth-child(even) { background: rgba(232, 83, 31, 0.06); }
+
+  .flow-step-head {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 16px;
   }
   .flow-step .step-number {
     flex-shrink: 0;
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    background: var(--ink);
-    color: var(--yellow);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 900;
-    font-size: 16px;
-    z-index: 1;
-  }
-  .flow-step .step-body {
-    padding-top: 10px;
+    font-family: "Times New Roman", "Yu Mincho", serif;
+    font-size: 68px;
     font-weight: 700;
+    line-height: 0.85;
+    color: var(--orange);
+    font-style: italic;
+  }
+  .flow-step:nth-child(even) .step-number { color: var(--yellow-deep); }
+  .flow-step .step-title {
+    font-size: 19px;
+    font-weight: 800;
     color: var(--ink);
+    line-height: 1.45;
   }
+  .flow-step .step-desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+  /* ステップ間の「く」の字矢印 */
+  .flow-chevron {
+    display: flex;
+    justify-content: center;
+    padding: 14px 0;
+    color: var(--orange);
+    opacity: 0.55;
+  }
+  .flow-chevron svg { width: 30px; height: 14px; }
+
   /* 演出はJSが確実に発火した場合だけ付与するクラスで、デフォルトは常に表示状態 */
-  .flow-steps.will-animate .flow-step .step-number {
-    transform: scale(0.4);
+  .flow-steps.will-animate .flow-step,
+  .flow-steps.will-animate .flow-chevron {
     opacity: 0;
-    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+    transform: translateY(18px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
   }
-  .flow-steps.will-animate .flow-step .step-body {
-    opacity: 0;
-    transform: translateX(14px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+  .flow-steps.in-view .flow-step,
+  .flow-steps.in-view .flow-chevron {
+    opacity: 1;
+    transform: translateY(0);
   }
-  .flow-steps.will-animate .flow-step:not(:last-child)::after {
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 0.5s ease;
-  }
-  /* ステップの時間差登場(コンテナにin-viewが付いたら順番に発火) */
-  .flow-steps.in-view .flow-step .step-number { transform: scale(1); opacity: 1; }
-  .flow-steps.in-view .flow-step .step-body { opacity: 1; transform: translateX(0); }
-  .flow-steps.in-view .flow-step:not(:last-child)::after { transform: scaleY(1); }
-  .flow-steps .flow-step:nth-child(1) .step-number,
-  .flow-steps .flow-step:nth-child(1) .step-body { transition-delay: 0.05s; }
-  .flow-steps .flow-step:nth-child(1)::after { transition-delay: 0.35s; }
-  .flow-steps .flow-step:nth-child(2) .step-number,
-  .flow-steps .flow-step:nth-child(2) .step-body { transition-delay: 0.4s; }
-  .flow-steps .flow-step:nth-child(2)::after { transition-delay: 0.7s; }
-  .flow-steps .flow-step:nth-child(3) .step-number,
-  .flow-steps .flow-step:nth-child(3) .step-body { transition-delay: 0.75s; }
-  .flow-steps .flow-step:nth-child(3)::after { transition-delay: 1.05s; }
-  .flow-steps .flow-step:nth-child(4) .step-number,
-  .flow-steps .flow-step:nth-child(4) .step-body { transition-delay: 1.1s; }
+  .flow-steps .flow-step:nth-of-type(1) { transition-delay: 0.05s; }
+  .flow-steps .flow-step:nth-of-type(2) { transition-delay: 0.35s; }
+  .flow-steps .flow-step:nth-of-type(3) { transition-delay: 0.65s; }
+  .flow-steps .flow-step:nth-of-type(4) { transition-delay: 0.95s; }
+  .flow-steps .flow-chevron:nth-of-type(1) { transition-delay: 0.2s; }
+  .flow-steps .flow-chevron:nth-of-type(2) { transition-delay: 0.5s; }
+  .flow-steps .flow-chevron:nth-of-type(3) { transition-delay: 0.8s; }
   @media (prefers-reduced-motion: reduce) {
-    .flow-step .step-number,
-    .flow-step .step-body,
-    .flow-step:not(:last-child)::after {
-      transform: none;
+    .flow-steps.will-animate .flow-step,
+    .flow-steps.will-animate .flow-chevron {
       opacity: 1;
+      transform: none;
       transition: none;
     }
-    .flow-step .step-number { opacity: 1; }
-    .flow-step .step-body { opacity: 1; }
-    .flow-step:not(:last-child)::after { opacity: 0.5; }
   }
 
   /* --- ⑧ 導入企業の声 --- */
@@ -835,7 +827,12 @@
     .stats-card .stat-label { font-size: 13px; }
     .feature-cards { grid-template-columns: repeat(3, 1fr); }
     .benefit-grid { grid-template-columns: repeat(3, 1fr); }
-    .flow-steps { max-width: 900px; }
+    .flow-steps { max-width: 820px; }
+    .flow-step { padding: 44px 48px 48px; }
+    .flow-step .step-number { font-size: 88px; }
+    .flow-step .step-title { font-size: 24px; }
+    .flow-step .step-desc { font-size: 15px; }
+    .flow-step-head { gap: 24px; }
     .voice-cards { flex-direction: row; }
     .voice-card { flex: 1; }
   }
@@ -1004,20 +1001,41 @@
     <!-- 【要確認】ステップ内容・所要日数はクライアント確認 -->
     <div class="flow-steps">
       <div class="flow-step">
-        <div class="step-number">1</div>
-        <div class="step-body">資料請求・お問い合わせ</div>
+        <div class="flow-step-head">
+          <div class="step-number">1</div>
+          <div class="step-title">まずは資料請求・<br>お問い合わせから</div>
+        </div>
+        <p class="step-desc">フォームまたはLINEから、30秒ほどで完了します。しつこい営業は一切ありません。</p>
       </div>
+
+      <div class="flow-chevron"><svg viewBox="0 0 30 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l13 10L28 2"/></svg></div>
+
       <div class="flow-step">
-        <div class="step-number">2</div>
-        <div class="step-body">ヒアリング(規模・頻度・スペースのご相談)</div>
+        <div class="flow-step-head">
+          <div class="step-number">2</div>
+          <div class="step-title">ご状況をヒアリング<br>最適なプランをご提案</div>
+        </div>
+        <p class="step-desc">従業員数・実施頻度・設置スペースをうかがい、貴社に合った回数と時間をご提案します。オンライン相談も可能です。</p>
       </div>
+
+      <div class="flow-chevron"><svg viewBox="0 0 30 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l13 10L28 2"/></svg></div>
+
       <div class="flow-step">
-        <div class="step-number">3</div>
-        <div class="step-body">契約・チェアのご購入</div>
+        <div class="flow-step-head">
+          <div class="step-number">3</div>
+          <div class="step-title">ご契約・<br>専用チェアのご準備</div>
+        </div>
+        <p class="step-desc">契約手続きとあわせて、施術に使う折りたたみチェアをご用意。0.5畳のスペースがあれば準備は完了です。</p>
       </div>
+
+      <div class="flow-chevron"><svg viewBox="0 0 30 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l13 10L28 2"/></svg></div>
+
       <div class="flow-step">
-        <div class="step-number">4</div>
-        <div class="step-body">施術スタート(整体師がオフィスへ)</div>
+        <div class="flow-step-head">
+          <div class="step-number">4</div>
+          <div class="step-title">施術スタート<br>整体師がオフィスへ</div>
+        </div>
+        <p class="step-desc">研修に合格したスタッフが訪問。1人10分から、業務の合間に受けられます。あとは続けるだけ。</p>
       </div>
     </div>
   </div>
