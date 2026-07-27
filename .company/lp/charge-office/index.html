@@ -419,40 +419,48 @@
   }
   .benefit-grid .benefit-item .icon { width: 15px; height: 15px; color: var(--orange); flex-shrink: 0; }
 
-  /* --- ⑦ 導入の流れ(全面色帯・巨大セリフ数字) --- */
+  /* --- ⑦ 導入の流れ(色面 + アーチ装飾) --- */
   .flow-section { padding-bottom: 0; }
   .flow-steps { width: 100%; }
   .flow-step {
     position: relative;
-    padding: 52px 24px 56px;
+    padding: 0 0 44px;
   }
-  /* 白ベースに、ごく淡いクリームを交互に。オレンジは差し色のみに絞る */
-  .flow-step:nth-child(odd) { background: var(--white); }
-  .flow-step:nth-child(even) { background: #FDF9F3; }
-  /* 帯の境目に細いヘアライン */
-  .flow-step + .flow-step { border-top: 1px solid rgba(32,27,20,0.07); }
+  /* ステップごとに色の階調が乗った"面"を作る */
+  .flow-step:nth-child(1) { background: linear-gradient(180deg, #FFF4E0 0%, #FFE7BE 100%); }
+  .flow-step:nth-child(2) { background: linear-gradient(180deg, #FFE7BE 0%, #FFD9A0 100%); }
+  .flow-step:nth-child(3) { background: linear-gradient(180deg, #FFD9A0 0%, #FFCB86 100%); }
+  .flow-step:nth-child(4) { background: linear-gradient(180deg, #FFCB86 0%, #FFBC6B 100%); }
+
+  /* 数字の背後に敷くアーチ状の白い面 */
   .flow-step-inner {
+    position: relative;
     max-width: 620px;
     margin: 0 auto;
+    background: #FFFCF6;
+    border-radius: 200px 200px 24px 24px;
+    padding: 46px 28px 40px;
   }
   /* 巨大セリフ数字 + 見出しの横並び */
   .flow-step-head {
     display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    margin-bottom: 22px;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
   }
   .flow-step .step-number {
     flex-shrink: 0;
     font-family: "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
-    font-size: 92px;
+    font-size: 96px;
     font-weight: 400;
     line-height: 0.78;
     color: var(--orange);
     letter-spacing: -0.04em;
   }
+  .flow-step:nth-child(2) .step-number { color: #E8A020; }
+  .flow-step:nth-child(3) .step-number { color: var(--orange); }
+  .flow-step:nth-child(4) .step-number { color: #E8A020; }
   .flow-step .step-title {
-    padding-top: 6px;
     font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
     font-size: 23px;
     font-weight: 600;
@@ -472,15 +480,15 @@
     color: var(--ink-soft);
     line-height: 2;
   }
-  /* ステップ間の「く」の字矢印 */
+  /* ステップ間の「く」の字矢印(色面の上に置く) */
   .flow-chevron {
     display: flex;
     justify-content: center;
-    padding-bottom: 22px;
-    color: var(--orange);
-    opacity: 0.35;
+    padding-top: 20px;
+    color: var(--white);
+    opacity: 0.9;
   }
-  .flow-chevron svg { width: 34px; height: 15px; }
+  .flow-chevron svg { width: 36px; height: 16px; }
 
   /* 演出はJSが確実に発火した場合だけ付与するクラスで、デフォルトは常に表示状態 */
   .flow-steps.will-animate .flow-step-inner {
@@ -831,11 +839,12 @@
     .stats-card .stat-label { font-size: 13px; }
     .feature-cards { grid-template-columns: repeat(3, 1fr); }
     .benefit-grid { grid-template-columns: repeat(3, 1fr); }
-    .flow-step { padding: 72px 24px 76px; }
+    .flow-step { padding: 0 24px 60px; }
+    .flow-step-inner { padding: 64px 56px 56px; border-radius: 260px 260px 28px 28px; }
     .flow-step .step-number { font-size: 128px; }
-    .flow-step .step-title { font-size: 30px; padding-top: 12px; }
+    .flow-step .step-title { font-size: 30px; }
     .flow-step .step-desc { font-size: 16px; }
-    .flow-step-head { gap: 22px; margin-bottom: 28px; }
+    .flow-step-head { gap: 24px; margin-bottom: 26px; }
     .voice-cards { flex-direction: row; }
     .voice-card { flex: 1; }
   }
