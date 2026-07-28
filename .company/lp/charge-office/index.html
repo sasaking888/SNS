@@ -197,6 +197,40 @@
   }
   .cta-primary .cta-arrow { font-size: 15px; letter-spacing: -2px; }
 
+  /* --- 登場アニメーション(スクロール連動) ---
+     デフォルトは常に表示。JSが .anim-ready を付けた時だけ動きが有効になるので、
+     スクロールが発生しない環境でもコンテンツが消えることはない */
+  .anim-ready .in-fadeup {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .anim-ready .in-fadein {
+    opacity: 0;
+    transition: opacity 0.9s ease;
+  }
+  .anim-ready .in-jack {
+    opacity: 0;
+    transform: scale(0.72);
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .anim-ready .in-fadeup.is-in,
+  .anim-ready .in-fadein.is-in { opacity: 1; transform: translateY(0); }
+  .anim-ready .in-jack.is-in { opacity: 1; transform: scale(1); }
+  .delay01 { transition-delay: 0.12s; }
+  .delay02 { transition-delay: 0.24s; }
+  .delay03 { transition-delay: 0.36s; }
+  .delay04 { transition-delay: 0.48s; }
+  @media (prefers-reduced-motion: reduce) {
+    .anim-ready .in-fadeup,
+    .anim-ready .in-fadein,
+    .anim-ready .in-jack {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
   /* --- scroll reveal --- */
   /* 常に表示状態がデフォルト。スクロール検知が働いた時だけ軽く動く(表示自体はJSに依存させない) */
   .reveal { opacity: 1; transform: none; }
@@ -232,7 +266,8 @@
   /* --- ② ファーストビュー --- */
   .hero {
     position: relative;
-    background: linear-gradient(160deg, var(--cream) 0%, var(--yellow) 78%);
+    /* 上部はヒーロー画像の上端色に、下部は画像の下端色に合わせて継ぎ目を目立たせない */
+    background: linear-gradient(180deg, #FFF6E6 0%, #FDF1DC 30%, #FBE0A4 66%, var(--yellow) 100%);
     padding: 0 0 100px;
     text-align: center;
     overflow: hidden;
@@ -259,10 +294,88 @@
   }
   .hero .container { z-index: 1; }
   .nowrap { white-space: nowrap; }
-  .hero-banner-img {
+
+  /* ヒーローの文字(HTML。画像ではないので色分け・アニメが効く) */
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    padding: 26px 22px 22px;
+    text-align: left;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--yellow);
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 800;
+    padding: 7px 18px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .hero-badge .icon { width: 15px; height: 15px; }
+  .hero-catch {
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1.32;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .hero-catch .hero-line { display: block; }
+  .hero-catch em {
+    font-style: normal;
+    color: var(--orange);
+    border-bottom: 5px solid var(--orange);
+    padding-bottom: 1px;
+  }
+  .hero-lead {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  .hero-visual-img {
+    position: relative;
+    z-index: 1;
     width: 100%;
     height: auto;
     display: block;
+  }
+
+  /* CTA前の3ポイント */
+  .point-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 26px;
+  }
+  .point-item {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 16px 8px 18px;
+    text-align: center;
+    box-shadow: 0 10px 22px -14px rgba(32,27,20,0.4);
+  }
+  .point-item .point-sub-text {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--white);
+    background: var(--orange);
+    border-radius: 999px;
+    padding: 3px 10px;
+    margin-bottom: 9px;
+    white-space: nowrap;
+  }
+  .point-item .point-main-text {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1.5;
   }
 
   /* --- ③ フローティング実績カード --- */
@@ -299,17 +412,88 @@
     margin-top: 4px;
   }
 
-  /* --- ④ Problem --- */
-  .problem-section { padding-top: 96px; }
-  .problem-banner-img {
-    display: block;
+  /* --- ④ Problem(中央イラスト + お悩みを1つずつ配置) --- */
+  .problem-section {
+    padding-top: 72px;
+    background: linear-gradient(180deg, var(--white) 0%, #FFFBF2 100%);
+    overflow: hidden;
+  }
+  .worry-head {
+    text-align: center;
+    margin-bottom: 34px;
+  }
+  .worry-head h2 {
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.45;
+  }
+  .worry-head .c-orange {
+    color: var(--orange);
+    border-bottom: 5px solid var(--yellow);
+    padding-bottom: 1px;
+  }
+  .worry-stage {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+  .worry-center-wrap { order: -1; margin-bottom: 4px; }
+  .worry-center-wrap img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .worry-item {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 18px 18px 8px;
+    box-shadow: 0 12px 26px -18px rgba(32,27,20,0.45);
+  }
+  .worry-item-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    margin-bottom: 10px;
+  }
+  .worry-num {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--yellow);
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .worry-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1.55;
+    padding-top: 2px;
+  }
+  .worry-title u {
+    text-decoration: none;
+    border-bottom: 2.5px solid var(--orange);
+    padding-bottom: 1px;
+  }
+  .worry-item img {
     width: 100%;
     height: auto;
-    margin-bottom: 40px;
+    max-width: 260px;
+    margin: 0 auto;
+    mix-blend-mode: multiply;
   }
   .problem-conclusion {
     text-align: center;
-    margin-top: 36px;
+    margin-top: 40px;
     font-size: 17px;
     font-weight: 800;
     color: var(--ink);
@@ -882,6 +1066,14 @@
     .risk-flow { flex-direction: row; align-items: stretch; }
     .risk-arrow { transform: rotate(0deg); }
     .hero { padding: 0 0 130px; }
+    .hero-inner { padding: 40px 24px 26px; text-align: center; }
+    .hero-badge { font-size: 15px; padding: 9px 24px; margin-bottom: 20px; }
+    .hero-catch { font-size: 52px; margin-bottom: 18px; }
+    .hero-lead { font-size: 18px; }
+    .point-list { gap: 16px; max-width: 720px; margin-left: auto; margin-right: auto; margin-top: 32px; }
+    .point-item { padding: 20px 12px 22px; }
+    .point-item .point-sub-text { font-size: 13px; padding: 4px 14px; }
+    .point-item .point-main-text { font-size: 16px; }
     .cta-group { flex-direction: row; justify-content: center; }
     .cta-primary { max-width: 560px; padding: 26px 44px 24px; }
     .cta-primary .cta-main { font-size: 26px; }
@@ -936,18 +1128,41 @@
 
 <!-- ② ファーストビュー -->
 <section class="hero">
-  <!-- 【方式変更】ヒーロー全体をCanva等で作った1枚画像に置き換え(見出し・コピー・写真枠を画像側に統合)
-       .container(余白あり)の外に置き、画面幅いっぱい(フルブリード)で表示。画像そのものがヒーローの主役になる構成
-       h1はSEO・スクリーンリーダー用に非表示で残し、画像altにも同内容を記載 -->
-  <h1 class="sr-only">その肩こり、会社の経費で"ゼロ"にしませんか。整体師がオフィスに出張する法人向け出張整体サブスク CHARGE OFFICE</h1>
+  <!-- 【方式変更】文字は画像に焼き込まず、HTMLテキストとして持つ(色分け・時間差アニメを効かせるため)。
+       写真+チップ+3バッジの部分だけを画像(images/hero-visual.png)として使用 -->
+  <div class="hero-inner">
+    <p class="hero-badge in-jack delay03"><svg class="icon"><use href="#i-person"/></svg>法人の人事・総務ご担当者さまへ</p>
+    <h1 class="hero-catch">
+      <span class="hero-line in-fadeup">その肩こり、</span>
+      <span class="hero-line in-fadeup delay01">会社の経費で<em>"ゼロ"</em>にしませんか。</span>
+    </h1>
+    <p class="hero-lead in-fadein delay04">整体師がオフィスに出張する、法人向け出張整体サブスク</p>
+  </div>
+
   <img
-    class="hero-banner-img"
-    src="images/hero-banner.png"
-    alt="その肩こり、会社の経費で&quot;ゼロ&quot;にしませんか。整体師がオフィスに出張する、法人向け出張整体サブスク。1人10分〜、必要スペースは0.5畳。"
-    width="1402" height="1122">
+    class="hero-visual-img"
+    src="images/hero-visual.png"
+    alt="オフィスの一角で専用チェアに座る社員に施術するCHARGEのスタッフ。1人10分〜、必要スペースは0.5畳。生産性向上・離職率低下・健康経営に。"
+    width="1402" height="715">
 
   <div class="container">
-    <div class="cta-block">
+    <!-- CTA前の3ポイント(時間差で出て、最後にCTAが締める導線) -->
+    <div class="point-list">
+      <div class="point-item in-fadeup">
+        <p class="point-sub-text">1時間11,000円〜</p>
+        <p class="point-main-text">少ない負担で<br>従業員をケア</p>
+      </div>
+      <div class="point-item in-fadeup delay01">
+        <p class="point-sub-text">たった0.5畳</p>
+        <p class="point-main-text">場所を選ばず<br>すぐ導入</p>
+      </div>
+      <div class="point-item in-fadeup delay02">
+        <p class="point-sub-text">1人10分〜</p>
+        <p class="point-main-text">業務の合間に<br>受けられる</p>
+      </div>
+    </div>
+
+    <div class="cta-block in-fadeup">
       <a href="#contact" class="cta-primary">
         <span class="cta-badge">カンタン<b>30秒</b>入力・無料</span>
         <span class="cta-sub">来社不要・オンライン相談OK</span>
@@ -978,15 +1193,60 @@
 
 <!-- ④ Problem -->
 <section class="section problem-section">
-  <h2 class="sr-only">こんなお悩み、人事・総務のあなたに集まっていませんか?</h2>
-  <!-- 【差し替え済】ChatGPTで作成したイラスト画像。見出し+5つのお悩みが1枚に統合済み。.container外に置きフルブリード表示 -->
-  <img
-    class="problem-banner-img reveal"
-    src="images/problem-banner.png"
-    alt="こんなお悩み、人事・総務のあなたに集まっていませんか? 離職・採用コスト増、健康経営何から始めればいいか分からない、予算もスペースもない、肩こり・腰痛の社員が多い、なんとなく生産性が上がらない"
-    width="1536" height="1024">
   <div class="container">
-    <p class="problem-conclusion reveal">そのお悩み、バラバラの問題に見えて、根っこは一つかもしれません。<br>——「従業員の身体の不調」です。</p>
+    <!-- 【方式変更】1枚画像から、中央イラスト+お悩み5つのHTMLに分解。
+         各イラストは images/worry-*.png(元画像から切り出し)。文字はHTMLなので1つずつ時間差で登場する -->
+    <div class="worry-head in-fadeup">
+      <h2>こんなお悩み、<br class="sp-br"><span class="c-orange">人事・総務のあなた</span>に<br>集まっていませんか?</h2>
+    </div>
+
+    <div class="worry-stage">
+      <div class="worry-center-wrap in-fadein">
+        <img src="images/worry-center.png" alt="お悩みを抱える人事担当者" width="460" height="470" loading="lazy">
+      </div>
+
+      <div class="worry-item item1 in-fadeup">
+        <div class="worry-item-head">
+          <span class="worry-num">1</span>
+          <p class="worry-title"><u>離職・採用コスト</u>が増えている</p>
+        </div>
+        <img src="images/worry-illust1.png" alt="" width="400" height="180" loading="lazy">
+      </div>
+
+      <div class="worry-item item2 in-fadeup delay01">
+        <div class="worry-item-head">
+          <span class="worry-num">2</span>
+          <p class="worry-title"><u>健康経営</u>、何から<br>始めればいいか分からない</p>
+        </div>
+        <img src="images/worry-illust2.png" alt="" width="375" height="150" loading="lazy">
+      </div>
+
+      <div class="worry-item item3 in-fadeup delay02">
+        <div class="worry-item-head">
+          <span class="worry-num">3</span>
+          <p class="worry-title"><u>予算もスペース</u>もない</p>
+        </div>
+        <img src="images/worry-illust3.png" alt="" width="380" height="168" loading="lazy">
+      </div>
+
+      <div class="worry-item item4 in-fadeup delay01">
+        <div class="worry-item-head">
+          <span class="worry-num">4</span>
+          <p class="worry-title"><u>肩こり・腰痛</u>の<br>社員が多い</p>
+        </div>
+        <img src="images/worry-illust4.png" alt="" width="470" height="200" loading="lazy">
+      </div>
+
+      <div class="worry-item item5 in-fadeup delay02">
+        <div class="worry-item-head">
+          <span class="worry-num">5</span>
+          <p class="worry-title">なんとなく<br><u>生産性が上がらない</u></p>
+        </div>
+        <img src="images/worry-illust5.png" alt="" width="400" height="185" loading="lazy">
+      </div>
+    </div>
+
+    <p class="problem-conclusion in-fadeup">そのお悩み、バラバラの問題に見えて、根っこは一つかもしれません。<br>——「従業員の身体の不調」です。</p>
   </div>
 </section>
 
@@ -1357,6 +1617,27 @@
   document.getElementById('lineTooltipClose').addEventListener('click', function () {
     lineWidget.classList.add('tooltip-hidden');
   });
+
+  // 登場アニメーション(in-fadeup / in-fadein / in-jack)
+  // .anim-ready を付けて初めて動きが有効になる。付けなければ最初から表示されたまま
+  var animEls = document.querySelectorAll('.in-fadeup, .in-fadein, .in-jack');
+  if (animEls.length) {
+    document.documentElement.classList.add('anim-ready');
+    var showAnim = function (el) { el.classList.add('is-in'); };
+    if ('IntersectionObserver' in window) {
+      var animIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            showAnim(entry.target);
+            animIo.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      animEls.forEach(function (el) { animIo.observe(el); });
+    }
+    // フォールバック: スクロールが発生しない環境でも必ず表示させる
+    setTimeout(function () { animEls.forEach(showAnim); }, 1600);
+  }
 
   // スクロールリビール(表示は保証した上での軽い演出のみ。observerが発火しない環境でも必ず見える)
   var revealEls = document.querySelectorAll('.reveal');
