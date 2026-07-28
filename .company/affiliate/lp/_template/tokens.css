@@ -1,0 +1,29 @@
+/* デザイントークン — 案件ごとに書き換えるのは「このファイルだけ」。
+   ここを凍結することで、LPを作るたびにデザインを考え直すコスト(=クレジット)が消える。 */
+:root {
+  /* 色は6色・役割つきで固定。増やさない */
+  --c-bg: #FBFAF7;        /* ページ背景(オフホワイト) */
+  --c-surface: #FFFFFF;   /* カード・帯の面 */
+  --c-ink: #1C1B19;       /* 本文 */
+  --c-mute: #5B5852;      /* 補足・キャプション */
+  --c-accent: #B4472E;    /* 主役色。CTA・強調。★案件ごとに差し替えるのは基本ここだけ */
+  --c-line: #E4E0D8;      /* 罫線 */
+
+  /* 書体は2種のみ。Inter / Roboto / Arial / システムフォント / Space Grotesk は使わない */
+  --f-head: "Shippori Mincho B1", "Yu Mincho", serif;
+  --f-body: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+
+  /* 角丸は8pxまで(禁止則) */
+  --r: 6px;
+
+  /* 余白スケール(この6段以外を使わない) */
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 40px;
+  --s5: 72px;
+  --s6: 112px;
+
+  /* 独自要素を1つだけ持つ: 見出し左の縦罫 */
+  --rule: 3px solid var(--c-accent);
+}

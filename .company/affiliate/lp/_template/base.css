@@ -1,0 +1,79 @@
+/* 共通レイアウト — 原則ここは触らない(触るたびに全体を読み直すコストが出るため)。
+   案件ごとの調整は tokens.css の変数で吸収する。 */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.9;
+  letter-spacing: 0.02em; /* マイナスにしない(禁止則) */
+}
+img { max-width: 100%; height: auto; display: block; }
+
+/* --- セクションは全幅の帯。カードの入れ子はしない(禁止則) --- */
+.band { padding: var(--s6) var(--s3); }
+.band--surface { background: var(--c-surface); }
+.band--accent { background: var(--c-accent); color: #fff; }
+.band--accent a { color: #fff; }
+.inner { max-width: 760px; margin: 0 auto; }
+.inner--wide { max-width: 980px; }
+
+/* --- 文字 --- */
+h1, h2, h3 { font-family: var(--f-head); font-weight: 600; line-height: 1.5; margin: 0 0 var(--s3); }
+h1 { font-size: clamp(28px, 6vw, 44px); }
+h2 { font-size: clamp(22px, 4.4vw, 30px); padding-left: var(--s2); border-left: var(--rule); }
+h3 { font-size: 18px; margin-bottom: var(--s1); }
+p { margin: 0 0 var(--s3); }
+.lead { font-size: clamp(16px, 2.4vw, 19px); color: var(--c-mute); }
+.mute { color: var(--c-mute); font-size: 14px; }
+.center { text-align: center; }
+
+/* --- CTA --- */
+.cta {
+  display: inline-block;
+  padding: var(--s2) var(--s4);
+  background: var(--c-accent);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--r);
+}
+.band--accent .cta { background: #fff; color: var(--c-accent); }
+.cta:hover { opacity: 0.88; }
+
+/* --- 並び(グリッド)。入れ子にせず1階層で使う --- */
+.grid { display: grid; gap: var(--s3); grid-template-columns: 1fr; }
+@media (min-width: 720px) {
+  .grid--2 { grid-template-columns: repeat(2, 1fr); }
+  .grid--3 { grid-template-columns: repeat(3, 1fr); }
+}
+.item { padding: var(--s3); background: var(--c-bg); border: 1px solid var(--c-line); border-radius: var(--r); }
+.band--surface .item { background: var(--c-surface); }
+
+/* --- 手順の番号 --- */
+.step-no { font-family: var(--f-head); color: var(--c-accent); font-size: 28px; line-height: 1; }
+
+/* --- FAQ(素の details。JSを足さない) --- */
+details { border-bottom: 1px solid var(--c-line); padding: var(--s3) 0; }
+summary { cursor: pointer; font-weight: 700; }
+details p { margin: var(--s2) 0 0; color: var(--c-mute); }
+
+/* --- ナビ / フッター --- */
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s2); padding: var(--s2) var(--s3);
+  border-bottom: 1px solid var(--c-line); background: var(--c-surface);
+}
+.nav__brand { font-family: var(--f-head); font-size: 18px; }
+.pr-badge {
+  display: inline-block; padding: 2px var(--s1);
+  border: 1px solid var(--c-line); border-radius: var(--r);
+  font-size: 12px; color: var(--c-mute);
+}
+.footer { padding: var(--s4) var(--s3); border-top: 1px solid var(--c-line); color: var(--c-mute); font-size: 14px; }
+
+/* グラデーションの光球・過剰アニメは入れない(禁止則) */
