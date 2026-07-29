@@ -982,16 +982,18 @@ body { padding-bottom: 72px; }
 }
 
 /* ============================================================
-   [8] CTAブロック（参考デザイン準拠・オレンジ）
-   バッジをボタン上端に重ね、その下にLINE導線を置く。
-   サイズはLINEボタンと揃える。
+   CTAブロック（2026-07-29 参考デザインを反映）
+   バッジをボタン上端に重ね、その下にLINE導線を置く構成。
    ============================================================ */
 
 .cta-block { width: 100%; max-width: 480px; }
 .cta-block--center { margin-inline: auto; }
 
-.cta-block__wrap { position: relative; padding-top: 11px; }
-
+/* バッジを重ねるための土台 */
+.cta-block__wrap {
+  position: relative;
+  padding-top: 17px;
+}
 .cta-block__badge {
   position: absolute;
   top: 0;
@@ -1002,122 +1004,198 @@ body { padding-bottom: 72px; }
   color: #fff;
   font-family: var(--f-head);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1;
-  padding: 6px 14px;
+  padding: 10px 20px;
   border-radius: 999px;
   white-space: nowrap;
 }
+.cta-block__badge em {
+  font-style: normal;
+  color: var(--c-yellow);
+}
 
+/* メインボタン */
 .cta-block__main {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-height: 56px;
-  padding: 10px 18px;
-  background: #f05a28;
-  color: #fff;
+  gap: 4px;
+  background: var(--c-yellow);
+  color: var(--c-navy);
   border-radius: 999px;
+  padding: 28px 24px 22px;
   text-align: center;
-  box-shadow: 0 3px 0 #c94418;
+  box-shadow: 0 3px 0 #d99c14;
 }
-.cta-block__main:hover { background: #e04f20; }
-
+.cta-block__main:hover { background: #ecac1f; }
+.cta-block__sub {
+  font-size: 13px;
+  font-weight: 700;
+  opacity: 0.75;
+}
 .cta-block__label {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-family: var(--f-head);
   font-weight: 700;
-  font-size: 15px;
+  font-size: clamp(19px, 4.6vw, 24px);
   line-height: 1.3;
 }
 .cta-block__label svg { flex: 0 0 auto; }
-.cta-block__arrows { letter-spacing: -0.1em; font-size: 13px; }
 
-.cta-block__sub {
-  display: block;
-  font-size: 11px;
-  font-weight: 700;
-  opacity: 0.95;
-}
-
+/* LINEボタン */
 .cta-block__line {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-top: 10px;
-  min-height: 52px;
-  padding: 10px 18px;
+  gap: 10px;
+  margin-top: var(--s-2);
   background: #06C755;
   color: #fff;
   border-radius: 999px;
+  min-height: 52px;
+  padding: 12px 24px;
   font-family: var(--f-head);
   font-weight: 700;
-  font-size: 15px;
-  box-shadow: 0 2px 8px rgba(6, 199, 85, 0.25);
+  font-size: 16px;
 }
 .cta-block__line:hover { background: #05b14c; }
 .cta-block__line svg { flex: 0 0 auto; }
 
+/* 補足文 */
 .cta-block__note {
   margin-top: var(--s-2);
   font-size: 13px;
   color: var(--c-mute);
   text-align: center;
 }
-
-@media (max-width: 374px) {
-  .cta-block__label { font-size: 13px; gap: 6px; }
-  .cta-block__main { padding: 10px 12px; min-height: 52px; }
-  .cta-block__line { font-size: 13px; min-height: 48px; }
-  .cta-block__badge { font-size: 10px; padding: 5px 12px; }
-}
+.bg-navy .cta-block__note { color: rgba(255,255,255,0.8); }
 
 @media (min-width: 720px) {
-  .cta-block__label { font-size: 17px; }
-  .cta-block__main { min-height: 60px; padding: 12px 24px; }
+  .cta-block__main { padding: 30px 32px 24px; }
 }
 
-/* ============================================================
-   [9] ヒーロー内のバッジタイル + CTA
-   構成: 見出し → 企業出張整体 → 3タイル → CTA（すべて画像内）
-   タイルは「画像の横幅いっぱい」に置く。左半分に押し込むと
-   1枚60pxしか取れず、本文が5文字ずつ折り返して読めなくなるため。
-   （元のモックも3タイルは全幅だった）
-   ============================================================ */
-
-/* ステージはタイル・CTA込みで高さを取る */
-.hero__stage {
-  height: auto;
-  min-height: clamp(430px, 118vw, 520px);
+/* =====================================================================
+   修正パッチ 8. CTAクオリティ（参考スクショ準拠）
+   - メインをオレンジ系に
+   - バッジは白文字のみ（em強調なし想定）
+   - 矢印 ▶▶ の字間
+   ===================================================================== */
+.cta-block__badge {
+  color: #fff;
+  font-size: 14px;
+  padding: 11px 22px;
+  letter-spacing: 0.02em;
+}
+.cta-block__badge em {
+  color: #fff;
+  font-style: normal;
+}
+.cta-block__main {
+  background: #f05a28;
+  color: #fff;
+  box-shadow: 0 4px 0 #c94418;
+  padding: 26px 28px 22px;
+}
+.cta-block__main:hover {
+  background: #e04f20;
+}
+.cta-block__sub {
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 0.95;
+  color: #fff;
+}
+.cta-block__label {
+  font-size: clamp(20px, 5vw, 26px);
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+.cta-block__arrows {
+  letter-spacing: -0.12em;
+  margin-left: 2px;
+}
+.cta-block__line {
+  min-height: 54px;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(6, 199, 85, 0.25);
 }
 
-/* 文字ブロックは上寄せ。テキストだけ右に人物ぶんの余白を空ける */
-.hero__copy {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: auto;
-  padding: 18px 14px 16px;
+/* =====================================================================
+   修正パッチ 9. ヒーロー直下にバッジタイル（モック準拠）
+   - 画像のすぐ下に3タイル
+   - タイルは画像に少し被せる
+   - その下にCTA1つ
+   ===================================================================== */
+.hero__extra {
+  position: relative;
+  z-index: 5;
+  padding-top: 0;
 }
-.hero__sub,
-.hero__title,
-.hero__service {
-  padding-right: 44%;   /* 人物にかからない範囲 */
-}
-.hero__service { margin-bottom: 14px; }
-
-/* --- タイル（画像の全幅を使う） --- */
 .hero__badges {
+  margin-top: -28px; /* ヒーロー画像下端に重ねる */
+  margin-bottom: var(--s-3);
+  position: relative;
+  z-index: 6;
+}
+.hero__badges .badge-card {
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(23, 43, 90, 0.1);
+  border-color: transparent;
+}
+.hero__extra .cta-block {
+  margin-bottom: var(--s-3);
+}
+.hero__extra .hero__lead {
+  margin-top: var(--s-2);
+  margin-bottom: 12px;
+}
+.hero__extra .hero__trust {
+  margin-bottom: 0;
+}
+@media (min-width: 720px) {
+  .hero__badges {
+    margin-top: -36px;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 10. バッジタイルをヒーロー画像内に収める（モック準拠）
+   - stage 内 absolute で下端に配置
+   - 3枚横並び・コンパクトサイズ
+   - パッチ[1]の「720px未満1列」は .hero__badges では打ち消し
+   ===================================================================== */
+.hero__stage {
+  /* タイル分の余白を確保（画像内に収める） */
+  height: clamp(320px, 88vw, 400px);
+}
+.hero__copy {
+  /* 下のタイルと被らないよう上部寄せ */
+  justify-content: flex-start;
+  padding-top: 18px;
+  padding-bottom: 96px;
+}
+.hero__badges {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 5;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 6px;
-  margin: 0 0 12px;
-  position: relative;
-  z-index: 1;
+  margin: 0;
+  width: auto;
+}
+.hero__badges .section-title {
+  /* sr-only が grid に乗らないよう */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
 }
 .hero__badges .badge-card {
   display: flex;
@@ -1125,72 +1203,1254 @@ body { padding-bottom: 72px; }
   align-items: center;
   text-align: center;
   gap: 2px;
-  padding: 10px 6px 11px;
-  background: #fff;
+  margin: 0;
+  padding: 8px 4px 10px;
+  background: rgba(255, 255, 255, 0.96);
   border: 0;
   border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(23, 43, 90, 0.14);
-  /* パッチ[1]の横型グリッドを打ち消す */
-  grid-template-columns: none;
-  grid-template-areas: none;
+  box-shadow: 0 4px 14px rgba(23, 43, 90, 0.12);
+  min-width: 0;
 }
 .hero__badges .badge-card__icon {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   margin: 0 0 2px;
-  border-radius: 9px;
-  background: #f3f0e8;
-  color: #8a8680;
-  grid-area: auto;
+  grid-area: unset;
 }
-.hero__badges .badge-card__icon svg { width: 18px; height: 18px; }
+.hero__badges .badge-card__icon svg {
+  width: 18px;
+  height: 18px;
+}
 .hero__badges .badge-card__title {
-  font-size: 12px;
-  line-height: 1.3;
+  font-size: 11px;
   margin: 0;
-  color: var(--c-navy);
-  grid-area: auto;
+  line-height: 1.25;
+  grid-area: unset;
 }
 .hero__badges .badge-card__text {
-  font-size: 10px;
-  line-height: 1.4;
-  color: #7a7f8a;
-  margin: 0;
-  grid-area: auto;
+  font-size: 9px;
+  line-height: 1.35;
+  color: var(--c-mute);
+  grid-area: unset;
 }
 
-/* --- ヒーロー内CTA --- */
-.hero__cta { width: 100%; max-width: 100%; margin: 0; }
-
-/* --- ヒーロー下の補足 --- */
-.hero__extra { padding-top: 16px; }
-.hero__trust { margin-bottom: 0; }
-
-@media (max-width: 374px) {
-  .hero__stage { min-height: 470px; }
-  .hero__copy { padding: 14px 10px 14px; }
-  .hero__sub, .hero__title, .hero__service { padding-right: 42%; }
-  .hero__badges { gap: 4px; }
-  .hero__badges .badge-card { padding: 8px 4px 9px; border-radius: 10px; }
-  .hero__badges .badge-card__title { font-size: 11px; }
-  .hero__badges .badge-card__text { font-size: 9px; }
+/* パッチ[1]の横型1列化をヒーロー内タイルでは無効化 */
+@media (max-width: 719px) {
+  .hero__badges {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 6px;
+  }
+  .hero__badges .badge-card {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: none !important;
+    grid-template-areas: none !important;
+    text-align: center !important;
+    padding: 8px 4px 10px !important;
+  }
+  .hero__badges .badge-card__icon {
+    margin: 0 auto 2px !important;
+  }
 }
 
 @media (min-width: 720px) {
-  .hero__stage { min-height: 470px; }
-  .hero__copy { padding: 28px 20px 22px; }
-  .hero__sub, .hero__title, .hero__service { padding-right: 46%; }
-  /* PCは人物ぶんの余白があるので、タイルとCTAは左寄せでコンパクトに */
-  .hero__badges { max-width: 520px; gap: 10px; }
-  .hero__badges .badge-card { padding: 14px 10px 16px; border-radius: 14px; }
-  .hero__badges .badge-card__icon { width: 38px; height: 38px; }
-  .hero__badges .badge-card__icon svg { width: 22px; height: 22px; }
-  .hero__badges .badge-card__title { font-size: 14px; }
-  .hero__badges .badge-card__text { font-size: 11px; }
-  .hero__cta { max-width: 520px; }
+  .hero__stage {
+    height: 420px;
+  }
+  .hero__badges {
+    left: 24px;
+    right: 24px;
+    bottom: 16px;
+    gap: 10px;
+    max-width: 420px; /* モック同様・左寄りにコンパクト */
+    margin-right: auto;
+  }
+  .hero__badges .badge-card {
+    padding: 12px 8px 14px;
+    border-radius: 14px;
+  }
+  .hero__badges .badge-card__title {
+    font-size: 13px;
+  }
+  .hero__badges .badge-card__text {
+    font-size: 11px;
+  }
+  .hero__copy {
+    padding-bottom: 120px;
+  }
 }
 
 @media (min-width: 1024px) {
-  .hero__stage { min-height: 500px; }
-  .hero__copy { padding: 32px 24px 26px; }
+  .hero__stage {
+    height: 460px;
+  }
+  .hero__badges {
+    left: var(--s-3);
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 374px) {
+  .hero__badges .badge-card__title {
+    font-size: 10px;
+  }
+  .hero__badges .badge-card__text {
+    font-size: 8px;
+  }
+  .hero__badges {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    gap: 4px;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 11. ヒーロー内タイルをモックに近づける（上書き）
+   モックの特徴:
+   - 3枚は画像の「下半分〜下端」に乗る
+   - 画面幅いっぱいに近いが左右に余白
+   - 1枚は小さい白カード（アイコン上・タイトル・短い本文）
+   - 人物の手前
+   - CTAは画像の外（下）
+   パッチ9の relative / margin-top と衝突していたので打ち消す
+   ===================================================================== */
+
+/* パッチ9の relative 重ねを無効化 */
+.hero__extra {
+  position: relative;
+  z-index: 2;
+  padding-top: 16px;
+  margin-top: 0;
+}
+.hero__badges {
+  position: absolute !important;
+  left: 14px !important;
+  right: 14px !important;
+  bottom: 14px !important;
+  top: auto !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+  z-index: 6 !important;
+}
+
+/* ステージ高さ：文字 + タイルが収まる帯 */
+.hero__stage {
+  height: clamp(340px, 92vw, 420px) !important;
+  overflow: hidden;
+}
+
+/* 見出しは上寄せ。下にタイル用スペース */
+.hero__copy {
+  justify-content: flex-start !important;
+  padding: 16px 42% 110px 16px !important;
+}
+
+/* カード本体：モックの小さな白タイル */
+.hero__badges .badge-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-align: center !important;
+  gap: 3px !important;
+  padding: 10px 6px 12px !important;
+  margin: 0 !important;
+  background: #fff !important;
+  border: 0 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 6px 18px rgba(23, 43, 90, 0.14) !important;
+  min-height: 0 !important;
+  grid-template-columns: none !important;
+  grid-template-areas: none !important;
+}
+
+.hero__badges .badge-card__icon {
+  width: 36px !important;
+  height: 36px !important;
+  margin: 0 0 4px !important;
+  border-radius: 10px !important;
+  background: #f3f0e8 !important;
+  color: #8a8680 !important;
+  display: grid !important;
+  place-items: center !important;
+  grid-area: unset !important;
+}
+.hero__badges .badge-card__icon svg {
+  width: 20px !important;
+  height: 20px !important;
+  stroke: #9a958c !important;
+}
+
+.hero__badges .badge-card__title {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  margin: 0 !important;
+  color: var(--c-navy) !important;
+  grid-area: unset !important;
+}
+
+.hero__badges .badge-card__text {
+  font-size: 10px !important;
+  line-height: 1.4 !important;
+  color: #7a7f8a !important;
+  margin: 0 !important;
+  grid-area: unset !important;
+}
+
+/* スマホの1列化パッチを完全無効（ヒーロー内のみ） */
+@media (max-width: 719px) {
+  .hero__badges {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+  .hero__badges .badge-card {
+    display: flex !important;
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 10px 5px 12px !important;
+  }
+}
+
+@media (max-width: 374px) {
+  .hero__stage {
+    height: 360px !important;
+  }
+  .hero__copy {
+    padding: 14px 38% 108px 12px !important;
+  }
+  .hero__badges {
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 10px !important;
+    gap: 6px !important;
+  }
+  .hero__badges .badge-card {
+    padding: 8px 4px 10px !important;
+    border-radius: 12px !important;
+  }
+  .hero__badges .badge-card__title {
+    font-size: 11px !important;
+  }
+  .hero__badges .badge-card__text {
+    font-size: 9px !important;
+  }
+}
+
+@media (min-width: 720px) {
+  .hero__stage {
+    height: 440px !important;
+  }
+  .hero__copy {
+    padding: 28px 44% 130px 20px !important;
+  }
+  /* モック: タイルは中央〜やや左、全幅ベタ張りにしない */
+  .hero__badges {
+    left: 20px !important;
+    right: auto !important;
+    width: min(420px, 58%) !important;
+    bottom: 18px !important;
+    gap: 10px !important;
+  }
+  .hero__badges .badge-card {
+    padding: 14px 10px 16px !important;
+  }
+  .hero__badges .badge-card__icon {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .hero__badges .badge-card__title {
+    font-size: 14px !important;
+  }
+  .hero__badges .badge-card__text {
+    font-size: 11px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__stage {
+    height: 480px !important;
+  }
+  .hero__badges {
+    left: 24px !important;
+    width: 440px !important;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 12. ヒーロー内タイル横幅を約2/3に
+   ===================================================================== */
+.hero__badges {
+  left: 14px !important;
+  right: auto !important;
+  width: 66.666% !important;
+  max-width: none !important;
+}
+@media (max-width: 374px) {
+  .hero__badges {
+    left: 10px !important;
+    width: 66.666% !important;
+  }
+}
+@media (min-width: 720px) {
+  .hero__badges {
+    left: 20px !important;
+    width: 66.666% !important;
+  }
+}
+@media (min-width: 1024px) {
+  .hero__badges {
+    left: 24px !important;
+    width: 66.666% !important;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 13. ヒーロー内タイルを画像の横半分に収める
+   ===================================================================== */
+.hero__badges {
+  left: 14px !important;
+  right: auto !important;
+  width: 50% !important;
+  max-width: 50% !important;
+}
+@media (max-width: 374px) {
+  .hero__badges {
+    left: 10px !important;
+    width: 50% !important;
+    max-width: 50% !important;
+  }
+}
+@media (min-width: 720px) {
+  .hero__badges {
+    left: 20px !important;
+    width: 50% !important;
+    max-width: 50% !important;
+  }
+}
+@media (min-width: 1024px) {
+  .hero__badges {
+    left: 24px !important;
+    width: 50% !important;
+    max-width: 50% !important;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 14. ヒーロー見出しを大きく（画像の横半分を使う）
+   - 「社員が～」がヒーロー幅の約半分まで広がるサイズ
+   - サブ・サービス名は比例して拡大
+   ===================================================================== */
+.hero__copy {
+  /* 右半分は人物エリア。左半分を文字に使う */
+  padding-right: 50% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+.hero__sub {
+  font-size: clamp(14px, 3.6vw, 18px) !important;
+  margin-bottom: 10px !important;
+  line-height: 1.4 !important;
+}
+.hero__title {
+  /* 左半分いっぱいを想定した大きな見出し */
+  font-size: clamp(28px, 7.2vw, 40px) !important;
+  line-height: 1.25 !important;
+  margin-bottom: 12px !important;
+  letter-spacing: 0.01em !important;
+  max-width: 100% !important;
+}
+.hero__service {
+  font-size: clamp(15px, 4vw, 20px) !important;
+  line-height: 1.4 !important;
+}
+
+/* 狭い端末でも見出しが1文字落ちしないよう調整 */
+@media (max-width: 374px) {
+  .hero__copy {
+    padding-right: 48% !important;
+    padding-left: 12px !important;
+  }
+  .hero__sub {
+    font-size: 13px !important;
+  }
+  .hero__title {
+    font-size: 26px !important;
+  }
+  .hero__service {
+    font-size: 14px !important;
+  }
+}
+
+@media (min-width: 720px) {
+  .hero__copy {
+    padding-right: 50% !important;
+    padding-left: 20px !important;
+  }
+  .hero__sub {
+    font-size: 17px !important;
+  }
+  .hero__title {
+    font-size: 42px !important;
+  }
+  .hero__service {
+    font-size: 20px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__copy {
+    padding-right: 50% !important;
+    padding-left: 24px !important;
+  }
+  .hero__sub {
+    font-size: 18px !important;
+  }
+  .hero__title {
+    font-size: 48px !important;
+  }
+  .hero__service {
+    font-size: 22px !important;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 15. ヒーロー見出しは「2行のまま」大きくする
+   - 1行目「社員が元気だと、」が折り返して3行以上になるのを防ぐ
+   - 左半分に1行ずつ収まるサイズに抑える
+   ===================================================================== */
+.hero__copy {
+  /* 文字エリアをわずかに広げ、1行が切れないようにする */
+  padding-right: 46% !important;
+}
+.hero__title {
+  /* 2行固定想定。1行が折り返さない上限を意識 */
+  font-size: clamp(22px, 5.8vw, 34px) !important;
+  line-height: 1.3 !important;
+  white-space: normal !important;
+}
+.hero__sub {
+  font-size: clamp(13px, 3.2vw, 16px) !important;
+}
+.hero__service {
+  font-size: clamp(14px, 3.6vw, 18px) !important;
+}
+
+/* 狭い端末: さらに少し小さくして2行維持 */
+@media (max-width: 374px) {
+  .hero__copy {
+    padding-right: 44% !important;
+  }
+  .hero__title {
+    font-size: 21px !important;
+    line-height: 1.3 !important;
+  }
+  .hero__sub {
+    font-size: 12px !important;
+  }
+  .hero__service {
+    font-size: 13px !important;
+  }
+}
+
+@media (min-width: 720px) {
+  .hero__copy {
+    padding-right: 48% !important;
+  }
+  .hero__title {
+    /* PCでも2行のまま、半分近くまで大きく */
+    font-size: 36px !important;
+  }
+  .hero__sub {
+    font-size: 16px !important;
+  }
+  .hero__service {
+    font-size: 18px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__title {
+    font-size: 40px !important;
+  }
+  .hero__sub {
+    font-size: 17px !important;
+  }
+  .hero__service {
+    font-size: 19px !important;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 16. ヒーローのサブ・サービス名を元サイズに戻す
+   （見出し「社員が～」の拡大は維持）
+   ===================================================================== */
+.hero__sub {
+  font-size: 12px !important;
+  margin-bottom: 8px !important;
+  line-height: 1.4 !important;
+}
+.hero__service {
+  font-size: clamp(12px, 3.2vw, 14px) !important;
+  line-height: 1.4 !important;
+}
+@media (max-width: 374px) {
+  .hero__sub {
+    font-size: 12px !important;
+  }
+  .hero__service {
+    font-size: 12px !important;
+  }
+}
+@media (min-width: 720px) {
+  .hero__sub {
+    font-size: 12px !important;
+  }
+  .hero__service {
+    font-size: 15px !important; /* 元の720px指定 */
+  }
+}
+@media (min-width: 1024px) {
+  .hero__sub {
+    font-size: 12px !important;
+  }
+  .hero__service {
+    font-size: 15px !important;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 17. タイルを「企業出張整体」の直下に流し込み
+   - absolute 解除（画像下端固定をやめる）
+   - hero__copy 内で service の下に通常配置
+   - 横幅は文字エリアいっぱい（＝概ね画像の左半分）
+   ===================================================================== */
+.hero__copy {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  padding-bottom: 16px !important;
+  height: auto !important;
+  min-height: 100%;
+  box-sizing: border-box !important;
+}
+.hero__service {
+  margin-bottom: 12px !important;
+}
+.hero__badges {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  top: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 6px !important;
+  z-index: 1 !important;
+}
+.hero__badges .badge-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 8px 4px 10px !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+  box-shadow: 0 4px 14px rgba(23, 43, 90, 0.12) !important;
+  border: 0 !important;
+  grid-template-columns: none !important;
+  grid-template-areas: none !important;
+}
+.hero__badges .badge-card__icon {
+  margin: 0 auto 2px !important;
+  width: 28px !important;
+  height: 28px !important;
+  grid-area: unset !important;
+}
+.hero__badges .badge-card__title {
+  font-size: 11px !important;
+  margin: 0 !important;
+  grid-area: unset !important;
+}
+.hero__badges .badge-card__text {
+  font-size: 9px !important;
+  margin: 0 !important;
+  grid-area: unset !important;
+}
+
+/* ステージはタイル込みで高さを確保 */
+.hero__stage {
+  height: auto !important;
+  min-height: clamp(300px, 85vw, 380px) !important;
+}
+
+@media (max-width: 719px) {
+  .hero__badges {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+  .hero__badges .badge-card {
+    display: flex !important;
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+}
+
+@media (min-width: 720px) {
+  .hero__stage {
+    min-height: 400px !important;
+    height: auto !important;
+  }
+  .hero__badges {
+    gap: 8px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .hero__badges .badge-card {
+    padding: 10px 6px 12px !important;
+  }
+  .hero__badges .badge-card__title {
+    font-size: 12px !important;
+  }
+  .hero__badges .badge-card__text {
+    font-size: 10px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__stage {
+    min-height: 420px !important;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 18. CTAをタイル直下へ（モック準拠）
+   - 並び: 見出し → 企業出張〜 → タイル → CTA
+   - 左カラム内でタイルの直後
+   ===================================================================== */
+.hero__copy {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+.hero__badges {
+  margin-top: 10px !important;
+  margin-bottom: 12px !important;
+  width: 100% !important;
+}
+.hero__cta {
+  width: 100% !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+}
+.hero__cta .cta-block__wrap {
+  width: 100%;
+}
+.hero__cta .cta-block__main {
+  width: 100%;
+}
+.hero__cta .cta-block__line {
+  width: 100%;
+}
+.hero__extra {
+  padding-top: 16px !important;
+}
+
+/* =====================================================================
+   修正パッチ 19. オレンジCTAを緑LINEボタンと同程度の大きさに
+   - メインボタンの縦パディング・文字サイズを抑える
+   - 文字はボタン内に収める（折り返し過多を防ぐ）
+   ===================================================================== */
+.cta-block__wrap {
+  padding-top: 14px; /* バッジ分の余白を少し抑える */
+}
+.cta-block__badge {
+  font-size: 12px !important;
+  padding: 8px 16px !important;
+  top: 0 !important;
+  transform: translate(-50%, -40%) !important;
+}
+.cta-block__main {
+  padding: 14px 20px 12px !important;
+  min-height: 54px !important;
+  box-sizing: border-box !important;
+  gap: 2px !important;
+  justify-content: center !important;
+}
+.cta-block__sub {
+  font-size: 11px !important;
+  line-height: 1.3 !important;
+  opacity: 0.95 !important;
+  white-space: nowrap !important;
+}
+.cta-block__label {
+  font-size: 16px !important;
+  line-height: 1.25 !important;
+  gap: 6px !important;
+  white-space: nowrap !important;
+}
+.cta-block__arrows {
+  font-size: 14px !important;
+  letter-spacing: -0.08em !important;
+}
+.cta-block__line {
+  min-height: 54px !important;
+  font-size: 15px !important;
+  margin-top: 10px !important;
+}
+
+/* ヒーロー内CTAも同じ */
+.hero__cta .cta-block__main {
+  min-height: 54px !important;
+  padding: 14px 16px 12px !important;
+}
+.hero__cta .cta-block__label {
+  font-size: 15px !important;
+}
+.hero__cta .cta-block__sub {
+  font-size: 10px !important;
+}
+
+@media (max-width: 374px) {
+  .cta-block__sub {
+    font-size: 10px !important;
+  }
+  .cta-block__label {
+    font-size: 14px !important;
+  }
+  .cta-block__main {
+    padding: 12px 12px 10px !important;
+  }
+}
+
+@media (min-width: 720px) {
+  .cta-block__main {
+    padding: 14px 24px 12px !important;
+    min-height: 54px !important;
+  }
+  .cta-block__label {
+    font-size: 17px !important;
+  }
+  .cta-block__sub {
+    font-size: 12px !important;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 20. CTAサイズ半減・黒バッジさらに小さく
+   ===================================================================== */
+.cta-block__wrap {
+  padding-top: 10px !important;
+}
+.cta-block__badge {
+  font-size: 10px !important;
+  padding: 5px 10px !important;
+  top: 0 !important;
+  transform: translate(-50%, -45%) !important;
+  letter-spacing: 0.01em !important;
+}
+.cta-block__main {
+  min-height: 28px !important;
+  padding: 8px 14px 7px !important;
+  gap: 1px !important;
+  box-shadow: 0 2px 0 #c94418 !important;
+}
+.cta-block__sub {
+  font-size: 9px !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+}
+.cta-block__label {
+  font-size: 13px !important;
+  line-height: 1.2 !important;
+  gap: 4px !important;
+  white-space: nowrap !important;
+}
+.cta-block__arrows {
+  font-size: 11px !important;
+}
+.cta-block__line {
+  min-height: 28px !important;
+  padding: 6px 14px !important;
+  font-size: 12px !important;
+  margin-top: 8px !important;
+  gap: 6px !important;
+}
+.cta-block__line svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+.hero__cta .cta-block__main {
+  min-height: 28px !important;
+  padding: 8px 12px 7px !important;
+}
+.hero__cta .cta-block__label {
+  font-size: 12px !important;
+}
+.hero__cta .cta-block__sub {
+  font-size: 9px !important;
+}
+
+@media (min-width: 720px) {
+  .cta-block__main {
+    min-height: 30px !important;
+    padding: 8px 16px 7px !important;
+  }
+  .cta-block__label {
+    font-size: 14px !important;
+  }
+  .cta-block__sub {
+    font-size: 10px !important;
+  }
+  .cta-block__line {
+    min-height: 30px !important;
+    font-size: 13px !important;
+  }
+  .cta-block__badge {
+    font-size: 10px !important;
+    padding: 5px 12px !important;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 21. 追従CTAをLINE化 / ヒーローLINE削除後の黒バッジ位置
+   ===================================================================== */
+/* 追従CTAのLINE側 */
+.sticky-cta__line {
+  flex: 1;
+  margin-top: 0 !important;
+  min-height: 44px !important;
+  padding: 10px 12px !important;
+  font-size: 13px !important;
+  box-shadow: none !important;
+}
+.sticky-cta__line svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* 黒バッジをもう少し下へ（ヒーロー内CTA） */
+.hero__cta .cta-block__badge {
+  transform: translate(-50%, -15%) !important;
+  top: 0 !important;
+}
+.hero__cta .cta-block__wrap {
+  padding-top: 16px !important;
+}
+
+/* 他セクションの黒バッジも少し下げる */
+.cta-block__badge {
+  transform: translate(-50%, -20%) !important;
+}
+.cta-block__wrap {
+  padding-top: 14px !important;
+}
+
+/* =====================================================================
+   修正パッチ 22. オレンジCTA横幅1.4倍 / メールアイコン / 追従LINE文言
+   ===================================================================== */
+.cta-block {
+  max-width: calc(100% * 1.4);
+}
+.cta-block--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+/* ヒーロー内は親幅の1.4倍だがはみ出し防止で max 100% of stage copy */
+.hero__cta.cta-block {
+  width: 140% !important;
+  max-width: 140% !important;
+  transform-origin: left center;
+}
+.hero__copy .hero__cta {
+  /* copy幅が左半分なので 1.4倍してもおおよそ画像中央まで */
+  width: 140% !important;
+  max-width: min(140%, calc(100vw - 32px)) !important;
+}
+
+.cta-block__label {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+.cta-block__mail {
+  flex: 0 0 auto;
+  width: 16px !important;
+  height: 16px !important;
+  stroke: currentColor;
+}
+
+.sticky-cta__line {
+  font-size: 12px !important;
+  white-space: nowrap !important;
+  padding: 10px 8px !important;
+}
+
+@media (min-width: 720px) {
+  .hero__copy .hero__cta {
+    width: 140% !important;
+    max-width: 140% !important;
+  }
+  .cta-block__mail {
+    width: 18px !important;
+    height: 18px !important;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 23. オレンジCTAに影＋文字拡大 / 黒バッジを少し下へ
+   ===================================================================== */
+.cta-block__main {
+  box-shadow:
+    0 3px 0 #c94418,
+    0 8px 20px rgba(240, 90, 40, 0.35) !important;
+  min-height: 40px !important;
+  padding: 12px 18px 11px !important;
+}
+.cta-block__main:hover {
+  box-shadow:
+    0 3px 0 #c94418,
+    0 10px 24px rgba(240, 90, 40, 0.42) !important;
+}
+.cta-block__sub {
+  font-size: 12px !important;
+  line-height: 1.3 !important;
+}
+.cta-block__label {
+  font-size: 16px !important;
+  line-height: 1.25 !important;
+  gap: 8px !important;
+}
+.cta-block__arrows {
+  font-size: 14px !important;
+}
+.cta-block__mail {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* 黒バッジをもう少し下へ */
+.cta-block__badge {
+  transform: translate(-50%, 10%) !important;
+  top: 0 !important;
+}
+.cta-block__wrap {
+  padding-top: 18px !important;
+}
+.hero__cta .cta-block__badge {
+  transform: translate(-50%, 15%) !important;
+}
+.hero__cta .cta-block__wrap {
+  padding-top: 20px !important;
+}
+.hero__cta .cta-block__main {
+  min-height: 40px !important;
+  padding: 12px 16px 11px !important;
+}
+.hero__cta .cta-block__label {
+  font-size: 15px !important;
+}
+.hero__cta .cta-block__sub {
+  font-size: 11px !important;
+}
+
+@media (min-width: 720px) {
+  .cta-block__main {
+    min-height: 44px !important;
+    padding: 13px 22px 12px !important;
+  }
+  .cta-block__label {
+    font-size: 18px !important;
+  }
+  .cta-block__sub {
+    font-size: 13px !important;
+  }
+  .cta-block__mail {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  .cta-block__badge {
+    transform: translate(-50%, 12%) !important;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 24. 黒バッジを確実に下へ（translateY を強める）
+   ===================================================================== */
+.cta-block__wrap {
+  position: relative !important;
+  padding-top: 28px !important;
+}
+.cta-block__badge {
+  top: 8px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  margin: 0 !important;
+}
+/* バッジをボタン上端より下に食い込ませる */
+.cta-block__main {
+  margin-top: 0 !important;
+  padding-top: 18px !important;
+}
+.hero__cta .cta-block__wrap {
+  padding-top: 30px !important;
+}
+.hero__cta .cta-block__badge {
+  top: 10px !important;
+  transform: translateX(-50%) !important;
+}
+.hero__cta .cta-block__main {
+  padding-top: 18px !important;
+}
+
+/* 文字が長くなった分、ラベルを少し調整 */
+.cta-block__label {
+  font-size: 14px !important;
+  white-space: nowrap !important;
+}
+.hero__cta .cta-block__label {
+  font-size: 13px !important;
+}
+@media (max-width: 374px) {
+  .cta-block__label {
+    font-size: 11px !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+  .cta-block__sub {
+    white-space: normal !important;
+  }
+}
+@media (min-width: 720px) {
+  .cta-block__label {
+    font-size: 16px !important;
+  }
+  .hero__cta .cta-block__label {
+    font-size: 15px !important;
+  }
+  .cta-block__wrap {
+    padding-top: 30px !important;
+  }
+  .cta-block__badge {
+    top: 10px !important;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 25. 黒バッジをはっきり下へ（top を明示）
+   ===================================================================== */
+.cta-block__wrap {
+  position: relative !important;
+  padding-top: 22px !important;
+}
+.cta-block__badge {
+  position: absolute !important;
+  top: 14px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 3 !important;
+}
+.hero__cta .cta-block__wrap {
+  padding-top: 24px !important;
+}
+.hero__cta .cta-block__badge {
+  top: 16px !important;
+  transform: translateX(-50%) !important;
+}
+
+/* =====================================================================
+   修正パッチ 26. サブ文字は据え置き / メイン文言1.5倍 / メール左寄せ・拡大
+   ===================================================================== */
+/* 来社～ はサイズ変更なし（パッチ19/20/23の上書きを戻す） */
+.cta-block__sub {
+  font-size: 13px !important;
+  line-height: 1.3 !important;
+  opacity: 0.95 !important;
+}
+.hero__cta .cta-block__sub {
+  font-size: 13px !important;
+}
+
+/* まずは～ を約1.5倍 */
+.cta-block__label {
+  font-size: 24px !important; /* 16px×1.5 */
+  line-height: 1.25 !important;
+  gap: 10px !important;
+  white-space: nowrap !important;
+}
+.hero__cta .cta-block__label {
+  font-size: 22px !important;
+}
+.cta-block__arrows {
+  font-size: 18px !important;
+}
+
+/* メールアイコン：大きく・左へ（ラベル内で先頭、余白で左に見せる） */
+.cta-block__label {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  padding-left: 8px !important;
+}
+.cta-block__mail {
+  width: 26px !important;
+  height: 26px !important;
+  flex: 0 0 auto !important;
+  margin-right: 4px !important;
+  margin-left: -6px !important; /* 左へ */
+  order: -1; /* 明示的に左端 */
+  stroke-width: 2.2 !important;
+}
+
+/* メインボタン高さは文字に合わせて少し確保 */
+.cta-block__main {
+  min-height: 52px !important;
+  padding: 14px 18px 12px !important;
+  gap: 4px !important;
+}
+.hero__cta .cta-block__main {
+  min-height: 50px !important;
+  padding: 12px 14px 11px !important;
+}
+
+@media (max-width: 374px) {
+  .cta-block__label {
+    font-size: 16px !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+  .cta-block__sub {
+    font-size: 12px !important;
+    white-space: normal !important;
+  }
+  .cta-block__mail {
+    width: 22px !important;
+    height: 22px !important;
+  }
+}
+
+@media (min-width: 720px) {
+  .cta-block__sub {
+    font-size: 13px !important;
+  }
+  .cta-block__label {
+    font-size: 26px !important;
+  }
+  .hero__cta .cta-block__label {
+    font-size: 24px !important;
+  }
+  .cta-block__mail {
+    width: 28px !important;
+    height: 28px !important;
+    margin-left: -8px !important;
+  }
+  .cta-block__main {
+    min-height: 56px !important;
+    padding: 14px 22px 13px !important;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 27. 「まずはお気軽にご相談ください」を 18px に
+   ===================================================================== */
+.cta-block__label {
+  font-size: 18px !important;
+}
+.hero__cta .cta-block__label {
+  font-size: 18px !important;
+}
+.cta-block__arrows {
+  font-size: 16px !important;
+}
+@media (max-width: 374px) {
+  .cta-block__label {
+    font-size: 16px !important;
+  }
+}
+@media (min-width: 720px) {
+  .cta-block__label {
+    font-size: 18px !important;
+  }
+  .hero__cta .cta-block__label {
+    font-size: 18px !important;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 28. オレンジCTAの縦幅を短く
+   ===================================================================== */
+.cta-block__main {
+  min-height: 0 !important;
+  padding: 8px 16px 7px !important;
+  gap: 1px !important;
+}
+.hero__cta .cta-block__main {
+  min-height: 0 !important;
+  padding: 8px 14px 7px !important;
+  gap: 1px !important;
+}
+.cta-block__sub {
+  line-height: 1.2 !important;
+}
+.cta-block__label {
+  line-height: 1.2 !important;
+}
+.cta-block__wrap {
+  padding-top: 18px !important;
+}
+@media (min-width: 720px) {
+  .cta-block__main {
+    min-height: 0 !important;
+    padding: 9px 18px 8px !important;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 29. 「まずはお気軽にご相談ください」を 15px に
+   ===================================================================== */
+.cta-block__label {
+  font-size: 15px !important;
+}
+.hero__cta .cta-block__label {
+  font-size: 15px !important;
+}
+.cta-block__arrows {
+  font-size: 14px !important;
+}
+@media (max-width: 374px) {
+  .cta-block__label {
+    font-size: 14px !important;
+  }
+}
+@media (min-width: 720px) {
+  .cta-block__label {
+    font-size: 15px !important;
+  }
+  .hero__cta .cta-block__label {
+    font-size: 15px !important;
+  }
+}
+
+/* =====================================================================
+   修正パッチ 30. オレンジCTA（ヒーロー内）をもう少し上へ
+   ===================================================================== */
+.hero__cta {
+  margin-top: -4px !important;
+}
+.hero__badges {
+  margin-bottom: 6px !important;
+}
+/* ヒーロー外のオレンジCTAも少し上に詰める場合 */
+.cta-block {
+  margin-top: 0;
+}
+.price-cta.cta-block {
+  margin-top: var(--s-3);
 }
