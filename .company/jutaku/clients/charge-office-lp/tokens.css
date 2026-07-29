@@ -1,0 +1,28 @@
+/* CHARGE OFFICE LP — デザイントークン
+   案件ごとに書き換えるのはこのファイルだけ。★色はロゴ原本から抽出して確定させること */
+:root {
+  --c-navy:      #172B5A;  /* 主色。帯・見出し */
+  --c-navy-deep: #101E40;  /* 濃い帯 */
+  --c-yellow:    #F5B62A;  /* アクセント。CTA・強調。ロゴ由来 */
+  --c-yellow-dk: #DC9F14;  /* CTAのホバー */
+  --c-bg:        #FFFFFF;
+  --c-bg-alt:    #F5F7FA;  /* セクション背景の切り替え用 */
+  --c-bg-warm:   #FDF7E8;  /* 補足ブロック（料金の比喩など） */
+  --c-ink:       #1A1A1A;
+  --c-mute:      #5A6272;
+  --c-line:      #E3E7EE;
+
+  --f-head: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+  --f-body: "Noto Sans JP", "Hiragino Sans", sans-serif;
+
+  --radius: 8px;   /* 上限。これを超えない */
+
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 40px;
+  --s5: 72px;
+  --s6: 112px;
+
+  --w: 1120px;     /* コンテンツ最大幅 */
+}
