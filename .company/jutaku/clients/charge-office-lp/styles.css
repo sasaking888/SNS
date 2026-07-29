@@ -3088,3 +3088,35 @@ body { padding-bottom: 100px; }
 @media (min-width: 375px) and (max-width: 719px) {
   .hero .hero__overlay .cta-block__label { font-size: 16px !important; }
 }
+
+/* --- ヒーロー調整（2026-07-29 オーナー指示）------------------------------
+   1) アンケートの注記を削除（HTML側で対応済み）
+   2) 実績メダルの位置を下げる
+   3) 見出し「社員が元気だと、会社は強くなる。」を大きくする
+   既存パッチが !important で font-size を固定しているため同じ強さで上書きする */
+
+.hero .hero__overlay .hero__title {
+  font-size: clamp(30px, 8.4vw, 46px) !important;
+  line-height: 1.28 !important;
+  margin-bottom: 12px !important;
+}
+
+/* メダルを見出しから離して下げる */
+.hero .hero__overlay .hero__stats {
+  margin-top: 18px;
+}
+
+@media (max-width: 374px) {
+  .hero .hero__overlay .hero__title { font-size: 26px !important; }
+  .hero .hero__overlay .hero__stats { margin-top: 14px; }
+}
+
+@media (min-width: 720px) {
+  .hero .hero__overlay .hero__title { font-size: 46px !important; }
+  .hero .hero__overlay .hero__stats { margin-top: 26px; }
+}
+
+@media (min-width: 1024px) {
+  .hero .hero__overlay .hero__title { font-size: 52px !important; }
+  .hero .hero__overlay .hero__stats { margin-top: 32px; }
+}
