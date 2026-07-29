@@ -469,9 +469,9 @@ p { margin: 0; }
 }
 .worry-card__icon {
   display: block;
-  width: 112px;
+  width: 148px;
   height: auto;
-  flex: 0 0 112px;
+  flex: 0 0 148px;
   object-fit: contain;
 }
 .worry-card__body {
@@ -1198,8 +1198,8 @@ p { margin: 0; }
     padding: 18px 22px;
   }
   .worry-card__icon {
-    width: 128px;
-    flex-basis: 128px;
+    width: 168px;
+    flex-basis: 168px;
   }
   .worry-card__title {
     font-size: 20px;
@@ -3139,4 +3139,9 @@ body { padding-bottom: 100px; }
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   border-radius: 0;
+}
+
+/* --- 「オフィスに、健康という投資を。」を黄色に（2026-07-29 オーナー指示） ---- */
+.hero .hero__overlay .hero__sub {
+  color: var(--c-yellow) !important;
 }
