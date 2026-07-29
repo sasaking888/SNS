@@ -2454,3 +2454,109 @@ body { padding-bottom: 72px; }
 .price-cta.cta-block {
   margin-top: var(--s-3);
 }
+
+
+/* =====================================================================
+   修正パッチ 31（2026-07-29 実機レビュー反映・最終）
+   既存パッチ8〜30が同じ場所を上書きし合っているため、
+   ここは「詳細度を1段上げて」確実に最後に効かせる。
+
+   1) オレンジCTAをヒーロー全幅に（パッチ22の width:140% が原因ではみ出していた）
+   2) ボタン高さをタップ推奨の44px以上に戻す
+   3) 黒バッジの食い込みを浅く
+   4) 矢印はHTML側でSVG化済み（iOSで青い絵文字になるのを防ぐ）
+   ===================================================================== */
+
+/* --- 1) 文字とタイルにだけ人物ぶんの余白を残し、CTAは全幅 ------------- */
+.hero .hero__copy {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+.hero .hero__copy .hero__sub,
+.hero .hero__copy .hero__title,
+.hero .hero__copy .hero__service,
+.hero .hero__copy .hero__badges {
+  padding-right: 44% !important;
+}
+.hero .hero__copy .hero__cta.cta-block {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+/* --- 2) ボタンの高さ（44px未満は指で押しにくい） --------------------- */
+.hero .hero__copy .hero__cta .cta-block__main,
+.cta-block .cta-block__main {
+  min-height: 56px !important;
+  padding: 12px 20px !important;
+  box-shadow: 0 3px 0 #c94418 !important;
+}
+.hero .hero__copy .hero__cta .cta-block__line,
+.cta-block .cta-block__line,
+.contact-box .cta-block__line {
+  min-height: 52px !important;
+  padding: 12px 18px !important;
+  font-size: 15px !important;
+  margin-top: 10px !important;
+  gap: 8px !important;
+}
+.cta-block__line svg,
+.contact-box .cta-block__line svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* 折り返し禁止をやめる（幅が足りない端末で溢れるため） */
+.hero .hero__copy .hero__cta .cta-block__label,
+.cta-block .cta-block__label {
+  white-space: normal !important;
+  font-size: 16px !important;
+  gap: 8px !important;
+  line-height: 1.3 !important;
+}
+
+/* --- 3) 黒バッジの食い込みを浅くする --------------------------------- */
+.hero .hero__copy .hero__cta .cta-block__wrap,
+.cta-block .cta-block__wrap {
+  padding-top: 15px !important;
+}
+.hero .hero__copy .hero__cta .cta-block__badge,
+.cta-block .cta-block__badge {
+  top: 0 !important;
+  bottom: auto !important;
+  transform: translateX(-50%) !important;
+  font-size: 11px !important;
+  padding: 6px 14px !important;
+}
+
+/* --- 4) SVG矢印 ------------------------------------------------------ */
+.cta-block__arrows {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 12px;
+}
+
+@media (max-width: 374px) {
+  .hero .hero__copy { padding-left: 12px !important; padding-right: 12px !important; }
+  .hero .hero__copy .hero__sub,
+  .hero .hero__copy .hero__title,
+  .hero .hero__copy .hero__service,
+  .hero .hero__copy .hero__badges { padding-right: 42% !important; }
+  .hero .hero__copy .hero__cta .cta-block__label,
+  .cta-block .cta-block__label { font-size: 14px !important; }
+  .hero .hero__copy .hero__cta .cta-block__line,
+  .cta-block .cta-block__line { font-size: 13px !important; }
+}
+
+@media (min-width: 720px) {
+  .hero .hero__copy { padding-left: 20px !important; padding-right: 20px !important; }
+  .hero .hero__copy .hero__sub,
+  .hero .hero__copy .hero__title,
+  .hero .hero__copy .hero__service,
+  .hero .hero__copy .hero__badges { padding-right: 46% !important; }
+  .hero .hero__copy .hero__cta.cta-block { max-width: 520px !important; }
+  .hero .hero__copy .hero__cta .cta-block__label,
+  .cta-block .cta-block__label { font-size: 17px !important; }
+  .hero .hero__copy .hero__cta .cta-block__main,
+  .cta-block .cta-block__main { min-height: 60px !important; }
+}
