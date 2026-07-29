@@ -469,9 +469,9 @@ p { margin: 0; }
 }
 .worry-card__icon {
   display: block;
-  width: 148px;
+  width: 105px;
   height: auto;
-  flex: 0 0 148px;
+  flex: 0 0 105px;
   object-fit: contain;
 }
 .worry-card__body {
@@ -1198,8 +1198,8 @@ p { margin: 0; }
     padding: 18px 22px;
   }
   .worry-card__icon {
-    width: 168px;
-    flex-basis: 168px;
+    width: 150px;
+    flex-basis: 150px;
   }
   .worry-card__title {
     font-size: 20px;
