@@ -3120,3 +3120,11 @@ body { padding-bottom: 100px; }
   .hero .hero__overlay .hero__title { font-size: 52px !important; }
   .hero .hero__overlay .hero__stats { margin-top: 32px; }
 }
+
+/* --- 見出しを太字(Black/900)に（2026-07-29 オーナー指示） ---------------
+   Zen Kaku Gothic New の900ウエイトをHTML側で追加読み込み済み。
+   700(Bold)より濃く、参考画像の太さに近づける。 */
+.hero .hero__overlay .hero__title {
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+}
