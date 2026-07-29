@@ -3128,3 +3128,15 @@ body { padding-bottom: 100px; }
   font-weight: 900 !important;
   letter-spacing: 0 !important;
 }
+
+/* --- ヒーロー写真をフルブリードに戻す（2026-07-29 オーナー指摘） -------
+   .hero__stage が .container の内側にあるため左右に余白が出ていた。
+   100vw ブレイクアウトで画面幅いっぱいに広げ、角丸も外す。
+   中の見出し・メダル・CTA（.hero__overlay）の位置・余白は変更しない。 */
+.hero .hero__stage {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  border-radius: 0;
+}
