@@ -23,82 +23,89 @@
           <span class="header-tel__num"><span class="tel-text">050-3184-3852</span></span>
           <span class="header-tel__note">受付 平日 9:00-18:00</span>
         </div>
-        <a class="btn btn--primary btn--sm" href="#contact">無料トライアル</a>
+        <a class="btn btn--primary btn--sm btn--header" href="#contact">無料トライアル</a>
       </div>
     </div>
   </header>
 
   <main id="top">
 
-    <!-- 02 ファーストビュー（下から：背景 → 白靄 → 人物 / 文字は画像の上） -->
+    <!-- 02 ファーストビュー（テキスト → 実績 → CTA → 写真 → 3タイル） -->
     <section class="hero bg-white" aria-labelledby="hero-title">
-      <div class="hero__stage">
-        <div class="hero__bg" aria-hidden="true">
-          <div class="ph ph--hero-bg">背景プレースホルダー</div>
-        </div>
-        <div class="hero__veil" aria-hidden="true"></div>
-        <div class="hero__person ph ph--hero-person" aria-hidden="true">人物プレースホルダー</div>
-        <div class="hero__copy">
+      <div class="container hero__inner">
+
+        <div class="hero__text">
           <p class="hero__sub">オフィスに、健康という投資を。</p>
           <h1 class="hero__title" id="hero-title">社員が元気だと、<br>会社は強くなる。</h1>
           <p class="hero__service">企業出張整体 CHARGE OFFICE</p>
-          <!-- 企業出張～の直下にタイル -->
-          <div class="badge-grid hero__badges" id="badges">
-            <h2 class="section-title sr-only" id="badges-title">CHARGE OFFICEの特長</h2>
-            <article class="badge-card">
-              <div class="badge-card__icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 8V3h5M21 8V3h-5M3 16v5h5M21 16v5h-5"/>
-                  <rect x="8" y="8" width="8" height="8" rx="1"/>
-                </svg>
-              </div>
-              <h3 class="badge-card__title">省スペース</h3>
-              <p class="badge-card__text">たった0.5畳分のスペースでOK</p>
-            </article>
-            <article class="badge-card">
-              <div class="badge-card__icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"/>
-                  <path d="M12 7v5l3 2"/>
-                </svg>
-              </div>
-              <h3 class="badge-card__title">高回転</h3>
-              <p class="badge-card__text">おひとり約10分・1時間で約5名</p>
-            </article>
-            <article class="badge-card">
-              <div class="badge-card__icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/>
-                  <path d="M9 12l2 2 4-4"/>
-                </svg>
-              </div>
-              <h3 class="badge-card__title">高品質</h3>
-              <p class="badge-card__text">グループ累計12万人以上の施術実績</p>
-            </article>
+        </div>
+
+        <figure class="hero__photo-block">
+          <img class="hero__photo" src="images/hero.jpg" alt="オフィスで施術を受ける社員とスタッフ" width="2400" height="1200">
+        </figure>
+
+        <div class="hero__stats">
+          <div class="stat-badge">
+            <p class="stat-badge__label">施術後の<br>満足度</p>
+            <p class="stat-badge__value">94<small>.2</small>%</p>
           </div>
-          <!-- モック準拠: CTAはタイルのすぐ下 -->
-          <div class="cta-block cta-block--center hero__cta">
-            <div class="cta-block__wrap">
-              <span class="cta-block__badge">カンタン30秒入力・無料</span>
-              <a class="cta-block__main" href="#contact-form">
-                <span class="cta-block__label">
-                  <svg class="cta-block__mail" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect x="3" y="5" width="18" height="14" rx="2"/>
-                    <path d="M3 7l9 7 9-7"/>
-                  </svg>
-                  まずはお気軽にご相談ください <svg class="cta-block__arrows" width="18" height="12" viewBox="0 0 18 12" fill="currentColor" aria-hidden="true"><path d="M0 0l6 6-6 6z"/><path d="M8 0l6 6-6 6z"/></svg>
-                </span>
-              </a>
+          <div class="stat-badge">
+            <p class="stat-badge__label">サービス<br>継続率</p>
+            <p class="stat-badge__value">98<small>.4</small>%</p>
+          </div>
+          <p class="hero__stats-note">※2025年1月〜2026年5月の自社アンケートによる</p>
+        </div>
+
+        <div class="cta-block cta-block--center hero__cta">
+          <div class="cta-block__wrap">
+            <span class="cta-block__badge">かんたん入力・<em>ご相談無料</em></span>
+            <a class="cta-block__main" href="#contact-form">
+              <span class="cta-block__label">
+                <svg class="cta-block__mail" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2"/>
+                  <path d="M3 7l9 7 9-7"/>
+                </svg>
+                まずはお気軽にご相談ください
+                <svg class="cta-block__arrows" width="18" height="12" viewBox="0 0 18 12" fill="currentColor" aria-hidden="true"><path d="M0 0l6 6-6 6z"/><path d="M8 0l6 6-6 6z"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="badge-grid hero__badges-post" id="badges">
+          <h2 class="section-title sr-only" id="badges-title">CHARGE OFFICEの特長</h2>
+          <article class="badge-card">
+            <div class="badge-card__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8V3h5M21 8V3h-5M3 16v5h5M21 16v5h-5"/>
+                <rect x="8" y="8" width="8" height="8" rx="1"/>
+              </svg>
             </div>
-          </div>
+            <h3 class="badge-card__title">省スペース</h3>
+            <p class="badge-card__text">たった0.5畳分のスペースでOK</p>
+          </article>
+          <article class="badge-card">
+            <div class="badge-card__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M12 7v5l3 2"/>
+              </svg>
+            </div>
+            <h3 class="badge-card__title">高回転</h3>
+            <p class="badge-card__text">おひとり約10分・1時間で約5名</p>
+          </article>
+          <article class="badge-card">
+            <div class="badge-card__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <h3 class="badge-card__title">高品質</h3>
+            <p class="badge-card__text">グループ累計12万人以上の施術実績</p>
+          </article>
         </div>
-      </div>
-      <div class="container hero__extra">
-        <p class="hero__lead">半畳のスペースとひとり10分。業務を止めずに導入できる福利厚生です。</p>
-        <div class="hero__trust" aria-label="安心材料">
-          <span>初期費用0円で試せる</span>
-          <span>グループ累計12万人以上の施術実績</span>
-        </div>
+
       </div>
     </section>
 
@@ -108,40 +115,51 @@
         <h2 class="section-title" id="worries-title">こんなお悩み、ありませんか？</h2>
         <div class="worry-grid">
           <article class="worry-card">
-            <h3 class="worry-card__title">生産性を向上させたい</h3>
-            <p class="worry-card__text">集中力の低下や体調不良によるパフォーマンス低下</p>
+            <img class="worry-card__icon" src="assets/worry-productivity.png?v=5" alt="" width="160" height="176" decoding="async">
+            <div class="worry-card__body">
+              <h3 class="worry-card__title">組織の課題</h3>
+              <p class="worry-card__text">離職率が高い<br>生産性が上がらない<br>従業員の元気がない</p>
+            </div>
           </article>
           <article class="worry-card">
-            <h3 class="worry-card__title">離職率を下げたい</h3>
-            <p class="worry-card__text">働く環境への不満や心身の不調が離職につながっている</p>
+            <img class="worry-card__icon" src="assets/worry-turnover.png?v=5" alt="" width="160" height="176" decoding="async">
+            <div class="worry-card__body">
+              <h3 class="worry-card__title">福利厚生・健康面の課題</h3>
+              <p class="worry-card__text">医療費負担が増えてきた<br>健康経営に取り組みたい<br>福利厚生を充実させたい</p>
+            </div>
           </article>
           <article class="worry-card">
-            <h3 class="worry-card__title">採用力を高めたい</h3>
-            <p class="worry-card__text">他社との差が激化する中、魅力的な職場環境で選ばれたい</p>
+            <img class="worry-card__icon" src="assets/worry-hiring.png?v=5" alt="" width="160" height="176" decoding="async">
+            <div class="worry-card__body">
+              <h3 class="worry-card__title">採用・人材コストの課題</h3>
+              <p class="worry-card__text">人材が定着しない<br>採用コストが上がってきた</p>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
+    <section class="solution" aria-labelledby="solution-title">
+      <div class="container">
+        <h2 class="solution__title" id="solution-title">
+          その課題、<br>CHARGE OFFICEが<br>解決します。
+        </h2>
+      </div>
+    </section>
+
     <section class="section bg-white" id="about" aria-labelledby="about-title">
       <div class="container about-grid">
-        <div>
-          <p class="section-label">ABOUT</p>
-          <h2 class="section-title" id="about-title">CHARGE OFFICEとは</h2>
+        <p class="section-label about-grid__label">ABOUT</p>
+        <h2 class="section-title about-grid__title" id="about-title">CHARGE OFFICEとは</h2>
+        <div class="about-grid__visual">
+          <div class="ph ph--about" role="img" aria-label="サービス紹介画像（差し替え予定）">画像プレースホルダー<br>サービス紹介</div>
+        </div>
+        <div class="about-grid__body">
           <p class="section-lead">
             オフィスにプロの整体師が出張し、社員の健康をサポートするサービスです。
-            専用の椅子を使った短時間の施術で、デスクワークによる肩こり・腰痛などをケア。
-            社員一人ひとりのコンディションを整え、業務を止めずに導入できます。
+            専用の椅子を使った施術で、デスクワークによる肩こり・腰痛などをケア。
+            業務を止めずに導入できます。
           </p>
-          <ul class="about-points">
-            <li><strong>訪問</strong><span>整体師がオフィスへ出張。来社不要で導入できます。</span></li>
-            <li><strong>約10分</strong><span>おひとり約10分。1時間で約5名に施術できます。</span></li>
-            <li><strong>半畳</strong><span>たった0.5畳分のスペースがあればOKです。</span></li>
-            <li><strong>業務継続</strong><span>業務の合間に受けられ、業務を止めずに導入できます。</span></li>
-          </ul>
-        </div>
-        <div>
-          <div class="ph ph--about" role="img" aria-label="サービス紹介画像（差し替え予定）">画像プレースホルダー<br>サービス紹介</div>
         </div>
       </div>
     </section>
@@ -208,75 +226,131 @@
         <p class="section-label">PRICING</p>
         <h2 class="section-title" id="pricing-title">料金</h2>
         <p class="section-lead">プランは複数用意せず、単価×時間の従量制です。担当者が社内で説明しやすいよう、総額例も併記しています。</p>
-        <div class="price-layout">
-          <div class="price-panel">
-            <dl class="price-list">
-              <div class="price-list__row">
-                <dt class="price-list__label">施術料</dt>
-                <dd class="price-list__value">11,000円 / 1時間<small>（税込）</small></dd>
-              </div>
-              <div class="price-list__row">
-                <dt class="price-list__label">最低契約</dt>
-                <dd class="price-list__value">スタッフ1名の派遣につき、最低3時間から</dd>
-              </div>
-              <div class="price-list__row">
-                <dt class="price-list__label">施術可能人数</dt>
-                <dd class="price-list__value">3時間稼働で15名<small>（1時間あたり5名・おひとり約10分）</small></dd>
-              </div>
-              <div class="price-list__row">
-                <dt class="price-list__label">スタッフ出張費</dt>
-                <dd class="price-list__value">1,100円<small>（税込・別途）</small></dd>
-              </div>
-              <div class="price-list__row">
-                <dt class="price-list__label">専用折りたたみチェア</dt>
-                <dd class="price-list__value">契約時に購入<small>（スタッフ1名につき1脚・買い切り）</small></dd>
-              </div>
-            </dl>
-            <div class="price-notes">
-              <p>※専用の折りたたみチェアは契約時にご購入いただきます（スタッフ1名につき1脚・買い切り。月々の費用には含まれません）</p>
-              <p>※従業員数の多い企業様は、スタッフを増員して対応いたします（お見積もりにてご案内）</p>
-              <p>※無料トライアルは初期費用0円。専用チェアのご購入も、トライアル後のご契約時からです。</p>
-            </div>
+
+        <div class="price-main">
+          <span class="price-main__badge">基本プラン</span>
+          <div class="price-main__rate">
+            <svg class="price-main__clock" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 7v5l3 2"/>
+            </svg>
+            <span class="price-main__unit">1時間</span>
+            <span class="price-main__amount">11,000円</span>
+            <span class="price-main__tax">（税込）</span>
           </div>
-          <div>
-            <div class="price-example">
-              <p class="price-example__title">例）スタッフ1名・3時間・15名の場合</p>
-              <div class="price-example__lines">
-                <div><span>施術料 11,000円 × 3時間</span><span>33,000円</span></div>
-                <div><span>スタッフ出張費</span><span>1,100円</span></div>
-              </div>
-              <div class="price-example__total">
-                <span>合計</span>
-                <span>34,100円（税込）</span>
-              </div>
-              <p class="price-notes price-notes--spaced">※別途、契約時に専用折りたたみチェアのご購入が必要です</p>
-            </div>
-            <div class="price-per">
-              <p class="price-per__main">3時間・15名のご利用で、1人あたり約2,300円。</p>
-              <p class="price-per__sub">ランチ会1回分のコストで、社員の身体をメンテナンス。</p>
-            </div>
-          </div>
-        </div>
-        <div class="price-cta cta-block cta-block--center">
-          <div class="cta-block__wrap">
-            <span class="cta-block__badge">カンタン30秒入力・無料</span>
-            <a class="cta-block__main" href="#contact-form">
-              <span class="cta-block__label">
-                <svg class="cta-block__mail" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <rect x="3" y="5" width="18" height="14" rx="2"/>
-                  <path d="M3 7l9 7 9-7"/>
+          <p class="price-main__min">＼ 最低3時間からご契約いただけます ／</p>
+
+          <div class="price-feats">
+            <div class="price-feat">
+              <div class="price-feat__icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="3.5"/>
+                  <path d="M5 19c0-3.5 3-6 7-6s7 2.5 7 6"/>
                 </svg>
-                まずはお気軽にご相談ください <svg class="cta-block__arrows" width="18" height="12" viewBox="0 0 18 12" fill="currentColor" aria-hidden="true"><path d="M0 0l6 6-6 6z"/><path d="M8 0l6 6-6 6z"/></svg>
-              </span>
-            </a>
+              </div>
+              <div class="price-feat__body">
+                <p class="price-feat__top">1時間で</p>
+                <p class="price-feat__mid"><strong>5名</strong>施術可能</p>
+                <p class="price-feat__bot">おひとり約10分の施術時間</p>
+              </div>
+            </div>
+            <div class="price-feat">
+              <div class="price-feat__icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="5" width="16" height="16" rx="2"/>
+                  <path d="M8 3v4M16 3v4M4 11h16"/>
+                </svg>
+              </div>
+              <div class="price-feat__body">
+                <p class="price-feat__top">3時間で</p>
+                <p class="price-feat__mid"><strong>15名</strong>施術可能</p>
+                <p class="price-feat__bot">スタッフ1名の派遣につき最低3時間から</p>
+              </div>
+            </div>
+            <div class="price-feat">
+              <div class="price-feat__icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="2" width="16" height="20" rx="2"/>
+                  <line x1="8" y1="6" x2="16" y2="6"/>
+                  <circle cx="8" cy="11" r="1"/>
+                  <circle cx="12" cy="11" r="1"/>
+                  <circle cx="16" cy="11" r="1"/>
+                  <circle cx="8" cy="15" r="1"/>
+                  <circle cx="12" cy="15" r="1"/>
+                  <circle cx="16" cy="15" r="1"/>
+                </svg>
+              </div>
+              <div class="price-feat__body">
+                <p class="price-feat__top">1人あたり</p>
+                <p class="price-feat__mid"><strong>約2,300円</strong></p>
+                <p class="price-feat__bot">ランチ会1回分のコストで、社員の身体をメンテナンス</p>
+              </div>
+            </div>
           </div>
-          <!-- TODO（公開前）: LINE公式アカウントのURLを href に設定する -->
-          <a class="cta-block__line" href="">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 4 3.6 7.3 8.4 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.6 1.1-.5 6-3.5 8.2-6C21.6 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8z"/></svg>
-            LINEで気軽に相談
-          </a>
-          <p class="cta-block__note">お見積もりは無料です</p>
         </div>
+
+        <div class="price-extras">
+          <div class="price-extra">
+            <div class="price-extra__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 17h13l3-6H8l-2 4H3z"/>
+                <circle cx="8" cy="18" r="1.5"/>
+                <circle cx="15" cy="18" r="1.5"/>
+                <path d="M5 11l2-5h6"/>
+              </svg>
+            </div>
+            <div class="price-extra__body">
+              <p class="price-extra__label">出張費</p>
+              <p class="price-extra__text">1,100円（税込） ※スタッフ一人派遣につき</p>
+            </div>
+          </div>
+          <div class="price-extra">
+            <div class="price-extra__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 20V9l5-4 5 4v11"/>
+                <path d="M10 20v-6h4v6"/>
+              </svg>
+            </div>
+            <div class="price-extra__body">
+              <p class="price-extra__label">備品について</p>
+              <p class="price-extra__text">契約時に折りたたみチェアをご購入いただきます（スタッフ1名につき1脚・買い切り。月々の費用には含まれません）</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-example">
+          <p class="price-example__title">例）スタッフ1名・3時間・15名の場合</p>
+          <div class="price-example__lines">
+            <div><span>施術料 11,000円 × 3時間</span><span>33,000円</span></div>
+            <div><span>スタッフ出張費</span><span>1,100円</span></div>
+          </div>
+          <div class="price-example__total">
+            <span>合計</span>
+            <span>34,100円（税込）</span>
+          </div>
+          <p class="price-example__note">※別途、契約時に専用折りたたみチェアのご購入が必要です</p>
+        </div>
+
+        <div class="price-cta">
+          <a class="scta scta--trial" href="#contact-form">
+            <span class="scta__label">まずは体験してみたい方へ</span>
+            <span class="scta__main">
+              無料トライアルを申し込む
+              <svg width="8" height="13" viewBox="0 0 8 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l5 5.5L1 12"/></svg>
+            </span>
+            <span class="scta__note">実際の施術を体験いただけます</span>
+          </a>
+          <a class="scta scta--docs" href="#contact-form">
+            <span class="scta__label">詳しい資料を見たい方へ</span>
+            <span class="scta__main">
+              資料請求する
+              <svg width="8" height="13" viewBox="0 0 8 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l5 5.5L1 12"/></svg>
+            </span>
+            <span class="scta__note">サービス内容や導入事例をお送りします</span>
+          </a>
+        </div>
+
+        <p class="price-tax-note">※表示料金はすべて税込価格です。</p>
       </div>
     </section>
 
@@ -488,13 +562,56 @@
   </footer>
 
   <div class="sticky-cta" role="region" aria-label="クイックアクション">
-    <!-- TODO（公開前）: LINE公式アカウントのURLを href に設定する -->
-    <a class="cta-block__line sticky-cta__line" href="">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 4 3.6 7.3 8.4 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.6 1.1-.5 6-3.5 8.2-6C21.6 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8z"/></svg>
-      LINEで相談する
+    <a class="scta scta--trial" href="#contact-form">
+      <span class="scta__label">まずは体験してみたい方へ</span>
+      <span class="scta__main">
+        無料トライアル
+        <svg width="8" height="13" viewBox="0 0 8 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l5 5.5L1 12"/></svg>
+      </span>
+      <span class="scta__note">実際の施術を体験いただけます</span>
     </a>
-    <a class="btn btn--primary" href="#contact">無料トライアル</a>
+
+    <!-- TODO（公開前）: LINE公式アカウントのURLを href に設定する -->
+    <a class="scta scta--line" href="">
+      <span class="scta__label">気軽に相談したい方へ</span>
+      <span class="scta__main">
+        LINEで相談
+        <svg width="8" height="13" viewBox="0 0 8 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l5 5.5L1 12"/></svg>
+      </span>
+      <span class="scta__note">その場で質問できます</span>
+    </a>
   </div>
 
+  <script>
+    (function () {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var nodes = document.querySelectorAll("main > section:not(.hero) > .container");
+      if (!nodes.length) return;
+
+      if (reduce || !("IntersectionObserver" in window)) {
+        nodes.forEach(function (el) {
+          el.classList.add("reveal", "is-inview");
+        });
+        return;
+      }
+
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-inview");
+            io.unobserve(entry.target);
+          });
+        },
+        { root: null, rootMargin: "0px 0px -8% 0px", threshold: 0.12 }
+      );
+
+      nodes.forEach(function (el, i) {
+        el.classList.add("reveal");
+        el.style.transitionDelay = Math.min(i * 0.03, 0.18) + "s";
+        io.observe(el);
+      });
+    })();
+  </script>
 </body>
 </html>
