@@ -943,3 +943,12 @@ body { padding-bottom: 72px; }
 .price-notes--spaced       { margin-top: var(--s-2); }
 .contact-box__note--spaced { margin-top: var(--s-2); }
 .logo--footer              { color: #fff; }
+
+/* --- [7] 320pxで見出しが1〜2文字だけ次行に落ちていた --------------------
+   例:「まずは無料トライアルか／ら」「こんなお悩み、ありません／か？」
+   コンテンツ幅288pxに対し、24px×12文字＝288pxで数px足りなかった。
+   375px以上では現状のままなので、iPhone SE等の狭い端末だけに効く。 */
+@media (max-width: 374px) {
+  .section-title { font-size: 20px; }
+  .final__title  { font-size: 22px; }
+}
