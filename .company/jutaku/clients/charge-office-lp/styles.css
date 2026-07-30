@@ -1010,7 +1010,9 @@ p { margin: 0; }
 .voice-list { display: grid; gap: var(--s-2); }
 
 .voice-card {
-  background: linear-gradient(135deg, #FFCF5C 0%, var(--c-yellow) 100%);
+  background: var(--c-bg);
+  border: 1px solid var(--c-line);
+  border-left: 4px solid var(--c-yellow);
   border-radius: var(--radius);
   overflow: hidden;
 }
@@ -1038,13 +1040,13 @@ p { margin: 0; }
 }
 .voice-card[open] .voice-card__head::after { content: "−"; }
 
-/* 人物写真（上部が丸いアーチ形） */
+/* 人物写真（円形） */
 .voice-card__avatar {
   flex: 0 0 76px;
   width: 76px;
-  height: 96px;
-  border-radius: 38px 38px 12px 12px;
-  background: #FFF6E4;
+  height: 76px;
+  border-radius: 50%;
+  background: var(--c-bg-alt);
   color: rgba(23, 43, 90, 0.35);
   display: flex;
   align-items: center;
@@ -1082,7 +1084,7 @@ p { margin: 0; }
   margin: 0 16px 16px;
   padding: 14px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--c-bg-alt);
   color: var(--c-navy);
   font-size: 14px;
   line-height: 1.8;
@@ -1398,7 +1400,7 @@ p { margin: 0; }
 
   /* お客様の声: 画面が広いときはアバターと文字を大きく */
   .voice-card__head { gap: 20px; padding: 20px 48px 20px 20px; }
-  .voice-card__avatar { flex-basis: 92px; width: 92px; height: 116px; border-radius: 46px 46px 12px 12px; }
+  .voice-card__avatar { flex-basis: 92px; width: 92px; height: 92px; border-radius: 50%; }
   .voice-card__avatar svg { width: 50px; height: 50px; }
   .voice-card__quote { font-size: 19px; }
   .voice-card__meta { font-size: 14px; }
