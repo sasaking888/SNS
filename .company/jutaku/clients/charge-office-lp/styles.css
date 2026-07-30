@@ -1214,7 +1214,7 @@ p { margin: 0; }
 .tel-link { color: var(--c-navy); }
 
 /* ヒーロー直後の「電話でのお申し込み」セクション（2026-07-30 追加） */
-.phone-cta { padding: var(--s-4) 0; }
+.phone-cta.section { padding: 12px 0 var(--s-1); }
 .phone-cta__inner {
   display: flex;
   flex-direction: column;
@@ -3046,13 +3046,16 @@ body { padding-bottom: 100px; }
   min-height: 0;
 }
 
-/* 写真は絶対配置で背面いっぱいに敷く */
+/* 写真は絶対配置で背面いっぱいに敷く（2026-07-30 テスト中: CTAボタンの下半分だけ
+   白背景にはみ出させるため、写真の高さをステージより短くしている） */
 .hero .hero__stage .hero__photo {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 87%;
   z-index: 1;
   width: 100%;
-  height: 100%;
   object-fit: cover;
   object-position: 68% 40%;  /* 人物が右寄りなので基準も右へ */
   border-radius: 0;
@@ -3063,7 +3066,10 @@ body { padding-bottom: 100px; }
 /* 文字を読ませるための白ベール。左に濃く、右へ抜ける */
 .hero .hero__stage .hero__veil {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 87%;
   z-index: 2;
   pointer-events: none;
   background: linear-gradient(
@@ -3084,7 +3090,7 @@ body { padding-bottom: 100px; }
   flex-direction: column;
   align-items: flex-start;
   gap: 14px;
-  padding: 22px 16px 24px;
+  padding: 22px 16px 8px;
   width: 100%;
   max-width: 560px;   /* 右の人物にかからない範囲 */
   box-sizing: border-box;
@@ -3265,4 +3271,14 @@ body { padding-bottom: 100px; }
 /* --- 「オフィスに、健康という投資を。」を黄色に（2026-07-29 オーナー指示） ---- */
 .hero .hero__overlay .hero__sub {
   color: var(--c-yellow) !important;
+}
+
+/* --- CTAボタンと電話番号セクションの間の余白を詰める（2026-07-30 オーナー指摘）
+   写真の裾をCTAの途中までにした関係で、.hero自体の下paddingが二重に空きになっていた。
+   .hero--tiles（ネイビー帯）は元のpaddingのままにしたいため、.hero--photoだけ縮める。 --- */
+.hero.hero--photo {
+  padding-bottom: 8px;
+}
+.hero.hero--tiles {
+  padding-top: 16px;
 }
