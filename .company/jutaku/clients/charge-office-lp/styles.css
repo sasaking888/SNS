@@ -229,7 +229,7 @@ p { margin: 0; }
   font-weight: 700;
   color: var(--c-navy);
 }
-.logo__mark { display: block; height: 22px; width: auto; }
+.logo__mark { display: block; height: 22px; width: auto; margin-left: -4px; }
 .logo__sub {
   font-size: 10px;
   letter-spacing: 0.18em;
