@@ -538,6 +538,11 @@ p { margin: 0; }
   padding-top: 8px;
   padding-bottom: 32px;
 }
+/* aboutと同じ「サービス説明ブロック」として続けて読ませるため、
+   galleryの上余白も詰める（2026-07-30 オーナー指摘: 間が空きすぎていた） */
+#gallery {
+  padding-top: 16px;
+}
 .about-grid {
   display: grid;
   gap: var(--s-3);
