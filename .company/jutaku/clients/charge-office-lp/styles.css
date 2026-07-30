@@ -608,17 +608,30 @@ p { margin: 0; }
   padding: var(--s-3);
 }
 .reason-card__num {
-  display: inline-grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background: var(--c-yellow);
+  border: 2px dashed var(--c-navy);
   color: var(--c-navy);
   font-family: var(--f-head);
-  font-weight: 700;
-  font-size: 14px;
   margin-bottom: var(--s-2);
+}
+.reason-card__point {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-mute);
+}
+.reason-card__digit {
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1.2;
+  color: var(--c-navy);
 }
 .reason-card__title {
   font-size: 18px;
