@@ -1004,8 +1004,8 @@ p { margin: 0; }
 
 /* =====================================================================
    お客様の声（#voices）— 料金の直後に置く信頼ブロック
-   イエロー地＋ネイビー文字。「＋」で本文を開くアコーディオン（details）。
-   旧「導入企業」セクションは末尾の .industry-tags に統合した。
+   白地＋左端の黄色いアクセントライン。「＋」で本文を開くアコーディオン（details）。
+   旧「導入企業」セクション由来のタグ列は2026-07-30に削除済み。
    ================================================================== */
 .voice-list { display: grid; gap: var(--s-2); }
 
@@ -1090,28 +1090,7 @@ p { margin: 0; }
   line-height: 1.8;
 }
 
-/* 旧「導入企業」セクションを圧縮したタグ列 */
-.voice-industries { margin-top: var(--s-4); }
-.voice-industries__lead {
-  font-size: 14px;
-  color: var(--c-mute);
-  margin-bottom: var(--s-2);
-}
-.industry-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.industry-tag {
-  background: var(--c-bg-alt);
-  border: 1px solid var(--c-line);
-  border-radius: 999px;
-  padding: 6px 14px;
-  font-family: var(--f-head);
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--c-navy);
-}
+/* 旧「導入企業」タグ列は2026-07-30に削除済み（証言3件で業種の幅が示せるようになったため） */
 
 .voices-slot { height: 0; margin: 0; padding: 0; overflow: hidden; }
 
