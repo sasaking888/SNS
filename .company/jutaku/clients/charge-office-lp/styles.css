@@ -932,6 +932,15 @@ p { margin: 0; }
   grid-template-columns: 1fr 1fr;
   gap: var(--s-2);
 }
+.gallery-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 50% 25%;
+  border-radius: var(--radius);
+}
+.gallery-photo--foot { object-position: 50% 50%; }
 .flow-list { display: grid; gap: var(--s-2); }
 .flow-item {
   display: grid;
