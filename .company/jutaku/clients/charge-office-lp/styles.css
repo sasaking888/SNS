@@ -1182,7 +1182,8 @@ p { margin: 0; }
   color: var(--c-navy);
   margin-bottom: 6px;
 }
-.form-field label .req {
+.form-field label .req,
+.form-field--radio legend .req {
   color: #c0392b;
   margin-left: 4px;
 }
@@ -1202,6 +1203,52 @@ p { margin: 0; }
 .form-field textarea {
   min-height: 110px;
   resize: vertical;
+}
+.form-field--radio {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.form-field--radio legend {
+  display: block;
+  width: 100%;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-navy);
+  margin-bottom: 8px;
+  padding: 0;
+}
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--c-ink);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--c-line);
+}
+.radio-option:last-child { border-bottom: none; }
+.radio-option input {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  flex: 0 0 auto;
+  border: none;
+  padding: 0;
+}
+.form-confirm {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--c-ink);
+  line-height: 1.6;
+}
+.form-confirm input {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  margin-top: 2px;
 }
 .form-actions {
   margin-top: var(--s-3);

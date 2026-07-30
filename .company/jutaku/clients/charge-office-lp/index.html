@@ -551,24 +551,28 @@
             <!-- TODO（公開前・必須）: action="" に送信先URLを設定する。未設定のままだと送信されない -->
             <form class="form-grid" action="" method="post">
               <div class="form-field">
+                <label for="name">氏名<span class="req">必須</span></label>
+                <input id="name" name="name" type="text" required autocomplete="name">
+              </div>
+              <div class="form-field">
                 <label for="company">会社名<span class="req">必須</span></label>
                 <input id="company" name="company" type="text" required autocomplete="organization">
               </div>
               <div class="form-field">
-                <label for="name">担当者名<span class="req">必須</span></label>
-                <input id="name" name="name" type="text" required autocomplete="name">
+                <label for="address">住所<span class="req">必須</span></label>
+                <input id="address" name="address" type="text" required autocomplete="street-address">
               </div>
               <div class="form-field">
                 <label for="email">メールアドレス<span class="req">必須</span></label>
                 <input id="email" name="email" type="email" required autocomplete="email">
               </div>
               <div class="form-field">
-                <label for="tel">電話番号</label>
-                <input id="tel" name="tel" type="tel" autocomplete="tel">
+                <label for="tel">電話番号<span class="req">必須</span></label>
+                <input id="tel" name="tel" type="tel" required autocomplete="tel">
               </div>
               <div class="form-field">
-                <label for="size">従業員数</label>
-                <select id="size" name="size">
+                <label for="size">従業員数<span class="req">必須</span></label>
+                <select id="size" name="size" required>
                   <option value="">選択してください</option>
                   <option value="~29">〜29名</option>
                   <option value="30-99">30〜99名</option>
@@ -576,14 +580,35 @@
                   <option value="300-">300名〜</option>
                 </select>
               </div>
+              <fieldset class="form-field form-field--radio">
+                <legend>希望申込内容<span class="req">必須</span></legend>
+                <label class="radio-option"><input type="radio" name="intent" value="trial" required> 無料トライアルのお申し込み</label>
+                <label class="radio-option"><input type="radio" name="intent" value="document"> 資料請求</label>
+                <label class="radio-option"><input type="radio" name="intent" value="question"> サービスについての質問</label>
+                <label class="radio-option"><input type="radio" name="intent" value="other"> その他</label>
+              </fieldset>
+              <fieldset class="form-field form-field--radio">
+                <legend>サービスを知ったきっかけ<span class="req">必須</span></legend>
+                <label class="radio-option"><input type="radio" name="referral" value="tv" required> テレビ・新聞・雑誌・ラジオ</label>
+                <label class="radio-option"><input type="radio" name="referral" value="search"> インターネット検索</label>
+                <label class="radio-option"><input type="radio" name="referral" value="ad"> インターネット広告</label>
+                <label class="radio-option"><input type="radio" name="referral" value="sns"> SNS</label>
+                <label class="radio-option"><input type="radio" name="referral" value="web"> Webサイト、ブログ</label>
+                <label class="radio-option"><input type="radio" name="referral" value="flyer"> チラシ</label>
+                <label class="radio-option"><input type="radio" name="referral" value="acquaintance"> 知人からの紹介</label>
+                <label class="radio-option"><input type="radio" name="referral" value="other"> その他</label>
+              </fieldset>
               <div class="form-field">
-                <label for="message">相談内容</label>
+                <label for="message">質問・ご要望</label>
                 <textarea id="message" name="message" placeholder="無料トライアル希望、資料請求など"></textarea>
               </div>
               <p class="cta-note cta-note--left">ご入力いただいた個人情報は、お問い合わせへの回答および無料トライアル・資料のご案内にのみ利用します。第三者に提供することはありません。</p>
+              <label class="form-confirm">
+                <input type="checkbox" name="confirm" required>
+                入力内容をご確認の上、チェックをお願いします。
+              </label>
               <div class="form-actions">
-                <button class="btn btn--primary btn--block" type="submit">無料トライアルを申し込む</button>
-                <button class="btn btn--secondary btn--block" type="submit" name="intent" value="document">資料請求する</button>
+                <button class="btn btn--primary btn--block" type="submit">入力内容を送信する</button>
               </div>
             </form>
           </div>
