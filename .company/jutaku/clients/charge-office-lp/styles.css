@@ -430,6 +430,7 @@ p { margin: 0; }
   width: 9px;
   height: 9px;
   display: block;
+  stroke: var(--c-yellow);
 }
 .badge-card__number {
   font-family: var(--f-head);
