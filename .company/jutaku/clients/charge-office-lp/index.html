@@ -161,6 +161,22 @@
       </div>
     </section>
 
+    <!-- 施術イメージは「CHARGE OFFICEとは」の直後に配置。
+         料金より前に「何を買うのか」を見せるため。about と同じ bg-white にして
+         2セクションで1つの「サービス説明ブロック」として読ませる -->
+    <section class="section bg-white" id="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+        <p class="section-label">GALLERY</p>
+        <h2 class="section-title" id="gallery-title">施術イメージ</h2>
+        <div class="gallery-grid">
+          <div class="ph ph--gallery" role="img" aria-label="施術イメージ1">写真 1</div>
+          <div class="ph ph--gallery" role="img" aria-label="施術イメージ2">写真 2</div>
+          <div class="ph ph--gallery" role="img" aria-label="施術イメージ3">写真 3</div>
+          <div class="ph ph--gallery" role="img" aria-label="施術イメージ4">写真 4</div>
+        </div>
+      </div>
+    </section>
+
     <section class="section bg-alt" id="reasons" aria-labelledby="reasons-title">
       <div class="container">
         <p class="section-label">REASONS</p>
@@ -351,16 +367,23 @@
       </div>
     </section>
 
-    <section class="section bg-white" id="gallery" aria-labelledby="gallery-title">
+    <!-- 信頼ブロック: 料金の直後に配置（価格を見て迷う瞬間に第三者の裏付けを置く）。
+         ▼ お客様の声のカードは industry-grid の直前にここへ入れる（本文受領待ち）。
+         会社名は非公開のため「業種・規模・役職」で表記する -->
+    <section class="section bg-white" id="industries" aria-labelledby="industries-title">
       <div class="container">
-        <p class="section-label">GALLERY</p>
-        <h2 class="section-title" id="gallery-title">施術イメージ</h2>
-        <div class="gallery-grid">
-          <div class="ph ph--gallery" role="img" aria-label="施術イメージ1">写真 1</div>
-          <div class="ph ph--gallery" role="img" aria-label="施術イメージ2">写真 2</div>
-          <div class="ph ph--gallery" role="img" aria-label="施術イメージ3">写真 3</div>
-          <div class="ph ph--gallery" role="img" aria-label="施術イメージ4">写真 4</div>
-        </div>
+        <p class="section-label">CLIENTS</p>
+        <h2 class="section-title" id="industries-title">導入企業</h2>
+        <p class="section-lead">さまざまな業種の企業さまにご利用いただいています。</p>
+        <ul class="industry-grid">
+          <li class="industry-item">IT・Web</li>
+          <li class="industry-item">コンサル</li>
+          <li class="industry-item">広告・制作</li>
+          <li class="industry-item">金融・保険</li>
+          <li class="industry-item">不動産・建設</li>
+          <li class="industry-item">士業・法律事務所</li>
+          <li class="industry-item">その他</li>
+        </ul>
       </div>
     </section>
 
@@ -408,28 +431,7 @@
       </div>
     </section>
 
-    <section class="section bg-white" id="industries" aria-labelledby="industries-title">
-      <div class="container">
-        <p class="section-label">CLIENTS</p>
-        <h2 class="section-title" id="industries-title">導入企業</h2>
-        <p class="section-lead">さまざまな業種の企業さまにご利用いただいています。</p>
-        <ul class="industry-grid">
-          <li class="industry-item">IT・Web</li>
-          <li class="industry-item">コンサル</li>
-          <li class="industry-item">広告・制作</li>
-          <li class="industry-item">金融・保険</li>
-          <li class="industry-item">不動産・建設</li>
-          <li class="industry-item">士業・法律事務所</li>
-          <li class="industry-item">その他</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ▼ お客様の声セクションはここに入る（許諾取得後）。
-         追加時は bg-alt で入れ、次のFAQを bg-white に変える -->
-    <div class="voices-slot" id="voices-slot" aria-hidden="true"></div>
-
-    <section class="section bg-alt" id="faq" aria-labelledby="faq-title">
+    <section class="section bg-white" id="faq" aria-labelledby="faq-title">
       <div class="container">
         <p class="section-label">FAQ</p>
         <h2 class="section-title" id="faq-title">よくあるご質問</h2>
