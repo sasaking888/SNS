@@ -665,11 +665,6 @@ p { margin: 0; }
   gap: 6px 10px;
   color: #f05a28;
 }
-.price-main__clock {
-  flex: 0 0 auto;
-  align-self: center;
-  color: #f05a28;
-}
 .price-main__unit {
   font-family: var(--f-head);
   font-weight: 700;
