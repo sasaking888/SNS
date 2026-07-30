@@ -973,6 +973,109 @@ p { margin: 0; }
   color: var(--c-navy);
   font-size: 14px;
 }
+
+/* =====================================================================
+   お客様の声（#voices）— 料金の直後に置く信頼ブロック
+   イエロー地＋ネイビー文字。「＋」で本文を開くアコーディオン（details）。
+   旧「導入企業」セクションは末尾の .industry-tags に統合した。
+   ================================================================== */
+.voice-list { display: grid; gap: var(--s-2); }
+
+.voice-card {
+  background: linear-gradient(135deg, #FFCF5C 0%, var(--c-yellow) 100%);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.voice-card__head {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 40px 16px 16px;
+  position: relative;
+}
+.voice-card__head::-webkit-details-marker { display: none; }
+.voice-card__head::after {
+  content: "+";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--f-head);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c-navy);
+}
+.voice-card[open] .voice-card__head::after { content: "−"; }
+
+/* 人物写真のプレースホルダー（上部が丸いアーチ形） */
+.voice-card__avatar {
+  flex: 0 0 76px;
+  width: 76px;
+  height: 96px;
+  border-radius: 38px 38px 12px 12px;
+  background: #FFF6E4;
+  color: rgba(23, 43, 90, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.voice-card__avatar svg { width: 42px; height: 42px; }
+
+.voice-card__text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.voice-card__quote {
+  display: block;
+  font-family: var(--f-head);
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--c-navy);
+}
+.voice-card__meta {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(23, 43, 90, 0.72);
+}
+.voice-card__body {
+  margin: 0 16px 16px;
+  padding: 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--c-navy);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* 旧「導入企業」セクションを圧縮したタグ列 */
+.voice-industries { margin-top: var(--s-4); }
+.voice-industries__lead {
+  font-size: 14px;
+  color: var(--c-mute);
+  margin-bottom: var(--s-2);
+}
+.industry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.industry-tag {
+  background: var(--c-bg-alt);
+  border: 1px solid var(--c-line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-family: var(--f-head);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--c-navy);
+}
+
 .voices-slot { height: 0; margin: 0; padding: 0; overflow: hidden; }
 
 .faq-list { display: grid; gap: var(--s-2); }
@@ -1230,6 +1333,14 @@ p { margin: 0; }
   .benefit-grid { grid-template-columns: 1fr 1fr; }
   .gallery-grid { grid-template-columns: repeat(4, 1fr); }
   .industry-grid { grid-template-columns: repeat(3, 1fr); }
+
+  /* お客様の声: 画面が広いときはアバターと文字を大きく */
+  .voice-card__head { gap: 20px; padding: 20px 48px 20px 20px; }
+  .voice-card__avatar { flex-basis: 92px; width: 92px; height: 116px; border-radius: 46px 46px 12px 12px; }
+  .voice-card__avatar svg { width: 50px; height: 50px; }
+  .voice-card__quote { font-size: 19px; }
+  .voice-card__meta { font-size: 14px; }
+  .voice-card__body { margin: 0 20px 20px; padding: 18px; font-size: 15px; }
   .support-grid { grid-template-columns: repeat(3, 1fr); }
   .final-grid {
     grid-template-columns: 1.2fr 0.8fr;
