@@ -229,12 +229,13 @@ p { margin: 0; }
   font-weight: 700;
   color: var(--c-navy);
 }
-.logo__mark { display: block; height: 22px; width: auto; margin-left: -4px; align-self: flex-start; }
+.logo__mark { display: block; height: 22px; width: auto; align-self: flex-start; }
 .logo__sub {
   font-size: 10px;
   letter-spacing: 0.18em;
   color: var(--c-yellow);
   font-weight: 700;
+  margin-left: 3px;
 }
 .header-actions {
   display: flex;
