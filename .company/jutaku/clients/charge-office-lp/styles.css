@@ -600,6 +600,11 @@ p { margin: 0; }
   font-family: var(--f-head);
 }
 
+/* 選ばれる理由の下と料金の上、それぞれの汎用paddingが重なって
+   間延びしていたため詰める（2026-07-30 オーナー指摘） */
+#reasons { padding-bottom: 24px; }
+#pricing { padding-top: 24px; }
+
 .reason-grid { display: grid; gap: var(--s-2); }
 .reason-card {
   background: var(--c-bg);
