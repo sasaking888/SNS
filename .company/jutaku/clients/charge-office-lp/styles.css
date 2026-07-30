@@ -1222,17 +1222,9 @@ p { margin: 0; }
   text-align: center;
   gap: var(--s-2);
 }
-.phone-cta__button {
-  width: 100%;
-  max-width: 420px;
-  min-height: 60px;
-  font-size: 16px;
-  box-shadow: 0 3px 0 #c94418;
-}
 .phone-cta__label {
   font-size: 13px;
   color: var(--c-mute);
-  margin-top: var(--s-1);
 }
 .phone-cta__tel {
   display: inline-flex;
