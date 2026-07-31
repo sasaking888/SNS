@@ -672,6 +672,17 @@ p { margin: 0; }
 }
 .reason-extra__item svg { flex: 0 0 auto; color: var(--c-yellow); }
 
+/* --- 無料トライアル訴求セクション（料金の直前）
+   2026-07-30: オーナー提供の画像1枚をそのまま挿入する方式に変更。
+   画像内の文言「無料体験施術」はこのLP内の他箇所（無料トライアル）と表記が異なるが、
+   オーナー確認済みでこのまま使用する。 --- */
+.trial-promo__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
 /* --- 料金セクション --- */
 .price-main {
   position: relative;
