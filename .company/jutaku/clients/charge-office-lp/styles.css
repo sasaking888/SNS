@@ -2147,14 +2147,14 @@ p { margin: 0; }
 .tel-link { color: var(--c-navy); }
 
 /* ヒーロー直後の「電話でのお申し込み」セクション（2026-07-30 追加） */
-/* 薄い bg-alt で電話導線を区切る。上下余白は控えめに */
-.phone-cta.section { padding: 16px 0; }
+/* 薄い bg-alt で電話導線を区切る。ヒーローCTA直後なので上余白は最小に */
+.phone-cta.section { padding: 10px 0 12px; }
 .phone-cta__inner {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: var(--s-2);
+  gap: 6px;
 }
 .phone-cta__label {
   font-size: 13px;
@@ -3978,14 +3978,14 @@ body { padding-bottom: 100px; }
   min-height: 0;
 }
 
-/* 写真は絶対配置で背面いっぱいに敷く（2026-07-30 テスト中: CTAボタンの下半分だけ
-   白背景にはみ出させるため、写真の高さをステージより短くしている） */
+/* 写真は絶対配置。裾はオレンジCTAのだいたい中央で切る
+   （下半分だけ白背景にはみ出す演出。CTA min-height 56px 前後の半分を残す） */
 .hero .hero__stage .hero__photo {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 87%;
+  height: calc(100% - 30px);
   z-index: 1;
   width: 100%;
   object-fit: cover;
@@ -3995,13 +3995,13 @@ body { padding-bottom: 100px; }
   max-width: none;
 }
 
-/* 文字を読ませるための白ベール。左に濃く、右へ抜ける */
+/* 文字を読ませるための白ベール。左に濃く、右へ抜ける（写真と同じ高さ） */
 .hero .hero__stage .hero__veil {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 87%;
+  height: calc(100% - 30px);
   z-index: 2;
   pointer-events: none;
   background: linear-gradient(
@@ -4014,7 +4014,7 @@ body { padding-bottom: 100px; }
   );
 }
 
-/* 重ねる中身 */
+/* 重ねる中身。下余白を抑えCTAをステージ下端近くに置き、写真裾と中央で合わせる */
 .hero .hero__overlay {
   position: relative;
   z-index: 3;
@@ -4022,7 +4022,7 @@ body { padding-bottom: 100px; }
   flex-direction: column;
   align-items: flex-start;
   gap: 14px;
-  padding: 22px 16px 8px;
+  padding: 22px 16px 6px;
   width: 100%;
   max-width: 560px;   /* 右の人物にかからない範囲 */
   box-sizing: border-box;
@@ -4090,7 +4090,7 @@ body { padding-bottom: 100px; }
 
 @media (min-width: 720px) {
   .hero .hero__overlay {
-    padding: 40px 28px 44px;
+    padding: 40px 28px 10px;
     gap: 18px;
     max-width: 600px;
   }
@@ -4099,12 +4099,20 @@ body { padding-bottom: 100px; }
   .hero .hero__overlay .hero__service { font-size: 18px; }
   .hero .hero__overlay .stat-medal { width: 132px; }
   .hero .hero__stage .hero__photo { object-position: 72% 42%; }
+  .hero .hero__stage .hero__photo,
+  .hero .hero__stage .hero__veil {
+    height: calc(100% - 32px); /* CTA min-height 60px の中央付近 */
+  }
 }
 
 @media (min-width: 1024px) {
-  .hero .hero__overlay { padding: 52px 36px 56px; max-width: 640px; }
+  .hero .hero__overlay { padding: 52px 36px 12px; max-width: 640px; }
   .hero .hero__overlay .hero__title { font-size: 42px; }
   .hero .hero__overlay .stat-medal { width: 148px; }
+  .hero .hero__stage .hero__photo,
+  .hero .hero__stage .hero__veil {
+    height: calc(100% - 34px);
+  }
 }
 
 /* --- ヒーロー オーバーレイの微調整（実機描画で見つかった2点） ------------
@@ -4205,12 +4213,31 @@ body { padding-bottom: 100px; }
   color: var(--c-yellow) !important;
 }
 
-/* --- CTAボタンと電話番号セクションの間の余白を詰める（2026-07-30 オーナー指摘）
-   写真の裾をCTAの途中までにした関係で、.hero自体の下paddingが二重に空きになっていた。
-   .hero--tiles（ネイビー帯）は元のpaddingのままにしたいため、.hero--photoだけ縮める。 --- */
+/* --- CTAと電話番号（グレー帯）の間の余白を詰める
+   .hero の下padding（40/56px）や写真下の白が空いて見えるため、
+   .hero--photo だけ下を0に。電話帯の上も最小限。 --- */
 .hero.hero--photo {
-  padding-bottom: 8px;
+  padding-top: 24px;
+  padding-bottom: 0;
+}
+@media (min-width: 720px) {
+  .hero.hero--photo {
+    padding-top: 32px;
+    padding-bottom: 0;
+  }
 }
 .hero.hero--tiles {
   padding-top: 16px;
+}
+
+/* ヒーローCTA直下〜電話帯。ステージ内の白も抑えめに（裾はCTA中央のまま） */
+.hero.hero--photo .hero__stage .hero__photo,
+.hero.hero--photo .hero__stage .hero__veil {
+  height: calc(100% - 26px);
+}
+.hero.hero--photo .hero__overlay {
+  padding-bottom: 4px;
+}
+.hero.hero--photo .hero__inner {
+  gap: 0;
 }
