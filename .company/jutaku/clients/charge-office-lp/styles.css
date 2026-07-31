@@ -464,6 +464,128 @@ p { margin: 0; }
   .badge-card__text { font-size: 13px; }
 }
 
+/* --- ヒーロー下「CHARGE OFFICEの特徴」写真カード（旧ネイビー3タイル置換）
+   旧 .badge-card / .hero__badges-post パッチはHTMLから外したため非適用。
+   LP共通の余白・フォント・角丸・影に合わせる。縦積み固定。 --- */
+/* 電話番号セクション直下のため上余白を圧縮（.section の 72/112px だと空きすぎる） */
+.pick.section {
+  background: var(--c-bg);
+  padding-top: 20px;
+}
+@media (min-width: 1024px) {
+  .pick.section { padding-top: 28px; }
+}
+.pick-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-3);
+}
+.pick-card {
+  background: var(--c-bg);
+  border: 1px solid var(--c-line);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(23, 43, 90, 0.06);
+  overflow: hidden;
+}
+.pick-card__media {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--c-bg-alt);
+  overflow: hidden;
+}
+.pick-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.pick-card__body {
+  padding: 20px 18px 22px;
+}
+/* 01 と見出しを横並び。番号は視認性のため大きめ */
+.pick-card__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px;
+}
+.pick-card__num {
+  margin: 0;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 8px;
+  background: var(--c-navy);
+  font-family: var(--f-head);
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: #C9A227;
+  line-height: 1;
+}
+.pick-card__title {
+  margin: 0;
+  flex: 1 1 auto;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--c-navy);
+  line-height: 1.35;
+}
+.pick-card__text {
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: var(--c-mute);
+  line-height: 1.8;
+}
+.pick-card__points {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--c-line);
+  list-style: none;
+}
+.pick-card__points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-navy);
+  line-height: 1.5;
+}
+.pick-card__points svg {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  color: #C9A227;
+}
+@media (min-width: 720px) {
+  .pick-grid {
+    gap: var(--s-4);
+    max-width: 720px;
+    margin-inline: auto;
+  }
+  .pick-card__body {
+    padding: 24px 24px 26px;
+  }
+  .pick-card__head { gap: 12px; margin-bottom: 14px; align-items: center; }
+  .pick-card__num {
+    min-width: 56px;
+    height: 46px;
+    font-size: 24px;
+    border-radius: 10px;
+  }
+  .pick-card__title { font-size: 22px; }
+  .pick-card__text { font-size: 15px; }
+  .pick-card__media { aspect-ratio: 16 / 9; }
+}
+
 .worry-grid {
   display: grid;
   gap: 12px;
@@ -528,9 +650,10 @@ p { margin: 0; }
 }
 .solution__title {
   font-family: var(--f-head);
-  font-weight: 700;
-  font-size: clamp(20px, 5.2vw, 30px);
-  line-height: 1.6;
+  font-weight: 900;
+  font-size: clamp(26px, 6.8vw, 40px);
+  line-height: 1.45;
+  letter-spacing: 0.02em;
   color: var(--c-navy);
 }
 
@@ -675,12 +798,737 @@ p { margin: 0; }
 /* --- 無料トライアル訴求セクション（料金の直前）
    2026-07-30: オーナー提供の画像1枚をそのまま挿入する方式に変更。
    画像内の文言「無料体験施術」はこのLP内の他箇所（無料トライアル）と表記が異なるが、
-   オーナー確認済みでこのまま使用する。 --- */
+   オーナー確認済みでこのまま使用する。
+   2026-07-31: コンテナ外してフルブリード（左右余白・角丸なし）。 --- */
+.trial-promo.section {
+  padding: 0;
+}
 .trial-promo__image {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: auto;
-  border-radius: var(--radius);
+  border-radius: 0;
+}
+
+/* --- 導入後の変化（タイムライン + 期待できる効果）
+   添付テンプレと同一構成。白背景・ネイビー/ゴールド。CTAなし。
+   スマホファースト。写真比率はカード内 4:3 固定。 --- */
+.journey.section {
+  background: var(--c-bg);
+  padding-top: var(--s-5);
+  padding-bottom: var(--s-5);
+}
+.journey__head {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.journey__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  padding: 8px 20px;
+  border-radius: 999px;
+  background: var(--c-navy);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+}
+.journey__title {
+  font-size: clamp(24px, 6.4vw, 36px);
+  color: var(--c-navy);
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0 0 12px;
+}
+.journey__title-accent {
+  color: #C9A227;
+}
+.journey__lead {
+  margin: 0 auto;
+  max-width: 28em;
+  font-size: 14px;
+  color: var(--c-mute);
+  line-height: 1.7;
+}
+
+/* タイムライン（左レール + 右カード） */
+.journey-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.journey-step {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 10px;
+  align-items: stretch;
+  position: relative;
+}
+.journey-step__rail {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 8px;
+}
+/* 点線はレール全体に通し、アイコン／時期ラベルは白背景で前面に出す。
+   （文字の裏を線が貫通して「導入1週間」が読みにくくなるのを防ぐ） */
+.journey-step:not(:last-child) .journey-step__rail::after {
+  content: "";
+  position: absolute;
+  top: 28px;
+  bottom: -16px;
+  left: 50%;
+  z-index: 0;
+  width: 0;
+  border-left: 2px dotted #C5CEDD;
+  transform: translateX(-50%);
+}
+.journey-step__icon {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--c-navy);
+  color: #fff;
+  flex: 0 0 auto;
+  box-shadow:
+    0 0 0 6px var(--c-bg),
+    0 4px 12px rgba(23, 43, 90, 0.18);
+}
+.journey-step__period {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8px;
+  padding: 4px 2px 8px;
+  line-height: 1.15;
+  color: var(--c-navy);
+  font-weight: 700;
+  background: var(--c-bg);
+}
+.journey-step__period-label {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+.journey-step__period-num {
+  font-size: 22px;
+  color: #C9A227;
+  margin-top: 2px;
+}
+.journey-step__period-unit {
+  font-size: 12px;
+  color: var(--c-navy);
+}
+
+.journey-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #EEF1F6;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(23, 43, 90, 0.06);
+  overflow: hidden;
+  min-height: 100%;
+}
+.journey-card__media {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--c-bg-alt);
+  order: -1;
+}
+.journey-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.journey-card__body {
+  padding: 16px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.journey-card__title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--c-navy);
+  line-height: 1.4;
+}
+.journey-card__quote {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #C9A227;
+  line-height: 1.5;
+}
+.journey-card__text {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--c-mute);
+  line-height: 1.7;
+}
+
+/* 期待できる効果 */
+.journey-effects {
+  margin-top: 32px;
+  padding: 28px 16px 24px;
+  background: #F3F7FC;
+  border: 1px solid #E4ECF6;
+  border-radius: 20px;
+  text-align: center;
+}
+.journey-effects__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid #C9D4E6;
+  background: #fff;
+  color: var(--c-navy);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.journey-effects__title {
+  margin: 0 auto 20px;
+  max-width: 18em;
+  font-size: clamp(16px, 4.2vw, 20px);
+  font-weight: 700;
+  color: var(--c-navy);
+  line-height: 1.45;
+}
+.journey-effects__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.journey-effect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 0 4px;
+}
+.journey-effect:last-child {
+  grid-column: 1 / -1;
+  max-width: 160px;
+  margin-inline: auto;
+}
+.journey-effect__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--c-navy);
+}
+.journey-effect__title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-navy);
+  line-height: 1.35;
+}
+.journey-effect__text {
+  margin: 0;
+  font-size: 11px;
+  color: var(--c-mute);
+  line-height: 1.55;
+  max-width: 12em;
+}
+
+@media (min-width: 720px) {
+  .journey__head { margin-bottom: 36px; }
+  .journey-timeline { gap: 20px; }
+  .journey-step {
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 16px;
+  }
+  .journey-step:not(:last-child) .journey-step__rail::after {
+    top: 32px;
+    bottom: -20px;
+  }
+  .journey-step__icon {
+    width: 52px;
+    height: 52px;
+    box-shadow:
+      0 0 0 6px var(--c-bg),
+      0 4px 12px rgba(23, 43, 90, 0.18);
+  }
+  .journey-step__period-num { font-size: 26px; }
+  .journey-step__period-unit { font-size: 13px; }
+
+  .journey-card {
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .journey-card__media {
+    order: 0;
+    width: 42%;
+    flex: 0 0 42%;
+    aspect-ratio: auto;
+    min-height: 168px;
+    align-self: stretch;
+  }
+  .journey-card__body {
+    flex: 1 1 auto;
+    padding: 22px 24px;
+    justify-content: center;
+    text-align: left;
+  }
+  .journey-card__title { font-size: 20px; }
+  .journey-card__quote { font-size: 15px; }
+  .journey-card__text { font-size: 14px; }
+
+  .journey-effects {
+    margin-top: 40px;
+    padding: 36px 28px 28px;
+  }
+  .journey-effects__title {
+    max-width: none;
+    margin-bottom: 28px;
+    font-size: 22px;
+  }
+  .journey-effects__grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px 12px;
+  }
+  .journey-effect:last-child {
+    grid-column: auto;
+    max-width: none;
+    margin-inline: 0;
+  }
+  .journey-effect__title { font-size: 14px; }
+  .journey-effect__text { font-size: 12px; max-width: 11em; }
+}
+
+@media (min-width: 1024px) {
+  .journey.section {
+    padding-top: var(--s-6);
+    padding-bottom: var(--s-6);
+  }
+  .journey-step {
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 20px;
+  }
+  .journey-card__media {
+    width: 40%;
+    flex-basis: 40%;
+    min-height: 180px;
+  }
+  .journey-card__body { padding: 28px 32px; }
+  .journey-card__title { font-size: 22px; }
+  .journey-effects { padding: 40px 36px 32px; }
+}
+
+/* --- 導入事例（#cases）デザインリファレンス準拠
+   白基調・ネイビー/ゴールド・角丸・控えめ影・数字強調・CTAなし --- */
+.cases.section {
+  background: var(--c-bg);
+}
+.cases__head {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.cases__eyebrow {
+  margin: 0 0 12px;
+  font-family: var(--f-head);
+  font-size: 14px;
+  font-weight: 700;
+  color: #C9A227;
+  letter-spacing: 0.08em;
+}
+.cases__title {
+  margin: 0 0 14px;
+  font-size: clamp(24px, 6.2vw, 34px);
+  font-weight: 700;
+  color: var(--c-navy);
+  line-height: 1.4;
+}
+.cases__lead {
+  margin: 0 auto;
+  max-width: 30em;
+  font-size: 14px;
+  color: var(--c-mute);
+  line-height: 1.8;
+}
+.cases__br { display: none; }
+
+/* ロゴ一覧（横スクロール / 広い画面は中央寄せ） */
+.cases-logos {
+  margin: 0 0 24px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.cases-logos::-webkit-scrollbar { display: none; }
+.cases-logos__track {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  min-width: min-content;
+  padding: 4px 2px 8px;
+}
+.cases-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  padding: 12px 16px;
+  background: #fff;
+  border: 1px solid var(--c-line);
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(23, 43, 90, 0.04);
+  white-space: nowrap;
+}
+.cases-logo__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--c-navy);
+  color: #C9A227;
+  font-family: var(--f-head);
+  font-size: 12px;
+  font-weight: 900;
+}
+.cases-logo__name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-navy);
+}
+.cases-logo--more {
+  background: transparent;
+  border-style: dashed;
+  box-shadow: none;
+  color: var(--c-mute);
+}
+.cases-logo--more .cases-logo__name {
+  color: var(--c-mute);
+  font-weight: 700;
+}
+
+/* CASEカード */
+.case-card {
+  background: #fff;
+  border: 1px solid var(--c-line);
+  border-radius: 20px;
+  box-shadow: 0 10px 28px rgba(23, 43, 90, 0.06);
+  overflow: hidden;
+  padding: 18px 16px 20px;
+}
+.case-card__meta {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.case-card__badge {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  height: 56px;
+  margin: 0;
+  padding: 6px 8px;
+  border-radius: 12px;
+  background: var(--c-navy);
+  color: #fff;
+  line-height: 1.1;
+}
+.case-card__badge span {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 0.9;
+}
+.case-card__badge strong {
+  font-family: var(--f-head);
+  font-size: 22px;
+  font-weight: 900;
+  color: #C9A227;
+}
+.case-card__company {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.case-card__brand {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #F3F6FB;
+  border: 1px solid var(--c-line);
+  display: grid;
+  place-items: center;
+}
+.case-card__brand-mark {
+  font-family: var(--f-head);
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--c-navy);
+}
+.case-card__name {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--c-navy);
+  line-height: 1.35;
+}
+.case-card__attrs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin: 0;
+  font-size: 12px;
+  color: var(--c-mute);
+}
+.case-card__attrs span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.case-card__attrs svg {
+  color: #C9A227;
+  flex: 0 0 auto;
+}
+
+.case-card__media {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  background: var(--c-bg-alt);
+}
+.case-card__media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+.case-card__catch {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 18px 16px 16px;
+  background: linear-gradient(180deg, rgba(15, 28, 61, 0) 0%, rgba(15, 28, 61, 0.88) 45%, rgba(15, 28, 61, 0.94) 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.55;
+  text-align: center;
+}
+.case-card__catch strong {
+  color: #F5D76E;
+  font-weight: 900;
+}
+
+.case-card__blocks {
+  display: grid;
+  gap: 4px;
+}
+.case-block {
+  padding: 8px 2px 10px;
+}
+.case-block__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-navy);
+}
+.case-block__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--c-navy);
+  color: #fff;
+  flex: 0 0 auto;
+}
+.case-block__list {
+  margin: 0;
+  padding: 0 0 0 44px;
+  list-style: disc;
+  color: var(--c-mute);
+  font-size: 13px;
+  line-height: 1.75;
+}
+.case-block__list li { margin: 0; }
+.case-block__checks {
+  margin: 0;
+  padding: 0 0 0 44px;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+.case-block__checks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-navy);
+  line-height: 1.5;
+}
+.case-block__checks svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+  color: #C9A227;
+}
+.case-block__arrow {
+  display: flex;
+  justify-content: center;
+  color: #C9A227;
+  opacity: 0.85;
+  padding: 2px 0;
+}
+
+/* 数字で見る導入成果 */
+.cases-stats {
+  margin-top: 24px;
+  padding: 22px 14px 18px;
+  background: #FBF8F0;
+  border: 1px solid #F0E6C8;
+  border-radius: 18px;
+  text-align: center;
+}
+.cases-stats__label {
+  margin: 0 0 16px;
+  font-family: var(--f-head);
+  font-size: 14px;
+  font-weight: 700;
+  color: #C9A227;
+  letter-spacing: 0.06em;
+}
+.cases-stats__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cases-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 4px 8px;
+}
+.cases-stat__icon {
+  color: #C9A227;
+  margin-bottom: 2px;
+}
+.cases-stat__label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-mute);
+}
+.cases-stat__value {
+  font-family: var(--f-head);
+  font-size: clamp(28px, 8vw, 36px);
+  font-weight: 900;
+  color: var(--c-navy);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+.cases-stat__value span {
+  font-size: 0.45em;
+  font-weight: 700;
+  margin-left: 1px;
+}
+.cases-stat__note {
+  font-size: 11px;
+  color: var(--c-mute);
+}
+.cases__note {
+  margin: 16px 0 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--c-mute);
+}
+
+@media (min-width: 720px) {
+  .cases__head { margin-bottom: 32px; }
+  .cases__br { display: inline; }
+  .cases__lead { font-size: 15px; }
+  .cases-logos__track {
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .case-card {
+    padding: 28px 28px 26px;
+    border-radius: 24px;
+  }
+  .case-card__badge {
+    min-width: 64px;
+    height: 64px;
+  }
+  .case-card__badge strong { font-size: 26px; }
+  .case-card__name { font-size: 20px; }
+  .case-card__attrs { font-size: 13px; }
+  .case-card__media img { aspect-ratio: 16 / 9; }
+  .case-card__catch {
+    font-size: 18px;
+    padding: 28px 24px 22px;
+  }
+  .case-block__title { font-size: 17px; }
+  .case-block__list,
+  .case-block__checks li { font-size: 14px; }
+  .cases-stats {
+    margin-top: 32px;
+    padding: 28px 24px 22px;
+  }
+  .cases-stats__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .cases-stat__value { font-size: 40px; }
+}
+
+@media (min-width: 1024px) {
+  .case-card { padding: 32px; max-width: 920px; margin-inline: auto; }
+  .cases-stats { max-width: 920px; margin-left: auto; margin-right: auto; }
+  .cases-logos { max-width: 920px; margin-left: auto; margin-right: auto; }
 }
 
 /* --- 料金セクション --- */
@@ -1299,7 +2147,8 @@ p { margin: 0; }
 .tel-link { color: var(--c-navy); }
 
 /* ヒーロー直後の「電話でのお申し込み」セクション（2026-07-30 追加） */
-.phone-cta.section { padding: 12px 0 var(--s-1); }
+/* 薄い bg-alt で電話導線を区切る。上下余白は控えめに */
+.phone-cta.section { padding: 16px 0; }
 .phone-cta__inner {
   display: flex;
   flex-direction: column;
