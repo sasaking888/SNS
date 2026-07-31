@@ -1,4 +1,7 @@
-# CHARGE OFFICE LP — Claude 引き継ぎメモ（2026-07-30）
+# CHARGE OFFICE LP — Claude 引き継ぎメモ（2026-07-30 夜 更新）
+
+**このファイルは2026-07-30午前時点の内容から大幅に古くなっていたため全面更新した。**
+ヒーロー構造・ページ構成・確定数字（33万人）など、下の内容が最新。
 
 ## 渡すファイル（必須）
 
@@ -6,16 +9,15 @@
 
 | ファイル | 役割 |
 |---|---|
-| **`index.html`** | LP本体（約580行） |
-| **`styles.css`** | メインCSS（約2800行・パッチ多数） |
-| **`GROKRULES.md`** | 編集ルール（毎回必読） |
-| **`chargeofficelpspec.md`** | コピー・法令・数字の正本 |
-| `images/hero.jpg` | ヒーロー実写 |
+| **`index.html`** | LP本体（約650行） |
+| **`styles.css`** | メインCSS（約3300行・パッチ多数） |
+| **`GROK-RULES.md`** | 編集ルール（毎回必読） |
+| **`charge-office-lp-spec.md`** | コピー・法令・数字の正本（`.company/jutaku/clients/` 配下） |
+| **`TASK-tile-redesign-2026-07-30.md`** | 今回の依頼内容（下記参照。このファイルを最優先で読む） |
+| `images/*` | ヒーロー写真・実績メダル・とは/施術イメージ/お客様の声写真・ロゴ |
 | `assets/worry-*.png` | お悩み3アイコン |
 
-任意: `BUILDGUIDE.md` / `_serve-local.ps1`（ローカル確認用）
-
-**`base.css` / `tokens.css` は現状ほぼ未使用。** 本番見た目は `styles.css` のみ。
+`base.css` / `tokens.css` は現状ほぼ未使用。本番見た目は `styles.css` のみ。
 
 ---
 
@@ -46,79 +48,48 @@
 
 ---
 
-## 現状のページ構成（上から）
+## 現状のページ構成（上から。2026-07-30夜時点）
 
-1. **header** — ロゴ / TEL / オレンジ `btn--header`「無料トライアル」
-2. **hero**（新構造・2026-07-30）
-   - テキスト（sub / title / service）
-   - 実績バッジ 94.2% / 98.4% + 出典
-   - CTA（かんたん入力・ご相談無料）
-   - 写真 `images/hero.jpg`（全幅帯）
-   - 3タイル `hero__badges-post`（省スペース / 高回転 / 高品質）
-3. **worries** — お悩み3カード（左アイコン・右文言）
-4. **solution** — 「その課題、CHARGE OFFICEが解決します。」黄→白グラデ + 上V字
-5. **about** — CHARGE OFFICEとは（リードのみ・数字なし。画像は見出し下）
-6. **reasons** — 選ばれる3つの理由
-7. **benefits** — 導入メリット
-8. **pricing** — 料金（メインカード / 3項目 / 出張費備品 / 総額例 / 2CTA）
-9. **gallery / flow / industries / faq / support / contact**
-10. **sticky-cta** — スマホ下部2カード（トライアル橙 / LINE緑）。720px以上は非表示
+1. **header** — ロゴ画像（`images/logo.png`）/ TEL / オレンジ`btn--header`「無料トライアル」
+2. **`.hero.hero--photo`** — 写真フルブリード＋オーバーレイ（見出し・実績メダル94.2%/98.4%・CTA）。**写真の裾がCTAボタンの途中までしかなく、ボタンの下半分は白背景にはみ出す演出**（`.hero__photo`の`height:87%`で意図的に実装。触らないこと）
+3. **`.phone-cta`** — 電話番号セクション（ヒーロー写真の直後・3タイルの前）。ボタンなし、電話番号のみ
+4. **`.hero.hero--tiles`**（`#badges`） — ネイビー背景の3タイル（省スペース0.5畳／高回転10分／高品質33万人+）。**★今回の依頼対象、下記参照**
+5. **worries** — お悩み3カード（実写アイコン、円形）
+6. **solution** — 「その課題、CHARGE OFFICEが解決します。」
+7. **about** — CHARGE OFFICEとは（実写あり。見出し「行列のできる整体がオフィスに出張！」）
+8. **gallery** — 施術イメージ4枚（実写あり）
+9. **reasons**（`#reasons`） — 選ばれる理由（3枚のPOINTカード＋4つのタグ）。**★POINT 02が3タイルと内容重複。今回の依頼対象**
+10. **pricing** — 料金
+11. **voices**（`#voices`） — お客様の声3件（実写・実データ、白ベース＋黄色い左ライン、円形アバター）
+12. **flow / faq / support / contact**
+13. **sticky-cta** — スマホ下部2カード（トライアル橙／LINE緑）。720px以上は非表示
 
----
-
-## ヒーロー（最新）
-
-```
-.hero > .hero__inner
-  .hero__text
-  .hero__stats（.stat-badge ×2 + .hero__stats-note）
-  .hero__cta
-  .hero__photo-block > .hero__photo
-  .hero__badges-post（3タイル）
-```
-
-- 旧: `hero__stage` / `veil` / `copy` / `person` / `lead` / `trust` → **削除済み**
-- 実績バッジは**角丸四角**（円形にしない）
-- 3タイル文言は変更禁止
+※`benefits`（導入メリット）セクションは**2026-07-30に削除**し、`reasons`の4タグに統合済み。もう存在しない
 
 ---
 
 ## CSSの注意（重要）
 
-`styles.css` は**ベース + パッチ30個以上 + `!important` 大量**の状態。
+`styles.css` は**ベース＋パッチ多数＋`!important`大量**の状態。
 
-- 同じセレクタが複数回ある → **ファイル内の最後の指定が効く**
-- ヒーロー旧レイアウト用パッチ（absolute写真・140% CTA・padding-right 44% 等）が残っている
-  - 新構造向けに一部中和済みだが、**残骸はまだ多い**
-  - 触るときは `.hero__copy` / `.hero__stage` / `.hero__badges`（旧）と  
-    `.hero__inner` / `.hero__badges-post` / `.stat-badge`（新）を混同しないこと
-- 新しい見た目を足すときは **末尾追記ではなく、関連ブロック直下 or 最後の同セレクタを編集**
+- 同じセレクタが複数回ある → **ファイル内の最後の指定、もしくは詳細度の高い方が効く**（`#id`は`.class`に必ず勝つ）
+- flexboxの`align-items:stretch`（初期値）で画像が意図せず引き伸ばされるバグが過去に発生済み（ロゴ画像）。画像サイズを固定するときは`align-self`か明示的な`width`指定を忘れない
+- 新しい見た目を足すときは**末尾追記ではなく、関連ブロック直下 or 最後の同セレクタを編集**
+- 2セクションの余白が重なって間延びする事象が何度も発生している。**新しいセクションを追加/隣接させたら、必ず実測して余白を確認する**（`#gallery{padding-top:16px}`のように`#id`で個別調整した例が複数ある）
 
-### 主要な新クラス
+---
 
-| クラス | 用途 |
-|---|---|
-| `.hero__inner` / `.hero__text` / `.hero__stats` / `.stat-badge` | 新ヒーロー |
-| `.hero__photo-block` / `.hero__photo` | 写真帯（static・全幅） |
-| `.hero__badges-post` | 写真下の3タイル |
-| `.solution` / `.solution__title` | 橋渡しセクション |
-| `.price-main` / `.price-feats` / `.price-feat` | 料金メイン |
-| `.price-extras` / `.price-extra` | 出張費・備品 |
-| `.price-example` | 総額例 |
-| `.scta` / `.scta--trial` / `.scta--line` / `.scta--docs` | 2カードCTA |
-| `.btn--header` | ヘッダー橙ボタン |
-| `.reveal` / `.is-inview` | スクロールふわっと表示 |
+## ★今回の依頼: `TASK-tile-redesign-2026-07-30.md` を読んで作業すること
+
+3タイル（`#badges`）のデザイン再検討と、`reasons`のPOINT 02との内容重複解消が依頼内容。詳細は同ファイル参照。
 
 ---
 
 ## 未着手・TODO
 
-- [ ] LINE公式URL（`href=""` のまま・HTMLコメント TODO あり）
-- [ ] フォーム action 未設定
-- [ ] about / gallery の画像プレースホルダー差し替え
-- [ ] お客様の声（`#voices-slot` 空）
-- [ ] `styles.css` のパッチ整理（任意・大きい作業）
-- [ ] ヒーロー新構造の実機確認（320 / 375 / 1200）をオーナーと突合
+- [ ] LINE公式URL（`href=""` のまま・HTMLコメント TODO あり、複数箇所）
+- [ ] フォーム action 未設定（`#contact-form`）
+- [ ] `styles.css` のパッチ整理（任意・大きい作業。オーナーは保留中）
 
 ---
 
