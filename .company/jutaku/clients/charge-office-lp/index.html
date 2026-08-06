@@ -714,11 +714,8 @@
         <div class="final-grid">
           <div class="final-panel" id="contact-form">
             <h3 class="final-panel__title">お申し込み・資料請求フォーム</h3>
-            <!-- TODO（公開前・必須）: このフォームは charge10.tokyo の WordPress + Contact Form 7 に
-                 載せ替える方針で確定（2026-08-06）。送信先は contact@charge10.tokyo。
-                 CF7側のフォーム定義・メール設定・貼り替え手順は CF7-SETUP.md に用意済み。
-                 ここの <form> ごと CF7 のショートコードに差し替えるため action="" のままでよい。
-                 ※静的HTMLのまま公開すると送信が一切届かないので、必ず載せ替えてから公開すること -->
+            <!-- 本番（WordPress）では CF7「CHARGE OFFICE LP」(id=515) のショートコードに差し替え済み。
+                 この静的HTMLはデザイン確認・保守用の原本 -->
             <form class="form-grid" action="" method="post">
               <div class="form-field">
                 <label for="name">氏名<span class="req">必須</span></label>
@@ -792,8 +789,7 @@
             <h3 class="final-panel__title">お電話でのお問い合わせ</h3>
             <p class="contact-box__tel"><a class="tel-link" href="tel:0358299695">03-5829-9695</a></p>
             <p class="contact-box__note">受付 平日 9:00-18:00</p>
-            <!-- TODO（公開前）: LINE公式アカウントのURLを href に設定する -->
-            <a class="cta-block__line" href="">
+            <a class="cta-block__line" href="https://lin.ee/o6JlxtE" target="_blank" rel="noopener">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 4 3.6 7.3 8.4 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.6 1.1-.5 6-3.5 8.2-6C21.6 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8z"/></svg>
               LINEで気軽に相談
             </a>
@@ -825,9 +821,7 @@
       </span>
       <span class="scta__note">実際の施術を体験いただけます</span>
     </a>
-
-    <!-- TODO（公開前）: LINE公式アカウントのURLを href に設定する -->
-    <a class="scta scta--line" href="">
+    <a class="scta scta--line" href="https://lin.ee/o6JlxtE" target="_blank" rel="noopener">
       <span class="scta__label">気軽に相談したい方へ</span>
       <span class="scta__main">
         LINEで相談

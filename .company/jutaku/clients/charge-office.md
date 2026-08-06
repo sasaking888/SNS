@@ -670,3 +670,12 @@
   - 送信テスト（実際にフォームから送って contact@charge10.tokyo に届くか／thanks へ遷移するか）
   - LINE公式アカウントURL（未受領・4箇所）
   - 追随CTAが固定されない件（テーマのヘッダー・フッターを通さない構成になったため、解消している可能性が高い。要確認）
+
+### 2026-08-06（追記60）— LINE公式アカウントURLを設定、未設定項目が全て解消
+
+- オーナーからLINE公式アカウントのURLを受領: `https://lin.ee/o6JlxtE`
+- `index.html` / `wordpress/page-content.html` の2ファイル・各2箇所（最終CTAのLINEボタン／追随CTAのLINEボタン）に設定。`target="_blank" rel="noopener"` を付与
+- 実機描画で検証: 2箇所ともリンクとして機能し、タップ領域は 295×52px / 176×76px（推奨44px以上を満たす）
+- 併せて、役目を終えたTODOコメントを整理（LINE URL未設定・フォームaction未設定の2件）。**LP内に未解決のTODOコメントは0件になった**
+- **GROK-RULES §6 の未完了TODO 2件（フォームaction・LINE href）が両方とも解消**。LP側で未確定の項目は無くなった
+- 残るのは送信テスト（実際にメールが届くか／thanksへ遷移するか）のみ
