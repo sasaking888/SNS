@@ -714,7 +714,11 @@
         <div class="final-grid">
           <div class="final-panel" id="contact-form">
             <h3 class="final-panel__title">お申し込み・資料請求フォーム</h3>
-            <!-- TODO（公開前・必須）: action="" に送信先URLを設定する。未設定のままだと送信されない -->
+            <!-- TODO（公開前・必須）: このフォームは charge10.tokyo の WordPress + Contact Form 7 に
+                 載せ替える方針で確定（2026-08-06）。送信先は contact@charge10.tokyo。
+                 CF7側のフォーム定義・メール設定・貼り替え手順は CF7-SETUP.md に用意済み。
+                 ここの <form> ごと CF7 のショートコードに差し替えるため action="" のままでよい。
+                 ※静的HTMLのまま公開すると送信が一切届かないので、必ず載せ替えてから公開すること -->
             <form class="form-grid" action="" method="post">
               <div class="form-field">
                 <label for="name">氏名<span class="req">必須</span></label>

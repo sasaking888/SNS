@@ -1638,6 +1638,41 @@ p { margin: 0; }
   border: none;
   padding: 0;
 }
+
+/* --- Contact Form 7 対応（2026-08-06） -------------------------------------
+   WordPressに載せると [radio] は CF7 が独自マークアップで出力するため、
+   上の .radio-option（label直指定）が当たらなくなる。
+   CF7の出力構造 .wpcf7-list-item > label > input + span に同じ見た目を当てる。
+   静的HTMLのままでも .wpcf7-* は存在しないので副作用はない。
+   手順は CF7-SETUP.md を参照。 ------------------------------------------- */
+.form-field--radio .wpcf7-list-item {
+  display: block;
+  margin: 0;
+  border-bottom: 1px solid var(--c-line);
+}
+.form-field--radio .wpcf7-list-item:last-child { border-bottom: none; }
+.form-field--radio .wpcf7-list-item label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--c-ink);
+  padding: 8px 0;
+  margin: 0;
+  cursor: pointer;
+}
+.form-field--radio .wpcf7-list-item input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  flex: 0 0 auto;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+/* CF7 の入力欄は span でラップされるため、幅指定が親に吸われないようにする */
+.form-field .wpcf7-form-control-wrap { display: block; }
 .form-confirm {
   display: flex;
   align-items: flex-start;
