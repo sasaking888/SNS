@@ -742,12 +742,16 @@
               </div>
               <div class="form-field">
                 <label for="size">従業員数<span class="req">必須</span></label>
+                <!-- 区分は charge10.tokyo の既存フォーム（CF7 id=488）に合わせている。
+                     先方が既に集めているデータと揃えないと集計できなくなるため -->
                 <select id="size" name="size" required>
                   <option value="">選択してください</option>
-                  <option value="~29">〜29名</option>
-                  <option value="30-99">30〜99名</option>
-                  <option value="100-299">100〜299名</option>
-                  <option value="300-">300名〜</option>
+                  <option value="1-10">1〜10名</option>
+                  <option value="11-30">11〜30名</option>
+                  <option value="31-50">31〜50名</option>
+                  <option value="51-100">51〜100名</option>
+                  <option value="101-300">101〜300名</option>
+                  <option value="301-">301名以上</option>
                 </select>
               </div>
               <fieldset class="form-field form-field--radio">
@@ -765,7 +769,7 @@
                 <label class="radio-option"><input type="radio" name="referral" value="sns"> SNS</label>
                 <label class="radio-option"><input type="radio" name="referral" value="web"> Webサイト、ブログ</label>
                 <label class="radio-option"><input type="radio" name="referral" value="flyer"> チラシ</label>
-                <label class="radio-option"><input type="radio" name="referral" value="acquaintance"> 知人からの紹介</label>
+                <label class="radio-option"><input type="radio" name="referral" value="acquaintance"> 家族、知人からの紹介</label>
                 <label class="radio-option"><input type="radio" name="referral" value="other"> その他</label>
               </fieldset>
               <div class="form-field">
@@ -777,6 +781,8 @@
                 <input type="checkbox" name="confirm" required>
                 入力内容をご確認の上、チェックをお願いします。
               </label>
+              <!-- charge10.tokyo では reCAPTCHA が実際に有効なため表記を掲載（2026-08-06 実機確認） -->
+              <p class="cta-note cta-note--left">このサイトはreCAPTCHAによって保護されており、Googleの<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">プライバシーポリシー</a>と<a href="https://policies.google.com/terms" target="_blank" rel="noopener">利用規約</a>が適用されます。</p>
               <div class="form-actions">
                 <button class="btn btn--primary btn--block" type="submit">入力内容を送信する</button>
               </div>
