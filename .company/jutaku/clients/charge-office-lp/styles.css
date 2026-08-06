@@ -1620,17 +1620,24 @@ p { margin: 0; }
   margin-bottom: 8px;
   padding: 0;
 }
-.radio-option {
+/* 2026-08-06: セレクタを .form-field--radio .radio-option に強めた。
+   従来の .radio-option（0,1,0）は .form-field label（0,1,1）に負けており、
+   display:flex も font-size:14px も効かず block / 13px で描画されていた。
+   CF7版（.wpcf7-list-item）と見た目を一致させるため、本来の指定が効くようにする。
+   文字は現行の見え方（13px / 700 / navy）を維持し、レイアウトだけ flex に直す。 */
+.form-field--radio .radio-option {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
-  color: var(--c-ink);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-navy);
   padding: 8px 0;
+  margin: 0;
   border-bottom: 1px solid var(--c-line);
 }
-.radio-option:last-child { border-bottom: none; }
-.radio-option input {
+.form-field--radio .radio-option:last-child { border-bottom: none; }
+.form-field--radio .radio-option input {
   width: 18px;
   height: 18px;
   min-height: 0;
@@ -1655,13 +1662,17 @@ p { margin: 0; }
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--c-ink);
+  /* 静的HTML版の .radio-option は font-size:14px を指定しているが、
+     詳細度で .form-field label（0,1,1）が勝ち実際には 13px / 700 で描画されている。
+     見た目を一致させるため実測値に合わせる */
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-navy);
   padding: 8px 0;
   margin: 0;
   cursor: pointer;
 }
+.form-field--radio .wpcf7-list-item-label { font-weight: 700; }
 .form-field--radio .wpcf7-list-item input[type="radio"] {
   width: 18px;
   height: 18px;
@@ -1686,6 +1697,22 @@ p { margin: 0; }
   height: 18px;
   flex: 0 0 auto;
   margin-top: 2px;
+}
+/* CF7 の [acceptance] は span > span > label > input + span という入れ子で出力される。
+   .form-confirm の flex が中まで効かないため、内側の label 側で同じ並びを作る。 */
+.form-confirm .wpcf7-form-control-wrap,
+.form-confirm .wpcf7-acceptance,
+.form-confirm .wpcf7-list-item { display: block; margin: 0; }
+.form-confirm .wpcf7-list-item label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--c-ink);
+  line-height: 1.6;
+  margin: 0;
+  cursor: pointer;
 }
 .form-actions {
   margin-top: var(--s-3);

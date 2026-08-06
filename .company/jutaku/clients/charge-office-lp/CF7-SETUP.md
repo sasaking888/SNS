@@ -59,34 +59,28 @@ CHARGE OFFICE LP のお問い合わせフォームを、charge10.tokyo の WordP
 ```html
 <div class="form-grid">
   <div class="form-field">
-    <label>氏名<span class="req">必須</span>
-      [text* your-name autocomplete:name]
-    </label>
+    <label for="name">氏名<span class="req">必須</span></label>
+    [text* your-name id:name autocomplete:name]
   </div>
   <div class="form-field">
-    <label>会社名<span class="req">必須</span>
-      [text* text-862 autocomplete:organization]
-    </label>
+    <label for="company">会社名<span class="req">必須</span></label>
+    [text* text-862 id:company autocomplete:organization]
   </div>
   <div class="form-field">
-    <label>住所<span class="req">必須</span>
-      [text* text-905 autocomplete:street-address]
-    </label>
+    <label for="address">住所<span class="req">必須</span></label>
+    [text* text-905 id:address autocomplete:street-address]
   </div>
   <div class="form-field">
-    <label>メールアドレス<span class="req">必須</span>
-      [email* your-email autocomplete:email]
-    </label>
+    <label for="email">メールアドレス<span class="req">必須</span></label>
+    [email* your-email id:email autocomplete:email]
   </div>
   <div class="form-field">
-    <label>電話番号<span class="req">必須</span>
-      [tel* tel-731 autocomplete:tel]
-    </label>
+    <label for="tel">電話番号<span class="req">必須</span></label>
+    [tel* tel-731 id:tel autocomplete:tel]
   </div>
   <div class="form-field">
-    <label>従業員数<span class="req">必須</span>
-      [select* menu-43 include_blank "1〜10名" "11〜30名" "31〜50名" "51〜100名" "101〜300名" "301名以上"]
-    </label>
+    <label for="size">従業員数<span class="req">必須</span></label>
+    [select* menu-43 id:size include_blank "1〜10名" "11〜30名" "31〜50名" "51〜100名" "101〜300名" "301名以上"]
   </div>
 
   <fieldset class="form-field form-field--radio">
@@ -100,21 +94,20 @@ CHARGE OFFICE LP のお問い合わせフォームを、charge10.tokyo の WordP
   </fieldset>
 
   <div class="form-field">
-    <label>質問・ご要望
-      [textarea your-message placeholder "無料トライアル希望、資料請求など"]
-    </label>
+    <label for="msg">質問・ご要望</label>
+    [textarea your-message id:msg placeholder "無料トライアル希望、資料請求など"]
   </div>
 
   <p class="cta-note cta-note--left">ご入力いただいた個人情報は、お問い合わせへの回答および無料トライアル・資料のご案内にのみ利用します。第三者に提供することはありません。</p>
 
-  <label class="form-confirm">
+  <div class="form-confirm">
     [acceptance acceptance-683] 入力内容をご確認の上、チェックをお願いします。 [/acceptance]
-  </label>
+  </div>
 
   <p class="cta-note cta-note--left">このサイトはreCAPTCHAによって保護されており、Googleの<a style="text-decoration:underline;" href="https://policies.google.com/privacy">プライバシーポリシー</a>と<a href="https://policies.google.com/terms" style="text-decoration:underline;">利用規約</a>が適用されます。</p>
 
   <div class="form-actions">
-    [submit "入力内容を送信する"]
+    [submit class:btn class:btn--primary class:btn--block "入力内容を送信する"]
   </div>
 </div>
 
@@ -124,6 +117,20 @@ document.addEventListener( 'wpcf7mailsent', function( event ) {
 }, false );
 </script>
 ```
+
+#### 貼り付け時に崩さないための4つのルール（実機シミュレーションで確認済み）
+
+CF7の出力構造を再現したテストページを作り、LPのCSSで描画して検証した結果、
+**下記を守れば静的HTML版とフォームの高さがピクセル単位で一致する**（375px幅で 1694px、実測）。
+
+1. **`<label>` の中にCF7タグを入れない。** `<label>` とタグは兄弟にする
+   （入れ子にするとラベル高が22px→66pxになり、ラベルと入力欄の間隔が -44px に潰れる）
+2. **`id:` オプションを付ける。** `<label for="...">` と対応させるために必要
+3. **`[submit]` に `class:btn class:btn--primary class:btn--block` を付ける。**
+   付けないとCF7の素の `<input type="submit">` になりボタンの見た目が出ない
+4. **確認チェックは `<label>` ではなく `<div class="form-confirm">` で囲む。**
+   `[acceptance]` が内部で `<label>` を生成するため、labelの入れ子になり不正なHTMLになる
+
 
 ### 3.「メール」タブは触らない
 
@@ -168,11 +175,14 @@ LP制作時は「実装していない機能を謳うのは事実と異なる」
 
 CF7に載せる前に `index.html` / `styles.css` 側で対応しておくもの。
 
-- [x] CF7の出力（`.wpcf7-list-item`）に対応したCSS（対応済み）
-- [ ] 従業員数の選択肢を6段階に変更
-- [ ] 希望申込内容・きっかけの選択肢を上記に合わせる
-- [ ] reCAPTCHAの表記を追加
-- [ ] 送信後の遷移先を `https://charge10.tokyo/thanks/` にする想定であることを明記
+- [x] CF7の出力（`.wpcf7-list-item` / `[acceptance]`）に対応したCSSを追加
+- [x] 従業員数の選択肢を既存の6段階に変更
+- [x] きっかけの表記を既存に統一（知人からの紹介 → 家族、知人からの紹介）
+- [x] reCAPTCHAの表記を追加
+- [x] `.radio-option` の詳細度を修正し、CF7版とラジオの見た目を一致させた
+- [ ] 送信後の遷移先（`https://charge10.tokyo/thanks/`）はCF7側のJSで処理するため、静的HTML側の対応は不要
+
+**LP側の準備は完了。残りはWordPress側の作業のみ。**
 
 ---
 
