@@ -728,6 +728,17 @@ p { margin: 0; }
 #reasons { padding-bottom: 24px; }
 #pricing { padding-top: 24px; }
 
+/* 白×白の隣接セクションで .section 上下padding（72/112px）が重なり間延び
+   （2026-08-06 オーナー指摘）
+   - 期待できる効果（#journey末尾）→ 導入事例（#cases）
+   - 数字で見る導入成果（#cases末尾）→ お客様の声（#voices）
+   - よくあるご質問（#faq）→ お問い合わせ（#contact） */
+#journey { padding-bottom: 28px; }
+#cases   { padding-top: 28px; padding-bottom: 28px; }
+#voices  { padding-top: 28px; }
+#faq     { padding-bottom: 28px; }
+#contact { padding-top: 28px; }
+
 .reason-grid { display: grid; gap: var(--s-2); }
 .reason-card {
   background: var(--c-bg);
@@ -817,7 +828,8 @@ p { margin: 0; }
 .journey.section {
   background: var(--c-bg);
   padding-top: var(--s-5);
-  padding-bottom: var(--s-5);
+  /* 下は #journey で 28px（導入事例との二重余白対策） */
+  padding-bottom: 28px;
 }
 .journey__head {
   text-align: center;
@@ -1128,7 +1140,8 @@ p { margin: 0; }
 @media (min-width: 1024px) {
   .journey.section {
     padding-top: var(--s-6);
-    padding-bottom: var(--s-6);
+    /* 下は #journey で 28px に圧縮（導入事例との二重余白対策） */
+    padding-bottom: 28px;
   }
   .journey-step {
     grid-template-columns: 100px minmax(0, 1fr);
@@ -1148,6 +1161,9 @@ p { margin: 0; }
    白基調・ネイビー/ゴールド・角丸・控えめ影・数字強調・CTAなし --- */
 .cases.section {
   background: var(--c-bg);
+  /* 上下は #cases で 28px（期待できる効果 / お客様の声との二重余白対策） */
+  padding-top: 28px;
+  padding-bottom: 28px;
 }
 .cases__head {
   text-align: center;
