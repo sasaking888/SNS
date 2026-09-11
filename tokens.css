@@ -1,0 +1,40 @@
+/* POWWOW LP 共通デザイントークン。セクション側では再定義しないこと */
+:root {
+  /* ---- Color ---- */
+  --pw-magenta:    #E4007F;  /* 見出しのアクセント文字・下向き矢印 */
+  --pw-pink:       #EA5C8B;  /* Qバッジ・ボタン・帯グラデ終点 */
+  --pw-pink-light: #F48FB1;  /* 帯グラデ始点 */
+  --pw-pink-soft:  #F8BBD0;  /* NEXT矢印・区切り */
+  --pw-pink-bg:    #FCE7EF;  /* 設問ブロックの背景 */
+  --pw-pink-tint:  #FDF3F7;  /* セクション全体の淡い背景 */
+  --pw-cream:      #FFF3A8;  /* 「特別価格」等の黄色抜き文字 */
+  --pw-ink:        #2B2B2B;  /* 見出し・本文の黒 */
+  --pw-ink-sub:    #5A5A5A;  /* サブコピー */
+  --pw-line:       #F2C6D8;  /* 選択肢ボタンの枠線 */
+  --pw-white:      #FFFFFF;
+
+  /* ---- Typography ---- */
+  --pw-font: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  --pw-fs-hero:   34px;
+  --pw-fs-h2:     26px;
+  --pw-fs-h3:     19px;
+  --pw-fs-body:   15px;
+  --pw-fs-note:   12px;
+  --pw-lh-tight:  1.35;
+  --pw-lh-body:   1.8;
+
+  /* ---- Spacing（8の倍数で統一）---- */
+  --pw-sp-1: 8px;   --pw-sp-2: 16px;  --pw-sp-3: 24px;
+  --pw-sp-4: 32px;  --pw-sp-6: 48px;  --pw-sp-8: 64px;
+  --pw-sec-pad: var(--pw-sp-6);
+
+  /* ---- Shape ---- */
+  --pw-r-card:   12px;
+  --pw-r-btn:    10px;
+  --pw-r-pill:   999px;
+  --pw-shadow:   0 2px 8px rgba(0,0,0,.06);
+
+  /* ---- Layout ---- */
+  --pw-maxw:     640px;  /* PC時の中央寄せ最大幅 */
+  --pw-fv-peek:  64px;   /* FV下端で次セクションを覗かせる高さ */
+}

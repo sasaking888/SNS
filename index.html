@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>POWWOW | 女性専門整体サロン</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="assets/fv/hero.webp" type="image/webp" fetchpriority="high">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="tokens.css">
+  <style>
+    /* スタンドアロン表示用（結合時はページ側のリセットに委譲） */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+      background: var(--pw-pink-tint);
+    }
+
+    body {
+      font-family: var(--pw-font);
+      color: var(--pw-ink);
+      -webkit-font-smoothing: antialiased;
+      text-size-adjust: 100%;
+    }
+
+    /* 共通 */
+    .pw-sec {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      padding: var(--pw-sec-pad) 0;
+      font-family: var(--pw-font);
+      color: var(--pw-ink);
+      background: var(--pw-pink-tint);
+    }
+
+    .pw-sec--fv-survey {
+      padding-top: 0;
+    }
+
+    .pw-inner {
+      width: 100%;
+      max-width: var(--pw-maxw);
+      min-width: 0;
+      margin-inline: auto;
+      padding-inline: max(var(--pw-sp-2), env(safe-area-inset-left), env(safe-area-inset-right));
+    }
+
+    .pw-sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .pw-chevron {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--pw-sp-4);
+      height: var(--pw-sp-4);
+      animation: pw-bounce 1.6s ease-in-out infinite;
+    }
+
+    .pw-chevron__shape {
+      display: block;
+      width: var(--pw-sp-2);
+      height: var(--pw-sp-2);
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(45deg);
+      margin-top: calc(var(--pw-sp-1) * -1);
+    }
+
+    @keyframes pw-bounce {
+      0%,
+      100% { transform: translateY(0); }
+      50% { transform: translateY(var(--pw-sp-1)); }
+    }
+
+    /* ファーストビュー（ポスター全体をトリミングせず表示） */
+    .pw-fv {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding-top: max(var(--pw-sp-2), env(safe-area-inset-top));
+      padding-bottom: max(var(--pw-sp-1), env(safe-area-inset-bottom));
+    }
+
+    .pw-fv__media {
+      width: 100%;
+      max-width: var(--pw-maxw);
+      margin-inline: auto;
+      background: var(--pw-pink-soft);
+    }
+
+    .pw-fv__media picture,
+    .pw-fv__media img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .pw-header {
+      width: 100%;
+      max-width: var(--pw-maxw);
+      padding-inline: max(var(--pw-sp-2), env(safe-area-inset-left), env(safe-area-inset-right));
+      padding-bottom: var(--pw-sp-1);
+    }
+
+    .pw-logo {
+      margin: 0;
+    }
+
+    .pw-logo__name {
+      display: block;
+      font-size: var(--pw-fs-h3);
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      line-height: var(--pw-lh-tight);
+      color: var(--pw-ink);
+    }
+
+    .pw-logo__tag {
+      display: block;
+      font-size: var(--pw-fs-note);
+      font-weight: 400;
+      letter-spacing: 0.32em;
+      line-height: var(--pw-lh-tight);
+      color: var(--pw-ink-sub);
+    }
+
+    .pw-fv__scroll {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-self: center;
+      width: var(--pw-sp-6);
+      height: var(--pw-sp-6);
+      margin-top: var(--pw-sp-1);
+      color: var(--pw-magenta);
+      text-decoration: none;
+    }
+
+    .pw-fv__scroll:focus {
+      outline: none;
+    }
+
+    .pw-fv__scroll:focus-visible {
+      outline: 2px solid var(--pw-magenta);
+      outline-offset: 2px;
+      border-radius: var(--pw-r-btn);
+    }
+
+    /* アンケート導入の帯 */
+    .pw-intro {
+      background: var(--pw-pink-tint);
+      padding-block: var(--pw-sp-4);
+    }
+
+    .pw-intro__banner {
+      position: relative;
+      padding: var(--pw-sp-3) var(--pw-sp-2);
+      background: var(--pw-pink);
+      border-radius: var(--pw-sp-3);
+      color: var(--pw-white);
+      text-align: center;
+    }
+
+    .pw-intro__banner::before,
+    .pw-intro__banner::after {
+      content: "";
+      position: absolute;
+      left: var(--pw-sp-3);
+      right: var(--pw-sp-3);
+      height: 1px;
+      background: var(--pw-white);
+    }
+
+    .pw-intro__banner::before { top: var(--pw-sp-1); }
+    .pw-intro__banner::after { bottom: var(--pw-sp-1); }
+
+    .pw-intro__lead {
+      margin: 0;
+      font-size: var(--pw-fs-note);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      line-height: var(--pw-lh-tight);
+    }
+
+    .pw-intro__main {
+      margin: var(--pw-sp-1) 0 0;
+      max-width: 100%;
+      font-size: var(--pw-fs-h3);
+      font-weight: 900;
+      line-height: var(--pw-lh-tight);
+      color: var(--pw-white);
+      overflow-wrap: anywhere;
+    }
+
+    .pw-intro__em {
+      color: var(--pw-cream);
+    }
+
+    /* アンケート本体 */
+    .pw-survey {
+      background: var(--pw-pink-tint);
+      padding-block: 0 var(--pw-sp-4);
+    }
+
+    .pw-survey__card {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      padding: 0;
+      background: transparent;
+      transition: opacity 0.35s ease;
+    }
+
+    .pw-survey__card.is-locked {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .pw-survey__head {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: var(--pw-sp-2);
+      width: 100%;
+      min-width: 0;
+      margin-bottom: var(--pw-sp-3);
+      padding: var(--pw-sp-3) var(--pw-sp-2);
+      background: var(--pw-pink);
+      border-radius: var(--pw-sp-3);
+    }
+
+    .pw-survey__head::before,
+    .pw-survey__head::after {
+      content: "";
+      position: absolute;
+      left: var(--pw-sp-3);
+      right: var(--pw-sp-3);
+      height: 1px;
+      background: var(--pw-white);
+    }
+
+    .pw-survey__head::before { top: var(--pw-sp-1); }
+    .pw-survey__head::after { bottom: var(--pw-sp-1); }
+
+    .pw-survey__badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--pw-sp-8);
+      height: var(--pw-sp-8);
+      min-width: var(--pw-sp-8);
+      background: var(--pw-white);
+      color: var(--pw-pink);
+      font-size: var(--pw-fs-h2);
+      font-weight: 900;
+      line-height: 1;
+      border-radius: var(--pw-r-pill);
+    }
+
+    .pw-survey__question {
+      margin: 0;
+      min-width: 0;
+      font-size: var(--pw-fs-h3);
+      font-weight: 700;
+      line-height: var(--pw-lh-tight);
+      color: var(--pw-white);
+      overflow-wrap: anywhere;
+    }
+
+    .pw-survey__progress {
+      z-index: 1;
+      white-space: nowrap;
+      font-size: var(--pw-fs-note);
+      font-weight: 400;
+      line-height: var(--pw-lh-tight);
+      color: var(--pw-white);
+    }
+
+    .pw-survey__choices {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--pw-sp-2);
+    }
+
+    .pw-survey__choice {
+      appearance: none;
+      -webkit-appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      min-height: var(--pw-sp-6);
+      margin: 0;
+      padding: var(--pw-sp-2) var(--pw-sp-3);
+      border: 2px solid var(--pw-ink);
+      border-radius: var(--pw-r-pill);
+      background: var(--pw-white);
+      color: var(--pw-ink);
+      font-family: inherit;
+      font-size: var(--pw-fs-body);
+      font-weight: 700;
+      line-height: var(--pw-lh-body);
+      text-align: left;
+      min-width: 0;
+      max-width: 100%;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      cursor: pointer;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .pw-survey__choice.is-selected {
+      background: var(--pw-pink);
+      border-color: var(--pw-pink);
+      color: var(--pw-white);
+    }
+
+    .pw-survey__choice:disabled {
+      cursor: default;
+    }
+
+    .pw-survey__choice:focus {
+      outline: none;
+    }
+
+    .pw-survey__choice:focus-visible {
+      outline: 2px solid var(--pw-magenta);
+      outline-offset: 2px;
+    }
+
+    .pw-survey__guide {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--pw-sp-1);
+      padding-block: var(--pw-sp-3);
+      color: var(--pw-pink-soft);
+    }
+
+    .pw-survey__guide-label {
+      font-size: var(--pw-fs-note);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      line-height: var(--pw-lh-tight);
+    }
+
+    .pw-survey__tri {
+      width: 0;
+      height: 0;
+      border-left: var(--pw-sp-1) solid transparent;
+      border-right: var(--pw-sp-1) solid transparent;
+      border-top: var(--pw-sp-2) solid var(--pw-pink-soft);
+    }
+
+    /* 完了ブロック */
+    .pw-complete {
+      background: var(--pw-pink-tint);
+      padding-block: var(--pw-sp-4) var(--pw-sp-6);
+      text-align: center;
+    }
+
+    .pw-complete[hidden] {
+      display: none !important;
+    }
+
+    .pw-complete.is-visible {
+      animation: pw-fade-in 0.45s ease both;
+    }
+
+    @keyframes pw-fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(var(--pw-sp-1));
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .pw-complete__banner {
+      position: relative;
+      padding: var(--pw-sp-3) var(--pw-sp-2);
+      background: var(--pw-pink);
+      border-radius: var(--pw-sp-3);
+    }
+
+    .pw-complete__banner::before,
+    .pw-complete__banner::after {
+      content: "";
+      position: absolute;
+      left: var(--pw-sp-3);
+      right: var(--pw-sp-3);
+      height: 1px;
+      background: var(--pw-white);
+    }
+
+    .pw-complete__banner::before { top: var(--pw-sp-1); }
+    .pw-complete__banner::after { bottom: var(--pw-sp-1); }
+
+    .pw-complete__title {
+      margin: 0;
+      font-size: var(--pw-fs-h3);
+      font-weight: 900;
+      line-height: var(--pw-lh-tight);
+      color: var(--pw-white);
+    }
+
+    .pw-complete__lead {
+      margin: var(--pw-sp-3) 0 0;
+      font-size: var(--pw-fs-body);
+      font-weight: 700;
+      line-height: var(--pw-lh-tight);
+      color: var(--pw-ink);
+    }
+
+    .pw-complete__note {
+      margin: var(--pw-sp-3) 0 0;
+      font-size: var(--pw-fs-note);
+      font-weight: 400;
+      line-height: var(--pw-lh-body);
+      color: var(--pw-ink-sub);
+      text-align: left;
+    }
+
+    .pw-complete__next {
+      display: flex;
+      justify-content: center;
+      margin-top: var(--pw-sp-4);
+      color: var(--pw-magenta);
+    }
+
+    @media (hover: hover) {
+      .pw-survey__choice:hover {
+        background: var(--pw-pink-tint);
+      }
+
+      .pw-survey__choice.is-selected:hover {
+        background: var(--pw-pink);
+        color: var(--pw-white);
+      }
+    }
+
+    @media (min-width: 641px) {
+      .pw-intro__main,
+      .pw-complete__title {
+        font-size: var(--pw-fs-h2);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pw-chevron {
+        animation: none;
+      }
+
+      .pw-survey__card {
+        transition: none;
+      }
+
+      .pw-complete.is-visible {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- POWWOW LP セクション1：ファーストビュー＋3問アンケート -->
+  <section class="pw-sec pw-sec--fv-survey">
+
+    <!-- ファーストビュー -->
+    <div class="pw-fv">
+      <header class="pw-header">
+        <p class="pw-logo">
+          <span class="pw-logo__name">POWWOW</span>
+          <span class="pw-logo__tag">BODY MIND LIFE</span>
+        </p>
+      </header>
+
+      <h1 class="pw-sr-only">40代・50代の女性へ。最近、なんだか私じゃない。まるごと整える60分。</h1>
+
+      <div class="pw-fv__media">
+        <picture>
+          <source type="image/avif" srcset="assets/fv/hero.avif">
+          <source type="image/webp" srcset="assets/fv/hero.webp">
+          <img
+            src="assets/fv/hero.jpg"
+            alt="40代・50代の女性へ。最近、なんだか私じゃない。ゆらぎ整体コース初回限定3,980円"
+            width="1267"
+            height="1900"
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
+          >
+        </picture>
+      </div>
+
+      <a class="pw-fv__scroll" href="#pw-intro" aria-label="アンケートへ進む">
+        <span class="pw-chevron" aria-hidden="true">
+          <span class="pw-chevron__shape"></span>
+        </span>
+      </a>
+    </div>
+
+    <!-- アンケート導入の帯 -->
+    <div class="pw-intro" id="pw-intro">
+      <div class="pw-inner">
+        <div class="pw-intro__banner">
+          <p class="pw-intro__lead">3問のアンケートにご回答で</p>
+          <h2 class="pw-intro__main">初回限定 <span class="pw-intro__em">特別価格</span>でご案内！</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- アンケート本体 -->
+    <div class="pw-survey">
+      <p class="pw-sr-only" id="pw-survey-status" aria-live="polite" aria-atomic="true"></p>
+      <div class="pw-inner">
+
+        <article class="pw-survey__card" id="pw-q1">
+          <div class="pw-survey__head">
+            <span class="pw-survey__badge">Q1</span>
+            <h3 class="pw-survey__question" id="pw-q1-label">整体・ボディケアに興味はありますか？</h3>
+            <span class="pw-survey__progress">1/3</span>
+          </div>
+          <div class="pw-survey__choices" role="group" aria-labelledby="pw-q1-label">
+            <button type="button" class="pw-survey__choice" data-q="q1" data-value="はい" aria-pressed="false">はい</button>
+            <button type="button" class="pw-survey__choice" data-q="q1" data-value="いいえ" aria-pressed="false">いいえ</button>
+          </div>
+        </article>
+
+        <div class="pw-survey__guide" aria-hidden="true">
+          <span class="pw-survey__guide-label">NEXT</span>
+          <span class="pw-survey__tri"></span>
+        </div>
+
+        <article class="pw-survey__card is-locked" id="pw-q2" inert>
+          <div class="pw-survey__head">
+            <span class="pw-survey__badge">Q2</span>
+            <h3 class="pw-survey__question" id="pw-q2-label">特に気になる部位はどこですか？</h3>
+            <span class="pw-survey__progress">2/3</span>
+          </div>
+          <div class="pw-survey__choices" role="group" aria-labelledby="pw-q2-label">
+            <button type="button" class="pw-survey__choice" data-q="q2" data-value="肩・首" aria-pressed="false" disabled>肩・首</button>
+            <button type="button" class="pw-survey__choice" data-q="q2" data-value="腰" aria-pressed="false" disabled>腰</button>
+            <button type="button" class="pw-survey__choice" data-q="q2" data-value="むくみ" aria-pressed="false" disabled>むくみ</button>
+            <button type="button" class="pw-survey__choice" data-q="q2" data-value="姿勢" aria-pressed="false" disabled>姿勢</button>
+            <button type="button" class="pw-survey__choice" data-q="q2" data-value="全身の疲れ" aria-pressed="false" disabled>全身の疲れ</button>
+            <button type="button" class="pw-survey__choice" data-q="q2" data-value="手足の冷え" aria-pressed="false" disabled>手足の冷え</button>
+          </div>
+        </article>
+
+        <div class="pw-survey__guide" aria-hidden="true">
+          <span class="pw-survey__guide-label">NEXT</span>
+          <span class="pw-survey__tri"></span>
+        </div>
+
+        <article class="pw-survey__card is-locked" id="pw-q3" inert>
+          <div class="pw-survey__head">
+            <span class="pw-survey__badge">Q3</span>
+            <h3 class="pw-survey__question" id="pw-q3-label">特にあてはまる不調はありますか？</h3>
+            <span class="pw-survey__progress">3/3</span>
+          </div>
+          <div class="pw-survey__choices" role="group" aria-labelledby="pw-q3-label">
+            <button type="button" class="pw-survey__choice" data-q="q3" data-value="眠りが浅く、寝ても疲れが取れない" aria-pressed="false" disabled>眠りが浅く、寝ても疲れが取れない</button>
+            <button type="button" class="pw-survey__choice" data-q="q3" data-value="老眼の始まりからの眼精疲労" aria-pressed="false" disabled>老眼の始まりからの眼精疲労</button>
+            <button type="button" class="pw-survey__choice" data-q="q3" data-value="更年期の悩みがある" aria-pressed="false" disabled>更年期の悩みがある</button>
+            <button type="button" class="pw-survey__choice" data-q="q3" data-value="怒りやすく、イライラする" aria-pressed="false" disabled>怒りやすく、イライラする</button>
+            <button type="button" class="pw-survey__choice" data-q="q3" data-value="頭痛、めまい、吐き気がする" aria-pressed="false" disabled>頭痛、めまい、吐き気がする</button>
+          </div>
+        </article>
+
+        <div class="pw-survey__guide" aria-hidden="true">
+          <span class="pw-survey__guide-label">FINISH</span>
+          <span class="pw-survey__tri"></span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 完了ブロック -->
+    <div class="pw-complete" id="pw-complete" hidden aria-live="polite">
+      <div class="pw-inner">
+        <div class="pw-complete__banner">
+          <h2 class="pw-complete__title">ご回答ありがとうございます！</h2>
+        </div>
+        <p class="pw-complete__lead">ゆらぎ世代のための特別コースをご用意しました！</p>
+        <p class="pw-complete__note">
+          ※当サロンの施術は医療行為ではありません。<br>
+          症状が続く場合や治療中の方は、かかりつけの医師にご相談ください。
+        </p>
+        <div class="pw-complete__next" aria-hidden="true">
+          <span class="pw-chevron">
+            <span class="pw-chevron__shape"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <script>
+    (function () {
+      "use strict";
+
+      if (!window.pwSurvey) {
+        window.pwSurvey = { q1: null, q2: null, q3: null };
+      }
+
+      var reduceMq = window.matchMedia("(prefers-reduced-motion: reduce)");
+      var statusEl = document.getElementById("pw-survey-status");
+      var completeEl = document.getElementById("pw-complete");
+      var order = ["q1", "q2", "q3"];
+      var spoken = { q1: "1問目", q2: "2問目", q3: "3問目" };
+
+      function prefersReduce() {
+        return reduceMq.matches;
+      }
+
+      function emit() {
+        document.dispatchEvent(
+          new CustomEvent("pw:survey-change", { detail: window.pwSurvey })
+        );
+      }
+
+      function getCard(id) {
+        return document.getElementById("pw-" + id);
+      }
+
+      function unlock(id) {
+        var el = getCard(id);
+        if (!el) return;
+        el.classList.remove("is-locked");
+        el.removeAttribute("inert");
+        var buttons = el.querySelectorAll(".pw-survey__choice");
+        for (var i = 0; i < buttons.length; i++) {
+          buttons[i].disabled = false;
+        }
+      }
+
+      function goTo(el) {
+        if (!el) return;
+        el.scrollIntoView({
+          behavior: prefersReduce() ? "auto" : "smooth",
+          block: "center"
+        });
+      }
+
+      function allAnswered() {
+        return order.every(function (key) {
+          return window.pwSurvey[key] != null;
+        });
+      }
+
+      function showComplete() {
+        if (!completeEl || !completeEl.hasAttribute("hidden")) return;
+        completeEl.removeAttribute("hidden");
+        completeEl.classList.add("is-visible");
+        if (statusEl) {
+          statusEl.textContent = "ご回答ありがとうございます！";
+        }
+        goTo(completeEl);
+      }
+
+      function onSelect(q, value, btn) {
+        window.pwSurvey[q] = value;
+
+        var group = btn.closest(".pw-survey__choices");
+        if (group) {
+          var buttons = group.querySelectorAll(".pw-survey__choice");
+          for (var i = 0; i < buttons.length; i++) {
+            var on = buttons[i] === btn;
+            buttons[i].classList.toggle("is-selected", on);
+            buttons[i].setAttribute("aria-pressed", on ? "true" : "false");
+          }
+        }
+
+        emit();
+
+        var idx = order.indexOf(q);
+        var next = order[idx + 1];
+        if (next) {
+          unlock(next);
+          if (statusEl) {
+            statusEl.textContent =
+              spoken[q] + "に回答しました。" + spoken[next] + "へ進みます。";
+          }
+          goTo(getCard(next));
+        } else if (allAnswered()) {
+          showComplete();
+        }
+      }
+
+      document.addEventListener("click", function (event) {
+        var btn = event.target.closest(".pw-survey__choice");
+        if (!btn || btn.disabled) return;
+        var q = btn.getAttribute("data-q");
+        var value = btn.getAttribute("data-value");
+        if (!q || value == null) return;
+        onSelect(q, value, btn);
+      });
+    })();
+  </script>
+</body>
+</html>
